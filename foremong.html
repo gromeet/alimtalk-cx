@@ -133,6 +133,62 @@
   .url-btn-open-tool { padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 600; background: rgba(74,124,40,0.15); color: #2d5016; text-decoration: none; }
   .url-btn-open-tool:hover { background: rgba(74,124,40,0.3); }
   .url-btn-copy-tool { padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 600; background: #f0f0f0; color: #555; border: none; cursor: pointer; font-family: inherit; }
+
+  /* === FEATURE 1: Edit Mode CSS === */
+  .edit-btn {
+    background: #f0f0f0; color: #333; border: 1px solid #ddd;
+    padding: 4px 10px; border-radius: 4px; font-size: 11px;
+    font-weight: 600; cursor: pointer; margin-left: 8px;
+    transition: all 0.2s;
+  }
+  .edit-btn:hover { background: #e0e0e0; }
+  .edit-btn.save { background: #27ae60; color: white; border-color: #27ae60; }
+  .edit-mode {
+    border: 2px dashed #0284c7 !important;
+    padding: 12px !important;
+    background-color: #f0f9ff !important;
+  }
+  .msg-edit-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .msg-edit-container .msg {
+    flex: 1;
+  }
+
+  /* === FEATURE 2: Impact Filter CSS === */
+  .filter-bar {
+    display: flex; gap: 12px; padding: 16px 24px;
+    background: white; margin-bottom: 24px;
+    border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    flex-wrap: wrap; align-items: center;
+  }
+  .filter-bar-label {
+    font-size: 12px; font-weight: 700; color: #666;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .filter-btn {
+    padding: 8px 16px; border-radius: 20px; border: 1px solid #ddd;
+    background: white; color: #333; font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-btn:hover { background: #f5f5f5; border-color: #999; }
+  .filter-btn.active {
+    background: #333; color: white; border-color: #333;
+  }
+  .campaign-card.hidden { display: none !important; }
+
+  /* === FEATURE 3: Export Button CSS === */
+  .export-adopted-btn {
+    padding: 8px 16px; background: #0284c7; color: white;
+    border: none; border-radius: 6px; font-size: 12px;
+    font-weight: 600; cursor: pointer; margin-left: 8px;
+    transition: all 0.2s;
+  }
+  .export-adopted-btn:hover { background: #025e8c; }
+  .export-adopted-btn.generating { opacity: 0.7; }
+
 </style>
 </head>
 <body data-brand="foremong">
@@ -1085,6 +1141,149 @@ function copyUrl(url, btn) {
   window._adoptAll = function(brand){
     var s=loadState(brand);
     document.querySelectorAll('.campaign-card[data-cid]').forEach(function(c){ delete s[c.dataset.cid]; applyState(c,s,brand); });
+
+
+  /* === FEATURE 1: Edit Mode === */
+  window._setupEditMode = function(brand) {
+    document.querySelectorAll('.after .msg').forEach(function(msgEl, idx) {
+      var editContainer = document.createElement('div');
+      editContainer.className = 'msg-edit-container';
+
+      var editBtn = document.createElement('button');
+      editBtn.className = 'edit-btn';
+      editBtn.textContent = '✏️ 수정';
+      editBtn.style.alignSelf = 'flex-start';
+
+      var storageKey = 'edit_' + brand + '_' + idx;
+      var savedContent = localStorage.getItem(storageKey);
+
+      if(savedContent) {
+        msgEl.innerHTML = savedContent;
+      }
+
+      editBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isEditing = msgEl.contentEditable === 'true';
+
+        if(isEditing) {
+          msgEl.contentEditable = 'false';
+          msgEl.classList.remove('edit-mode');
+          editBtn.textContent = '✏️ 수정';
+          editBtn.classList.remove('save');
+          localStorage.setItem(storageKey, msgEl.innerHTML);
+        } else {
+          msgEl.contentEditable = 'true';
+          msgEl.classList.add('edit-mode');
+          editBtn.textContent = '💾 저장';
+          editBtn.classList.add('save');
+          msgEl.focus();
+        }
+      });
+
+      msgEl.parentNode.insertBefore(editBtn, msgEl.nextSibling);
+    });
+  };
+
+  /* === FEATURE 2: Impact Filter === */
+  window._setupImpactFilter = function() {
+    var firstCard = document.querySelector('.campaign-card');
+    if(!firstCard || document.querySelector('.filter-bar')) return;
+
+    var filterBar = document.createElement('div');
+    filterBar.className = 'filter-bar';
+    filterBar.innerHTML = '<span class="filter-bar-label">필터:</span>';
+
+    var filters = ['전체', '🔴 HIGH', '🟡 MID', '🟢 LOW'];
+    var filterMap = {'전체': '', '🔴 HIGH': 'high', '🟡 MID': 'mid', '🟢 LOW': 'low'};
+
+    filters.forEach(function(f) {
+      var btn = document.createElement('button');
+      btn.className = 'filter-btn' + (f === '전체' ? ' active' : '');
+      btn.textContent = f;
+      btn.dataset.filter = filterMap[f];
+
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        var filterValue = btn.dataset.filter;
+        document.querySelectorAll('.campaign-card').forEach(function(card) {
+          if(!filterValue) {
+            card.classList.remove('hidden');
+          } else {
+            var impact = card.querySelector('.impact');
+            var hasMatch = impact && impact.classList.contains(filterValue);
+            card.classList.toggle('hidden', !hasMatch);
+          }
+        });
+      });
+
+      filterBar.appendChild(btn);
+    });
+
+    firstCard.parentNode.insertBefore(filterBar, firstCard);
+  };
+
+  /* === FEATURE 3: Export Adopted === */
+  window._exportAdopted = function(brand) {
+    var STORAGE_PREFIX = 'alimtalk-adopt-';
+    var state = {};
+    try {
+      state = JSON.parse(localStorage.getItem(STORAGE_PREFIX + brand) || '{}');
+    } catch(e) {}
+
+    var adopted = [];
+    document.querySelectorAll('.campaign-card[data-cid]').forEach(function(card) {
+      var cardId = card.dataset.cid;
+      if(state[cardId] !== 'keep') {
+        var name = card.querySelector('.name');
+        var msgEl = card.querySelector('.after .msg');
+        var text = msgEl ? (msgEl.innerText || msgEl.textContent) : '';
+
+        adopted.push({
+          name: name ? name.textContent : cardId,
+          text: text
+        });
+      }
+    });
+
+    if(adopted.length === 0) {
+      alert('채택된 캠페인이 없습니다.');
+      return;
+    }
+
+    var content = '[ ' + brand.toUpperCase() + ' 채택안 모음 ]
+
+';
+    adopted.forEach(function(item, idx) {
+      content += (idx + 1) + '. ' + item.name + '
+';
+      content += '─'.repeat(40) + '
+';
+      content += item.text + '
+
+';
+    });
+
+    var blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = brand + '_adopted_campaigns_' + new Date().toISOString().split('T')[0] + '.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  /* Initialize all features on DOMContentLoaded */
+  document.addEventListener('DOMContentLoaded', function() {
+    var brand = document.body.dataset.brand || 'unknown';
+    _setupEditMode(brand);
+    _setupImpactFilter();
+  });
+
     saveState(brand,s);
   };
 
@@ -1097,7 +1296,8 @@ function copyUrl(url, btn) {
       var summary = document.createElement('div');
       summary.className = 'adopt-summary';
       summary.innerHTML = '<span>채택 현황: <span id="adopt-count" class="count">0/0개 채택</span></span>' +
-        '<button class="adopt-all-btn" onclick="_adoptAll(\'' + brand + '\')">전체 채택</button>';
+        '<button class="adopt-all-btn" onclick="_adoptAll(\'' + brand + '\')">전체 채택</button>' +
+        '<button class="export-adopted-btn" onclick="_exportAdopted(\'' + brand + '\')">📥 채택안 내보내기</button>';
       container.parentNode.insertBefore(summary, container);
     }
 
