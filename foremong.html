@@ -333,6 +333,209 @@
     .arrow-col { transform: rotate(90deg); }
     .phone { width: 100%; }
   }
+
+  /* ========== INTERACTIVE DECISION TOOLS ========== */
+  .decision-bar {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+    align-items: center;
+  }
+  .decision-bar .status-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #999;
+    margin-right: auto;
+  }
+  .decision-btn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1.5px solid #ddd;
+    cursor: pointer;
+    background: white;
+    transition: all 0.2s;
+  }
+  .decision-btn:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .decision-btn.adopt { border-color: #22c55e; color: #22c55e; }
+  .decision-btn.adopt:hover, .decision-btn.adopt.selected { background: #22c55e; color: white; }
+  .decision-btn.modify { border-color: #f59e0b; color: #f59e0b; }
+  .decision-btn.modify:hover, .decision-btn.modify.selected { background: #f59e0b; color: white; }
+  .decision-btn.skip { border-color: #94a3b8; color: #94a3b8; }
+  .decision-btn.skip:hover, .decision-btn.skip.selected { background: #94a3b8; color: white; }
+
+  .campaign-card.decided-adopt { border-left: 4px solid #22c55e; }
+  .campaign-card.decided-modify { border-left: 4px solid #f59e0b; }
+  .campaign-card.decided-skip { border-left: 4px solid #94a3b8; opacity: 0.7; }
+
+  /* Editable AFTER */
+  .after .msg[contenteditable="true"] {
+    outline: none;
+    border: 2px dashed transparent;
+    transition: border-color 0.2s;
+  }
+  .after .msg[contenteditable="true"]:focus {
+    border-color: #f59e0b;
+    background: #fffdf7;
+  }
+  .after .msg[contenteditable="true"]:hover:not(:focus) {
+    border-color: #e5e7eb;
+  }
+  .edit-hint {
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* Current URL display in BEFORE */
+  .current-url {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #64748b;
+    word-break: break-all;
+  }
+  .current-url .url-label {
+    font-weight: 600;
+    white-space: nowrap;
+    color: #475569;
+  }
+  .current-url a {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+  .current-url a:hover { text-decoration: underline; }
+
+  /* Decision Summary floating bar */
+  .decision-summary {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 17, 23, 0.95);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 1000;
+    font-size: 13px;
+    transition: transform 0.3s;
+  }
+  .decision-summary.hidden { transform: translateY(100%); }
+  .decision-summary .count {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+  }
+  .decision-summary .count span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .decision-summary .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot.green { background: #22c55e; }
+  .dot.yellow { background: #f59e0b; }
+  .dot.gray { background: #94a3b8; }
+  .export-btn {
+    padding: 8px 20px;
+    background: white;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .export-btn:hover { background: #f0f0f0; }
+
+  /* Timeline interactive (for 메아리셋 CRM) */
+  .crm-comparison {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 0;
+    margin-top: 12px;
+  }
+  .crm-comparison .before-col, .crm-comparison .after-col {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .crm-comparison .before-col {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+  }
+  .crm-comparison .after-col {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+  }
+  .crm-comparison .arrow-mid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #ccc;
+  }
+  .crm-msg-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #333;
+    white-space: pre-line;
+  }
+  .crm-msg-text[contenteditable="true"] {
+    outline: none;
+    border: 2px dashed transparent;
+    padding: 8px;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+  }
+  .crm-msg-text[contenteditable="true"]:focus {
+    border-color: #f59e0b;
+    background: #fffdf7;
+  }
+  .crm-btn-info {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.04);
+    border-radius: 8px;
+    font-size: 12px;
+    color: #666;
+  }
+  .crm-btn-info strong { color: #333; }
+  .col-label-sm {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .col-label-sm.before { color: #dc2626; }
+  .col-label-sm.after { color: #16a34a; }
+  .change-note {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #ecfdf5;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #166534;
+    border-left: 3px solid #22c55e;
+  }
+  .change-note strong { color: #15803d; }
+
 </style>
 </head>
 <body>
@@ -438,7 +641,7 @@
   <div class="section-title">캠페인별 전 / 후 비교</div>
 
   <!-- 1. 결제완료 -->
-  <div class="campaign-card open" onclick="this.classList.toggle('open')">
+  <div data-campaign="campaign-1" class="campaign-card open" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
         <div class="num-badge">1</div>
@@ -491,7 +694,7 @@
           <div class="col-label">✅ AFTER</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               안녕하세요, #{고객명}님!<br>
               온수매트 전문 브랜드 <b>포레몽</b>입니다.<br><br>
               주문이 정상적으로 완료되었습니다.<br>
@@ -519,11 +722,18 @@
           </ul>
         </div>
       </div>
+
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-1', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-1', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-1', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
   <!-- 2. 배송시작 -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
+  <div data-campaign="campaign-2" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
         <div class="num-badge">2</div>
@@ -568,7 +778,7 @@
           <div class="col-label">✅ AFTER</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님이 주문하신 상품이<br>
               출발했습니다!<br><br>
               <b>검수 완료 → 안전 포장 → 출고</b><br><br>
@@ -593,11 +803,18 @@
           </ul>
         </div>
       </div>
+
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-2', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-2', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-2', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
   <!-- 3. 배송완료 -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
+  <div data-campaign="campaign-3" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
         <div class="num-badge">3</div>
@@ -642,7 +859,7 @@
           <div class="col-label">✅ AFTER</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님의 상품이<br>배송 완료되었습니다!<br><br>
               📦 배송 완료 정보<br>
               ▪️상품명 : #{상품명}<br>
@@ -665,11 +882,18 @@
           </ul>
         </div>
       </div>
+
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-3', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-3', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-3', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
   <!-- 4. 설치확인 (NEW) -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
+  <div data-campaign="campaign-4" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
         <div class="num-badge" style="background:#e8a020;">N</div>
@@ -697,7 +921,7 @@
           <div class="col-label">✅ NEW 캠페인</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 안녕하세요!<br>
               포레몽 온수매트<br>
               <b>설치는 잘 되셨나요?</b><br><br>
@@ -722,11 +946,18 @@
           </ul>
         </div>
       </div>
+
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-4', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-4', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-4', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
   <!-- 5. 구매확정 유도 -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
+  <div data-campaign="campaign-5" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
         <div class="num-badge">4</div>
@@ -769,7 +1000,7 @@
           <div class="col-label">✅ AFTER</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님!<br>
               포레몽 온수매트<br>
               만족스럽게 사용하고 계신가요?<br><br>
@@ -791,11 +1022,18 @@
           </ul>
         </div>
       </div>
+
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-5', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-5', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-5', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
   <!-- 6. 리뷰 유도 (+7일) -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
+  <div data-campaign="campaign-6" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
         <div class="num-badge">5</div>
@@ -838,7 +1076,7 @@
           <div class="col-label">✅ AFTER</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님,<br>
               #{상품명} 일주일째<br>
               따뜻하게 잘 사용하고 계신가요?<br><br>
@@ -863,11 +1101,18 @@
           </ul>
         </div>
       </div>
+
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-6', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-6', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-6', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
   <!-- 7. 한달 리뷰 (+30일) -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
+  <div data-campaign="campaign-7" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
         <div class="num-badge">6</div>
@@ -913,7 +1158,7 @@
           <div class="col-label">✅ AFTER</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님!<br>
               포레몽 온수매트 사용하신 지<br>
               어느덧 <b>한 달</b>이 되었습니다.<br><br>
@@ -937,11 +1182,18 @@
           </ul>
         </div>
       </div>
+
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-7', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-7', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-7', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
   <!-- 8~12: 취소/교환/반품 (그룹) -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
+  <div data-campaign="campaign-8" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
         <div class="num-badge" style="background:#c44;">7-12</div>
@@ -1036,6 +1288,13 @@
           </ul>
         </div>
       </div>
+
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-8', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-8', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-8', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
@@ -1070,6 +1329,90 @@
   <div class="footer">
     포레몽 알림톡 CX 개선안 · 2026-03-10 · 그로밋팀
   </div>
+</div>
+
+
+<script>
+  // Decision tracking
+  const decisions = {};
+
+  function decide(campaignId, type) {
+    decisions[campaignId] = type;
+    const card = document.querySelector(`[data-campaign="${campaignId}"]`);
+    if (!card) return;
+
+    card.classList.remove('decided-adopt', 'decided-modify', 'decided-skip');
+    card.classList.add('decided-' + type);
+
+    // Update buttons
+    card.querySelectorAll('.decision-btn').forEach(b => b.classList.remove('selected'));
+    card.querySelector(`.decision-btn.${type}`).classList.add('selected');
+
+    // If modify, focus the editable area
+    if (type === 'modify') {
+      const editable = card.querySelector('[contenteditable]');
+      if (editable) editable.focus();
+    }
+
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const vals = Object.values(decisions);
+    const adopt = vals.filter(v => v === 'adopt').length;
+    const modify = vals.filter(v => v === 'modify').length;
+    const skip = vals.filter(v => v === 'skip').length;
+    const total = adopt + modify + skip;
+
+    const bar = document.getElementById('decision-summary');
+    if (total > 0) {
+      bar.classList.remove('hidden');
+      document.getElementById('count-adopt').textContent = adopt;
+      document.getElementById('count-modify').textContent = modify;
+      document.getElementById('count-skip').textContent = skip;
+    } else {
+      bar.classList.add('hidden');
+    }
+  }
+
+  function exportDecisions() {
+    let result = '# 알림톡 CX 개선안 — 채택 결과\n\n';
+    result += `날짜: ${new Date().toLocaleDateString('ko-KR')}\n\n`;
+
+    document.querySelectorAll('[data-campaign]').forEach(card => {
+      const id = card.dataset.campaign;
+      const name = card.querySelector('.name')?.textContent || card.querySelector('.title')?.textContent || id;
+      const status = decisions[id] || '미결정';
+      const statusEmoji = status === 'adopt' ? '✅' : status === 'modify' ? '✏️' : status === 'skip' ? '⏭️' : '⬜';
+
+      result += `${statusEmoji} **${name}** — ${status === 'adopt' ? '채택' : status === 'modify' ? '수정 채택' : status === 'skip' ? '보류' : '미결정'}\n`;
+
+      if (status === 'modify' || status === 'adopt') {
+        const afterText = card.querySelector('.after [contenteditable], .after-col [contenteditable]');
+        if (afterText) {
+          result += `> ${afterText.innerText.substring(0, 200).replace(/\n/g, '\n> ')}...\n`;
+        }
+      }
+      result += '\n';
+    });
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(result).then(() => {
+      const btn = document.querySelector('.export-btn');
+      btn.textContent = '✓ 복사됨!';
+      setTimeout(() => btn.textContent = '📋 결과 복사', 2000);
+    });
+  }
+</script>
+
+<!-- Decision Summary Bar -->
+<div id="decision-summary" class="decision-summary hidden">
+  <div class="count">
+    <span><span class="dot green"></span> 채택 <b id="count-adopt">0</b></span>
+    <span><span class="dot yellow"></span> 수정 <b id="count-modify">0</b></span>
+    <span><span class="dot gray"></span> 보류 <b id="count-skip">0</b></span>
+  </div>
+  <button class="export-btn" onclick="exportDecisions()">📋 결과 복사</button>
 </div>
 
 </body>
