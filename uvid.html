@@ -722,15 +722,15 @@
                 <div class="btn">채널 추가하기</div>
                 <div class="btn">주문내역 바로가기</div>
               </div>
-            <div class="before-url-box">
+            <div class="before-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
                 <span class="url-btn-label">채널 추가하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
               <div class="url-row">
                 <span class="url-btn-label">주문내역 바로가기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
             </div>
@@ -828,19 +828,19 @@
                 <div class="btn">배송조회</div>
                 <div class="btn">스토어바로가기</div>
               </div>
-            <div class="before-url-box">
+            <div class="before-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
                 <span class="url-btn-label">채널추가하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
               <div class="url-row">
                 <span class="url-btn-label">배송조회</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
               <div class="url-row">
                 <span class="url-btn-label">스토어바로가기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
             </div>
@@ -927,15 +927,15 @@
                 <div class="btn">채널추가하기</div>
                 <div class="btn">후기 작성하기</div>
               </div>
-            <div class="before-url-box">
+            <div class="before-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
                 <span class="url-btn-label">채널추가하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
               <div class="url-row">
                 <span class="url-btn-label">후기 작성하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
             </div>
@@ -1029,15 +1029,15 @@
                 <div class="btn">채널추가하기</div>
                 <div class="btn">구매확정 바로가기</div>
               </div>
-            <div class="before-url-box">
+            <div class="before-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
                 <span class="url-btn-label">채널추가하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
               <div class="url-row">
                 <span class="url-btn-label">구매확정 바로가기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
             </div>
@@ -1197,11 +1197,11 @@
               <div class="btn-group">
                 <div class="btn">(버튼 없음 - 본문에만 기재)</div>
               </div>
-            <div class="before-url-box">
+            <div class="before-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
                 <span class="url-btn-label">(버튼 없음 - 본문에만 기재)</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false">
+                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
             </div>
@@ -1476,6 +1476,13 @@
       setTimeout(() => btn.textContent = '📋 결과 복사', 2000);
     });
   }
+
+  // Prevent card toggle when interacting with inputs and editable areas
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar').forEach(el => {
+      el.addEventListener('click', e => e.stopPropagation());
+    });
+  });
 </script>
 
 <!-- Decision Summary Bar -->
