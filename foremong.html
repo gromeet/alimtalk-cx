@@ -1,1542 +1,272 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>포레몽 알림톡 CX 개선안</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: #f5f5f0;
-    color: #1a1a1a;
-    line-height: 1.6;
-  }
-
-  .header {
-    background: linear-gradient(135deg, #2d5016 0%, #4a7c28 100%);
-    color: white;
-    padding: 48px 40px;
-    text-align: center;
-  }
+  body { font-family: 'Noto Sans KR', sans-serif; background: #f5f5f0; color: #1a1a1a; line-height: 1.6; }
+  .header { background: linear-gradient(135deg, #2d5016 0%, #4a7c28 100%); color: white; padding: 48px 40px; text-align: center; }
   .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
   .header p { font-size: 15px; opacity: 0.85; }
-
   .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
-
-  /* Summary Cards */
-  .summary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-  .summary-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .summary-card { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
   .summary-card .num { font-size: 32px; font-weight: 700; color: #4a7c28; }
   .summary-card .label { font-size: 13px; color: #666; margin-top: 4px; }
-
-  /* Section */
-  .section-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin: 40px 0 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #4a7c28;
-    color: #2d5016;
-  }
-
-  /* Improvement Principle */
-  .principles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-  .principle {
-    background: white;
-    border-radius: 12px;
-    padding: 20px 24px;
-    border-left: 4px solid #4a7c28;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  }
-  .principle .tag {
-    display: inline-block;
-    background: #e8f5e0;
-    color: #2d5016;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 8px;
-  }
+  .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #4a7c28; color: #2d5016; }
+  .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .principle { background: white; border-radius: 12px; padding: 20px 24px; border-left: 4px solid #4a7c28; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .principle .tag { display: inline-block; background: #e8f5e0; color: #2d5016; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
   .principle h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
   .principle p { font-size: 13px; color: #555; }
-
-  /* Campaign Card */
-  .campaign-card {
-    background: white;
-    border-radius: 16px;
-    margin-bottom: 24px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .campaign-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 24px;
-    background: #fafaf7;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-    user-select: none;
-  }
+  .campaign-card { background: white; border-radius: 16px; margin-bottom: 24px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .campaign-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: #fafaf7; border-bottom: 1px solid #eee; cursor: pointer; user-select: none; }
   .campaign-header:hover { background: #f0f0eb; }
   .campaign-header .left { display: flex; align-items: center; gap: 12px; }
-  .campaign-header .num-badge {
-    width: 32px; height: 32px;
-    background: #4a7c28;
-    color: white;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 600;
-  }
+  .campaign-header .num-badge { width: 32px; height: 32px; background: #4a7c28; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; }
   .campaign-header .name { font-size: 16px; font-weight: 600; }
-  .campaign-header .timing {
-    font-size: 12px;
-    color: #888;
-    background: #f0f0eb;
-    padding: 4px 12px;
-    border-radius: 20px;
-  }
-  .campaign-header .arrow {
-    font-size: 20px;
-    color: #999;
-    transition: transform 0.3s;
-  }
+  .campaign-header .timing { font-size: 12px; color: #888; background: #f0f0eb; padding: 4px 12px; border-radius: 20px; }
+  .campaign-header .arrow { font-size: 20px; color: #999; transition: transform 0.3s; }
   .campaign-card.open .campaign-header .arrow { transform: rotate(180deg); }
-
   .campaign-body { display: none; padding: 0; }
   .campaign-card.open .campaign-body { display: block; }
-
-  .comparison {
-    display: grid;
-    grid-template-columns: 1fr 48px 1fr;
-    gap: 0;
-    padding: 24px;
-  }
-
-  .before, .after {
-    border-radius: 12px;
-    padding: 20px;
-  }
+  .comparison { display: grid; grid-template-columns: 1fr 48px 1fr; gap: 0; padding: 24px; }
+  .before, .after { border-radius: 12px; padding: 20px; }
   .before { background: #fff5f5; border: 1px solid #ffd4d4; }
   .after { background: #f0faf0; border: 1px solid #c4e8c4; }
-
-  .col-label {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+  .col-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
   .before .col-label { color: #c44; }
   .after .col-label { color: #2d7a2d; }
-
-  .arrow-col {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #4a7c28;
-  }
-
-  /* Phone mockup */
-  .phone {
-    width: 280px;
-    margin: 0 auto;
-    background: #f7f7f2;
-    border-radius: 24px;
-    border: 2px solid #ddd;
-    padding: 12px;
-    font-size: 12.5px;
-    line-height: 1.7;
-  }
-  .phone .kakao-header {
-    text-align: center;
-    font-size: 11px;
-    color: #999;
-    padding: 6px 0 10px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
-  }
-  .phone .msg {
-    background: #FEE500;
-    border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 8px;
-    color: #1a1a1a;
-    word-break: keep-all;
-  }
-  .phone .msg.white {
-    background: white;
-    border: 1px solid #e5e5e5;
-  }
-  .phone .btn-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-top: 8px;
-  }
-  .phone .btn {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
-    font-size: 12px;
-    color: #333;
-    font-weight: 500;
-  }
-  .phone .btn.primary {
-    background: #4a7c28;
-    color: white;
-    border-color: #4a7c28;
-  }
+  .arrow-col { display: flex; align-items: center; justify-content: center; font-size: 24px; color: #4a7c28; }
+  .phone { width: 280px; margin: 0 auto; background: #f7f7f2; border-radius: 24px; border: 2px solid #ddd; padding: 12px; font-size: 12.5px; line-height: 1.7; }
+  .phone .kakao-header { text-align: center; font-size: 11px; color: #999; padding: 6px 0 10px; border-bottom: 1px solid #eee; margin-bottom: 10px; }
+  .phone .msg { background: #FEE500; border-radius: 12px; padding: 14px; margin-bottom: 8px; color: #1a1a1a; word-break: keep-all; }
+  .phone .msg.white { background: white; border: 1px solid #e5e5e5; }
+  .phone .btn-group { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+  .phone .btn { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px; text-align: center; font-size: 12px; color: #333; font-weight: 500; }
+  .phone .btn.primary { background: #4a7c28; color: white; border-color: #4a7c28; }
   .phone .highlight { background: #ffe0e0; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
   .phone .good { background: #d4f5d4; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
-
-  /* Issues list */
   .issues { margin-top: 12px; }
-  .issues li {
-    font-size: 12.5px;
-    color: #666;
-    margin-bottom: 4px;
-    list-style: none;
-    padding-left: 18px;
-    position: relative;
-  }
-  .issues li::before {
-    content: '•';
-    position: absolute;
-    left: 4px;
-    color: #c44;
-  }
+  .issues li { font-size: 12.5px; color: #666; margin-bottom: 4px; list-style: none; padding-left: 18px; position: relative; }
+  .issues li::before { content: '\2022'; position: absolute; left: 4px; color: #c44; }
   .after .issues li::before { color: #2d7a2d; }
-
-  /* Impact badge */
-  .impact {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-left: 8px;
-  }
+  .impact { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-left: 8px; }
   .impact.high { background: #ffe0e0; color: #c44; }
   .impact.mid { background: #fff3d0; color: #b08800; }
   .impact.low { background: #e0f0e0; color: #2d7a2d; }
-
-  /* New campaign badge */
-  .new-badge {
-    display: inline-block;
-    background: #4a7c28;
-    color: white;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 10px;
-    border-radius: 20px;
-    margin-left: 8px;
-  }
-
-  /* Journey */
-  .journey {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 20px 24px;
-    overflow-x: auto;
-    background: #fafaf7;
-  }
-  .journey-step {
-    flex-shrink: 0;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 500;
-    text-align: center;
-    min-width: 80px;
-    border: 1px solid #ddd;
-    background: white;
-  }
+  .new-badge { display: inline-block; background: #4a7c28; color: white; font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-left: 8px; }
+  .journey { display: flex; align-items: center; gap: 4px; padding: 20px 24px; overflow-x: auto; background: #fafaf7; }
+  .journey-step { flex-shrink: 0; padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 500; text-align: center; min-width: 80px; border: 1px solid #ddd; background: white; }
   .journey-step.active { background: #4a7c28; color: white; border-color: #4a7c28; }
   .journey-step.new-step { background: #e8f5e0; color: #2d5016; border: 2px dashed #4a7c28; }
   .journey-arrow { color: #999; font-size: 16px; flex-shrink: 0; }
-
-  /* Bottom CTA structure */
-  .btn-structure {
-    margin-top: 16px;
-    padding: 12px;
-    background: #fafaf7;
-    border-radius: 8px;
-  }
-  .btn-structure h4 {
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #2d5016;
-  }
-  .btn-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 4px;
-    font-size: 12px;
-  }
-  .btn-row .order {
-    width: 20px; height: 20px;
-    background: #4a7c28;
-    color: white;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-  .btn-row .desc { color: #555; }
-  .btn-row .role { color: #999; font-size: 11px; }
-
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 32px;
-    color: #999;
-    font-size: 12px;
-  }
-
+  .footer { text-align: center; padding: 32px; color: #999; font-size: 12px; }
   @media (max-width: 768px) {
-    .comparison {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
+    .comparison { grid-template-columns: 1fr; gap: 16px; }
     .arrow-col { transform: rotate(90deg); }
     .phone { width: 100%; }
+    .card-tools-inner { grid-template-columns: 1fr !important; }
   }
+  .card-tools { background: #1a2e0f; padding: 20px 24px; }
+  .card-tools-label { color: #a8d56a; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .card-tools-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tool-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; }
+  .tool-box-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .tool-box-header span { font-size: 11px; font-weight: 700; color: #a8d56a; letter-spacing: 0.5px; }
+  .copy-btn { padding: 4px 12px; background: #4a7c28; color: white; border: none; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+  .copy-btn:hover { background: #3a6020; }
+  .copy-btn.copied { background: #27ae60; }
+  .tool-msg-pre { padding: 14px; font-size: 12px; line-height: 1.7; color: rgba(255,255,255,0.85); white-space: pre-wrap; word-break: keep-all; max-height: 320px; overflow-y: auto; font-family: 'Noto Sans KR', sans-serif; }
+  .tool-stats { padding: 8px 14px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; gap: 12px; font-size: 11px; color: rgba(255,255,255,0.5); }
+  .tool-stats b { color: rgba(255,255,255,0.8); }
+  .url-list { padding: 8px 0; }
+  .url-item { padding: 8px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 8px; font-size: 11.5px; flex-wrap: wrap; }
+  .url-item:last-child { border-bottom: none; }
+  .url-status-ok { color: #4caf50; font-size: 14px; }
+  .url-status-warn { color: #ff9800; font-size: 14px; }
+  .url-label { color: rgba(255,255,255,0.8); font-weight: 600; min-width: 100px; }
+  .url-note { color: #ff9800; font-size: 10.5px; }
+  .url-spacer { flex: 1; }
+  .url-actions { display: flex; gap: 5px; }
+  .url-btn { padding: 3px 8px; border-radius: 5px; font-size: 10.5px; font-weight: 600; cursor: pointer; text-decoration: none; border: none; }
+  .url-btn-open { background: rgba(74,124,40,0.4); color: #a8d56a; }
+  .url-btn-open:hover { background: rgba(74,124,40,0.7); }
+  .url-btn-copy { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+  .url-btn-copy:hover { background: rgba(255,255,255,0.2); }
+  .url-kakao { color: rgba(255,255,255,0.4); font-size: 10.5px; font-style: italic; }
 
-  /* ===== 실무도구 섹션 ===== */
-  .tool-section {
-    margin-top: 16px;
-    padding: 14px;
-    background: rgba(0,0,0,0.03);
-    border-radius: 10px;
-    border: 1px solid rgba(0,0,0,0.07);
-  }
-  .copy-btn-tool {
-    display: block;
-    width: 100%;
-    padding: 8px 12px;
-    background: #2d5016;
-    color: white;
-    border: none;
-    border-radius: 7px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background 0.15s;
-    margin-bottom: 10px;
-  }
-  .copy-btn-tool:hover { background: #3d6a20; }
-  .copy-btn-tool.copied { background: #27ae60; }
-  .url-section-tool { display: flex; flex-direction: column; gap: 6px; }
-  .url-item-tool {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 12px;
-    padding: 5px 8px;
-    background: white;
-    border-radius: 6px;
-    border: 1px solid #e8e8e8;
-  }
-  .url-label-tool { color: #444; font-weight: 500; flex: 1; }
-  .url-actions-tool { display: flex; gap: 5px; flex-shrink: 0; }
-  .url-btn-open-tool {
-    padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 600;
-    background: rgba(74,124,40,0.15); color: #2d5016;
-    text-decoration: none; cursor: pointer;
-  }
-  .url-btn-open-tool:hover { background: rgba(74,124,40,0.3); }
-  .url-btn-copy-tool {
-    padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 600;
-    background: #f0f0f0; color: #555; border: none; cursor: pointer; font-family: inherit;
-  }
-  .url-btn-copy-tool:hover { background: #e0e0e0; }
-
-
-  /* ===== 기존/개선 선택 기능 ===== */
-  .adopt-bar {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 24px;
-    background: #f5f5f0;
-    border-top: 1px solid #e8e8e8;
-  }
-  .adopt-toggle { display: flex; border-radius: 8px; overflow: hidden; border: 1px solid #ddd; }
-  .adopt-btn {
-    padding: 6px 14px; font-size: 12px; font-weight: 600; border: none;
-    cursor: pointer; font-family: inherit; transition: all 0.2s; background: white; color: #999;
-  }
-  .adopt-btn.keep.active  { background: #ff6b6b; color: white; }
-  .adopt-btn.adopt.active { background: #4a7c28; color: white; }
-  .adopt-btn:not(.active):hover { background: #f0f0f0; }
-
-  /* 채택 안 된 카드는 약간 흐리게 */
-  .campaign-card.kept .after { opacity: 0.45; }
-  .campaign-card.kept .before { border: 2px solid #ff6b6b; }
-  .campaign-card.adopted .after { border: 2px solid #4a7c28; }
-
-  /* 상단 요약 바 */
+  /* ===== 채택 선택 + 실무도구 ===== */
   .adopt-summary {
-    position: sticky; top: 0; z-index: 200;
     background: #1a2e10; color: white;
-    padding: 10px 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 13px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 13px;
   }
   .adopt-summary .count { font-weight: 700; color: #86efac; }
-  .adopt-summary .adopt-all-btn {
-    padding: 5px 14px; background: #4a7c28; color: white;
-    border: none; border-radius: 6px; font-size: 12px; font-weight: 600;
-    cursor: pointer; font-family: inherit;
-  }
-  .adopt-summary .adopt-all-btn:hover { background: #3a6020; }
-
-  /* tool-section 스타일 */
-  .tool-section {
-    margin: 0 20px 16px; padding: 14px;
-    background: rgba(0,0,0,0.03);
-    border-radius: 10px; border: 1px solid rgba(0,0,0,0.07);
-  }
-  .copy-btn-tool {
-    display: block; width: 100%; padding: 8px 12px;
-    background: #2d5016; color: white; border: none; border-radius: 7px;
-    font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
-    transition: background 0.15s; margin-bottom: 10px;
-  }
-  .copy-btn-tool:hover { background: #3d6a20; }
-  .copy-btn-tool.copied { background: #27ae60; }
-  .copy-btn-before {
-    display: none; width: 100%; padding: 8px 12px;
-    background: #c44; color: white; border: none; border-radius: 7px;
-    font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
-    transition: background 0.15s; margin-bottom: 10px;
-  }
-  .campaign-card.kept .copy-btn-before { display: block; }
-  .campaign-card.kept .copy-btn-tool { display: none; }
+  .adopt-all-btn { padding: 5px 14px; background: #4a7c28; color: white; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .adopt-all-btn:hover { background: #3a6020; }
+  .adopt-bar { display: flex; align-items: center; gap: 8px; padding: 10px 24px; background: #f5f5f0; border-top: 1px solid #e8e8e8; }
+  .adopt-toggle { display: flex; border-radius: 8px; overflow: hidden; border: 1px solid #ddd; }
+  .adopt-btn { padding: 6px 14px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; font-family: inherit; transition: all 0.2s; background: white; color: #999; }
+  .adopt-btn.keep.active { background: #999; color: white; }
+  .adopt-btn.adopt.active { background: #4a7c28; color: white; }
+  .adopt-btn:not(.active):hover { background: #f0f0f0; }
+  .campaign-card.kept { opacity: 0.7; }
+  .campaign-card.kept .after { opacity: 0.45; }
+  .campaign-card.kept .before { border: 2px solid #999 !important; }
+  .campaign-card.adopted .after { border: 2px solid #4a7c28 !important; border-radius: 12px; }
+  .tool-section-wrap { margin: 0 24px 16px; padding: 14px; background: rgba(0,0,0,0.03); border-radius: 10px; border: 1px solid rgba(0,0,0,0.07); }
+  .tool-section-wrap .copy-after-btn { display: block; width: 100%; padding: 8px 12px; background: #2d5016; color: white; border: none; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; margin-bottom: 8px; }
+  .tool-section-wrap .copy-after-btn:hover { background: #3d6a20; }
+  .tool-section-wrap .copy-after-btn.copied { background: #27ae60; }
+  .tool-section-wrap .copy-before-btn { display: none; width: 100%; padding: 8px 12px; background: #888; color: white; border: none; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; margin-bottom: 8px; }
+  .campaign-card.kept .copy-before-btn { display: block; }
+  .campaign-card.kept .copy-after-btn { display: none; }
   .url-section-tool { display: flex; flex-direction: column; gap: 6px; }
-  .url-item-tool {
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 12px; padding: 5px 8px;
-    background: white; border-radius: 6px; border: 1px solid #e8e8e8;
-  }
+  .url-item-tool { display: flex; align-items: center; justify-content: space-between; font-size: 12px; padding: 5px 8px; background: white; border-radius: 6px; border: 1px solid #e8e8e8; }
   .url-label-tool { color: #444; font-weight: 500; flex: 1; }
-  .url-actions-tool { display: flex; gap: 5px; flex-shrink: 0; }
-  .url-btn-open-tool {
-    padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 600;
-    background: rgba(74,124,40,0.15); color: #2d5016; text-decoration: none;
-  }
+  .url-note-tool { font-size: 11px; color: #aaa; }
+  .url-actions-tool { display: flex; gap: 5px; }
+  .url-btn-open-tool { padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 600; background: rgba(74,124,40,0.15); color: #2d5016; text-decoration: none; }
   .url-btn-open-tool:hover { background: rgba(74,124,40,0.3); }
-  .url-btn-copy-tool {
-    padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 600;
-    background: #f0f0f0; color: #555; border: none; cursor: pointer; font-family: inherit;
-  }
-
+  .url-btn-copy-tool { padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 600; background: #f0f0f0; color: #555; border: none; cursor: pointer; font-family: inherit; }
 </style>
 </head>
-<body>
-
+<body data-brand="foremong">
 <div class="header">
-  <h1>포레몽 알림톡 CX 개선안</h1>
-  <p>12개 캠페인 전/후 비교 · 2026-03-10</p>
+<h1>포레몽 알림톡 CX 개선안</h1>
+<p>13개 캠페인 전/후 비교 + 실무 도구 통합 · 2026-03-12</p>
 </div>
-
 <div class="container">
-
-  <!-- Summary -->
-  <div class="summary-grid">
-    <div class="summary-card">
-      <div class="num">12</div>
-      <div class="label">기존 캠페인</div>
-    </div>
-    <div class="summary-card">
-      <div class="num">+1</div>
-      <div class="label">신규 캠페인 제안</div>
-    </div>
-    <div class="summary-card">
-      <div class="num">7</div>
-      <div class="label">개선 원칙 적용</div>
-    </div>
-    <div class="summary-card">
-      <div class="num">12/12</div>
-      <div class="label">버튼 CTA 통일</div>
-    </div>
-  </div>
-
-  <!-- 고객 여정 맵 -->
-  <div class="section-title">고객 여정 (Customer Journey)</div>
-  <div class="journey" style="background:white; border-radius:12px; margin-bottom:24px; padding:20px 24px; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
-    <div class="journey-step active">결제완료</div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step active">배송시작</div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step active">배송완료</div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step new-step">설치확인<br><small>+1~2일 NEW</small></div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step active">구매확정<br><small>+3일</small></div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step active">리뷰유도<br><small>+7일</small></div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step active">한달리뷰<br><small>+30일</small></div>
-    <div class="journey-arrow" style="margin:0 12px;">|</div>
-    <div class="journey-step" style="background:#fff5f5; border-color:#ffd4d4;">취소요청</div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step" style="background:#fff5f5; border-color:#ffd4d4;">취소완료</div>
-    <div class="journey-arrow" style="margin:0 8px;">|</div>
-    <div class="journey-step" style="background:#fff8f0; border-color:#ffe0b0;">교환요청</div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step" style="background:#fff8f0; border-color:#ffe0b0;">교환완료</div>
-    <div class="journey-arrow" style="margin:0 8px;">|</div>
-    <div class="journey-step" style="background:#f5f0ff; border-color:#d4c4f5;">반품요청</div>
-    <div class="journey-arrow">→</div>
-    <div class="journey-step" style="background:#f5f0ff; border-color:#d4c4f5;">반품완료</div>
-  </div>
-
-  <!-- 개선 원칙 -->
-  <div class="section-title">적용 개선 원칙 (7가지)</div>
-  <div class="principles">
-    <div class="principle">
-      <span class="tag">원칙 1</span>
-      <h3>메시지 간소화</h3>
-      <p>결제완료 시점의 인증 정보 5종 → 배송시작/배송완료로 분산. 각 시점에 맞는 정보만 전달.</p>
-    </div>
-    <div class="principle">
-      <span class="tag">원칙 2</span>
-      <h3>버튼 CTA 우선순위 통일</h3>
-      <p>1번: 핵심 행동(정품등록/리뷰/조회) → 2번: 보조 행동 → 3번: 채널추가. 전 캠페인 동일 적용.</p>
-    </div>
-    <div class="principle">
-      <span class="tag">원칙 3</span>
-      <h3>구매확정 ↔ 리뷰 분리</h3>
-      <p>구매확정 유도 시점에서 리뷰 요청 제거. 구매확정만 집중 → +7일 캠페인에서 리뷰 전담.</p>
-    </div>
-    <div class="principle">
-      <span class="tag">원칙 4</span>
-      <h3>설치확인 터치포인트 추가</h3>
-      <p>배송완료 +1~2일 "설치 잘 되셨나요?" 메시지 신설. 초기 불량/설치 실수 CS 선제 대응.</p>
-    </div>
-    <div class="principle">
-      <span class="tag">원칙 5</span>
-      <h3>배송완료 정품등록 CTA 복원</h3>
-      <p>변경요청에 있던 정품등록 버튼이 작업본에서 누락 → 1번 버튼으로 복원.</p>
-    </div>
-    <div class="principle">
-      <span class="tag">원칙 6</span>
-      <h3>시즌 대응 (한달 리뷰)</h3>
-      <p>"겨울이 끝나갈 무렵" 등 시즌 고정 표현 제거 → 시즌 중립 or 분기 처리 가능한 구조로.</p>
-    </div>
-    <div class="principle">
-      <span class="tag">원칙 7</span>
-      <h3>성과 추적 체계</h3>
-      <p>캠페인별 오픈율/클릭율/전환율 추적 구조 설계. 월 1회 리뷰로 데이터 기반 개선.</p>
-    </div>
-  </div>
-
-  <!-- 캠페인별 전/후 비교 -->
-  <div class="section-title">캠페인별 전 / 후 비교</div>
-
-  <!-- 1. 결제완료 -->
-  <div class="campaign-card open" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge">1</div>
-        <span class="name">결제완료</span>
-        <span class="impact high">HIGH</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">결제 직후</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              안녕하세요.<br>
-              온수매트 전문 브랜드 포레몽입니다.<br><br>
-              #{고객명}님의<br>주문이 정상적으로 완료되었습니다 !<br><br>
-              📦 <b>주문 정보</b><br>
-              ▪️주문일 : #{주문일}<br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️결제금액 : #{총결제금액}원<br><br>
-              <span class="highlight">💚 포레몽 온수매트는요 💚<br>
-              ✔ 전자파 인증 / 라돈 시험성적서<br>
-              ✔ 호스부터 카본(탄소) 함유 인증서<br>
-              ✔ 진드기 통과 0% 시험서<br>
-              ✔ 알러지 · 세탁 · 땀 견뢰도 테스트<br>
-              ✔ 호스 유해 물질 안전 검사 완료</span><br><br>
-              👪 '내 가족이 직접 쓴다'는 마음으로...<br><br>
-              🎬 포레몽의 진짜 이야기, 들어보세요.
-              <div class="btn-group">
-                <div class="btn">채널 추가하기</div>
-                <div class="btn">주문내역 바로가기</div>
-                <div class="btn">포레몽 스토리보기</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>인증 정보 5종이 결제 직후 시점에 과다</li>
-            <li>고객 니즈(결제 확인)보다 브랜드 홍보 비중 높음</li>
-            <li>메시지가 너무 길어 스크롤 필요</li>
-            <li>핵심 CTA(주문확인)가 2번 버튼</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              안녕하세요, #{고객명}님!<br>
-              온수매트 전문 브랜드 <b>포레몽</b>입니다.<br><br>
-              주문이 정상적으로 완료되었습니다.<br>
-              <span class="good">따뜻한 선택, 진심으로 감사드립니다.</span><br><br>
-              📦 <b>주문 정보</b><br>
-              ▪️주문일 : #{주문일}<br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️결제금액 : #{총결제금액}원<br><br>
-              지금부터 꼼꼼히 준비하여<br>
-              가장 안전한 상태로 배송해 드리겠습니다.<br><br>
-              혹시 궁금한 점이 있으시면<br>
-              아래 채널을 통해 문의해 주세요.<br>
-              <b>"끝까지 책임감 있게 도와드리겠습니다."</b>
-              <div class="btn-group">
-                <div class="btn primary">주문내역 확인하기</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>인증 정보 5종 → 배송시작으로 이동</li>
-            <li>결제 확인 + 배송 예고만 전달 (고객 심리 맞춤)</li>
-            <li>스크롤 없이 한눈에 읽히는 길이</li>
-            <li>버튼 2개로 축소, 핵심 CTA 1번 배치</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. 배송시작 -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge">2</div>
-        <span class="name">배송시작</span>
-        <span class="impact low">LOW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">출고 시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님이 주문하신 상품이<br>
-              출발했습니다!<br><br>
-              <b>검수 완료 → 안전 포장 → 출고</b><br><br>
-              📦 배송 정보<br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️송장번호 : #{송장번호}<br><br>
-              📐 설치 전, 이것만 확인하세요!<br>
-              ↓ <span class="highlight">아래 버튼에서 바로 확인하세요!</span>
-              <div class="btn-group">
-                <div class="btn">배송조회 바로가기</div>
-                <div class="btn">설치 가이드 영상</div>
-                <div class="btn">채널 추가하기</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>전체적으로 잘 구성됨</li>
-            <li>"↓ 아래 버튼" 화살표 표현 심사 리스크</li>
-            <li>인증 정보가 없는 시점 (결제에서 빠진 게 여기도 없음)</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님이 주문하신 상품이<br>
-              출발했습니다!<br><br>
-              <b>검수 완료 → 안전 포장 → 출고</b><br><br>
-              📦 배송 정보<br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️송장번호 : #{송장번호}<br><br>
-              <span class="good">💚 안심하세요!<br>
-              전자파 인증 · 라돈 검사 · 진드기 0%<br>
-              모든 안전 검증을 통과한 제품입니다.</span><br><br>
-              📐 설치 전, 가이드 영상을 확인해 주세요.
-              <div class="btn-group">
-                <div class="btn primary">배송조회 바로가기</div>
-                <div class="btn">설치 가이드 영상</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>결제완료에서 빼낸 인증 정보를 3줄 요약으로 삽입</li>
-            <li>"↓ 아래 버튼" → "가이드 영상을 확인해 주세요" 순화</li>
-            <li>핵심 CTA(배송조회) 1번 유지</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3. 배송완료 -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge">3</div>
-        <span class="name">배송완료</span>
-        <span class="impact high">HIGH</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">배송 완료 시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님의 상품이<br>배송 완료되었습니다!<br><br>
-              📦 배송 완료 정보<br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️송장번호 : #{송장번호}<br><br>
-              🧾 정품등록 안내<br>
-              포레몽 공식 구매 고객님께<br>
-              정품 등록 서비스를 제공합니다.<br><br>
-              브랜드 스토리 영상...
-              <div class="btn-group">
-                <div class="btn">채널 추가하기</div>
-                <div class="btn">주문내역 바로가기</div>
-                <div class="btn"><span class="highlight">포레몽 스토리보기 ← 정품등록 아님!</span></div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>정품등록 안내가 본문에 있지만 버튼이 없음!</li>
-            <li>3번 버튼이 "스토리보기"로 정품등록 폼 누락</li>
-            <li>변경요청 vs 작업본 불일치</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님의 상품이<br>배송 완료되었습니다!<br><br>
-              📦 배송 완료 정보<br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️송장번호 : #{송장번호}<br><br>
-              🧾 <b>정품등록 안내</b><br>
-              포레몽 공식 구매 고객님께<br>
-              정품 등록 서비스를 제공합니다.<br>
-              <span class="good">아래 버튼으로 간편하게 등록해 주세요.</span>
-              <div class="btn-group">
-                <div class="btn primary">정품등록 하기</div>
-                <div class="btn">설치 가이드 영상</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>정품등록 버튼 1번으로 복원 (구글폼 링크)</li>
-            <li>설치 가이드를 2번으로 유지 (도착 직후 필요)</li>
-            <li>스토리보기 제거 → 실용적 구성으로 전환</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4. 설치확인 (NEW) -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge" style="background:#e8a020;">N</div>
-        <span class="name">설치확인</span>
-        <span class="new-badge">NEW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">배송완료 +1~2일</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label" style="color:#999;">⬜ 기존: 없음</div>
-          <div style="text-align:center; padding:60px 20px; color:#999; font-size:14px;">
-            배송완료 → 구매확정(+3일) 사이<br>
-            <b>터치포인트 공백</b><br><br>
-            설치 실수/초기 불량 CS가<br>
-            구매확정 시점에 몰림
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ NEW 캠페인</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님, 안녕하세요!<br>
-              포레몽 온수매트<br>
-              <b>설치는 잘 되셨나요?</b><br><br>
-              혹시 설치 중 어려운 점이 있으셨다면<br>
-              아래 가이드 영상을 참고해 주세요.<br><br>
-              처음 가동 시 보일러 내부 공기로<br>
-              소음이 발생할 수 있습니다.<br>
-              <b>에어 빼기 1회만 하시면 해결돼요!</b><br><br>
-              불편한 점이 있다면<br>
-              언제든지 문의해 주세요.
-              <div class="btn-group">
-                <div class="btn primary">설치 가이드 영상</div>
-                <div class="btn">소음 해결 가이드</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>설치 직후 CS 이슈 선제 대응</li>
-            <li>에어 빼기 안내로 소음 CS 사전 차단</li>
-            <li>구매확정 전 만족도 확보 → 확정 전환율 상승</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5. 구매확정 유도 -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge">4</div>
-        <span class="name">구매확정 유도</span>
-        <span class="impact high">HIGH</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">배송완료 +3일</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님!<br>
-              주문하신 포레몽 온수매트<br>
-              만족스럽게 사용하고 계신가요?<br><br>
-              <span class="highlight">구매확정 + 포토리뷰 동시 요청<br>(행동이 분산됨)</span><br><br>
-              "구매확정해주시면 정산에 도움이 됩니다"<br><br>
-              📷 포토리뷰도 남겨주세요!
-              <div class="btn-group">
-                <div class="btn">채널 추가하기</div>
-                <div class="btn"><span class="highlight">포토리뷰 남기기 ← URL이 리뷰 페이지 아님!</span></div>
-                <div class="btn">주문내역 바로가기</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>구매확정 + 리뷰가 한 메시지에 혼재</li>
-            <li>"포토리뷰" 버튼 URL이 네이버페이 마이페이지 (리뷰 아님)</li>
-            <li>핵심 CTA가 버튼 3번에 위치</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님!<br>
-              포레몽 온수매트<br>
-              만족스럽게 사용하고 계신가요?<br><br>
-              상품에 만족하셨다면<br>
-              <b>구매확정</b>을 눌러주세요.<br><br>
-              <span class="good">구매확정은 판매자에게<br>큰 힘이 됩니다.</span><br><br>
-              혹시 불편한 점이 있으시면<br>
-              언제든 문의해 주세요.
-              <div class="btn-group">
-                <div class="btn primary">구매확정 하기</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>구매확정 1가지만 요청 → 전환율 집중</li>
-            <li>리뷰 요청은 +7일 캠페인으로 완전 분리</li>
-            <li>버튼 2개로 심플하게, 핵심 CTA 1번</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6. 리뷰 유도 (+7일) -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge">5</div>
-        <span class="name">리뷰 유도 (배송+7일)</span>
-        <span class="impact mid">MID</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">배송완료 +7일</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              잘 지내시나요, #{고객명}님<br>
-              #{상품명} 따뜻하게 잘 사용하고 계신가요?<br><br>
-              🌿 사용해 보니 어떠셨나요?<br>
-              (소음 해결 안내)...<br><br>
-              👂🏽 귀 기울이겠습니다.<br>
-              (내돈내산 후기 유도)...
-              <div class="btn-group">
-                <div class="btn">소음 해결 가이드</div>
-                <div class="btn"><span class="highlight">내돈내산 이벤트 ← 링크 깨짐 가능성</span></div>
-                <div class="btn">채널 추가하기</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>소음 해결 가이드 연결은 좋은 아이디어</li>
-            <li>내돈내산 구글폼 URL 잘림 확인 필요</li>
-            <li>소음 해결이 설치확인(+1~2일)으로 이동 가능</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님,<br>
-              #{상품명} 일주일째<br>
-              따뜻하게 잘 사용하고 계신가요?<br><br>
-              <span class="good">일주일간의 경험이<br>
-              가장 생생한 후기입니다.</span><br><br>
-              고객님의 솔직한 사용 후기가<br>
-              다음 고객의 선택에 큰 도움이 됩니다.<br><br>
-              소중한 후기를 남겨주신 분께<br>
-              공식몰을 통해 <b>감사의 마음</b>을<br>
-              드리고 있습니다.
-              <div class="btn-group">
-                <div class="btn primary">리뷰 남기기</div>
-                <div class="btn">내돈내산 이벤트</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>리뷰에만 집중 (소음 안내는 설치확인으로 이동)</li>
-            <li>내돈내산 구글폼 URL 정상 여부 확인 후 적용</li>
-            <li>리뷰 CTA 1번 버튼 배치</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 7. 한달 리뷰 (+30일) -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge">6</div>
-        <span class="name">한달 리뷰 (배송+30일)</span>
-        <span class="impact mid">MID</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">배송완료 +30일</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님!<br>
-              포레몽 온수매트 사용하신 지<br>
-              어느덧 한 달!<br><br>
-              <span class="highlight">"겨울이 끝나갈 무렵"<br>
-              ← 시즌 고정 표현 (3월에 부적절)</span><br><br>
-              물 제거 방법 안내...<br>
-              한달 사용 후기 부탁...<br>
-              감사 인사...<br><br>
-              <span class="highlight">(메시지가 매우 길어 스크롤 과다)</span>
-              <div class="btn-group">
-                <div class="btn">물제거 가이드 영상</div>
-                <div class="btn">한달 사용 후기 남기기</div>
-                <div class="btn">채널 추가하기</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>물 제거 + 리뷰 + 감사 3가지가 한 메시지에 혼재</li>
-            <li>"겨울이 끝나갈 무렵" 시즌 고정 표현</li>
-            <li>메시지 최장, 읽힘율 낮을 수 있음</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님!<br>
-              포레몽 온수매트 사용하신 지<br>
-              어느덧 <b>한 달</b>이 되었습니다.<br><br>
-              <span class="good">한 달 동안 따뜻하게<br>보내셨길 바랍니다.</span><br><br>
-              💧 <b>시즌 관리 팁</b><br>
-              장기 사용 시 매트 내부 물 교체를<br>
-              권장합니다. 가이드 영상을 참고해 주세요.<br><br>
-              한 달 사용 후기를 남겨주시면<br>
-              공식몰에서 <b>감사 혜택</b>을 드립니다.
-              <div class="btn-group">
-                <div class="btn primary">한달 사용 후기 남기기</div>
-                <div class="btn">물 교체 가이드</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>시즌 고정 표현 제거 → "따뜻하게 보내셨길" (시즌 중립)</li>
-            <li>물 제거를 "시즌 관리 팁"으로 자연스럽게 축약</li>
-            <li>리뷰 CTA 1번 배치 + 감사 혜택 언급</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 8~12: 취소/교환/반품 (그룹) -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge" style="background:#c44;">7-12</div>
-        <span class="name">취소 / 교환 / 반품 (6개 캠페인)</span>
-        <span class="impact mid">MID</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">이벤트 발생 시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (공통 패턴)</div>
-          <div style="padding:20px;">
-            <h4 style="font-size:14px; margin-bottom:12px;">현재 구조</h4>
-            <p style="font-size:13px; color:#555; margin-bottom:16px;">
-              6개 캠페인 모두 동일한 톤으로 통합 운영 중.<br>
-              취소 사유별 맞춤 문구가 기획되어 있으나 미적용.
-            </p>
-            <div style="background:#fff5f5; padding:12px; border-radius:8px; font-size:12px; margin-bottom:12px;">
-              <b>취소요청</b> — 사유별 4가지 분기 설계됨 (단순변심/배송지연/주문실수/서비스불만)<br>
-              그러나 실제 운영은 통합 1개 버전
-            </div>
-            <div style="background:#fff5f5; padding:12px; border-radius:8px; font-size:12px; margin-bottom:12px;">
-              <b>취소완료</b> — "의견 남기기" 구글폼 연결 (OK)<br>
-              환불 안내 잘 되어 있음
-            </div>
-            <div style="background:#fff8f0; padding:12px; border-radius:8px; font-size:12px; margin-bottom:12px;">
-              <b>교환 요청/완료</b> — 기본 안내 + 문의 채널 안내
-            </div>
-            <div style="background:#f5f0ff; padding:12px; border-radius:8px; font-size:12px;">
-              <b>반품 요청/완료</b> — 기본 안내 + 문의 채널 안내
-            </div>
-          </div>
-          <ul class="issues" style="padding:0 20px 20px;">
-            <li>취소 사유별 맞춤 대응 미적용</li>
-            <li>교환/반품 메시지에 재구매 유도 장치 없음</li>
-            <li>이탈 고객 윈백 기회 미활용</li>
-            <li>버튼 CTA 우선순위 불일치</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선 방향)</div>
-          <div style="padding:20px;">
-            <h4 style="font-size:14px; margin-bottom:12px;">개선 구조</h4>
-
-            <div class="btn-structure" style="margin-bottom:12px;">
-              <h4>취소요청 — 단계적 사유 분기</h4>
-              <div style="font-size:12px; color:#555;">
-                <b>Phase 1 (즉시)</b>: 통합 메시지 유지하되, 톤 개선<br>
-                → "혹시 저희가 도울 수 있는 부분이 있을까요?"<br><br>
-                <b>Phase 2 (시스템 확인 후)</b>: 사유별 분기 적용<br>
-                → 단순변심: 다른 사이즈/모델 제안<br>
-                → 배송지연: 예상 도착일 + 사과 쿠폰<br>
-                → 서비스불만: CS 직통 연결
-              </div>
-            </div>
-
-            <div class="btn-structure" style="margin-bottom:12px;">
-              <h4>취소완료 — 윈백 장치 추가</h4>
-              <div style="font-size:12px; color:#555;">
-                기존 의견 수집 구글폼 유지 (Good)<br>
-                + "다음 시즌에 다시 찾아주시면<br>
-                  특별 할인을 드리겠습니다" 윈백 메시지
-              </div>
-            </div>
-
-            <div class="btn-structure" style="margin-bottom:12px;">
-              <h4>교환 완료 — 재만족 확인</h4>
-              <div style="font-size:12px; color:#555;">
-                교환 완료 후 +3일에<br>
-                "교환 제품은 만족스러우신가요?" 추가 터치<br>
-                → 리뷰 유도 연결
-              </div>
-            </div>
-
-            <div class="btn-structure">
-              <h4>전체 버튼 CTA 통일</h4>
-              <div class="btn-row"><div class="order">1</div><div class="desc">핵심 행동 <span class="role">(진행상태 확인/의견 남기기)</span></div></div>
-              <div class="btn-row"><div class="order">2</div><div class="desc">고객센터 문의 <span class="role">(CS 직통)</span></div></div>
-              <div class="btn-row"><div class="order">3</div><div class="desc">채널 추가 <span class="role">(플친 확보)</span></div></div>
-            </div>
-          </div>
-          <ul class="issues" style="padding:0 20px 20px;">
-            <li>취소 사유별 Phase 2 분기로 CS 만족도 상승</li>
-            <li>취소완료에 윈백 장치 추가 (재구매 기회)</li>
-            <li>교환 완료 후 재만족 확인 → 리뷰 전환</li>
-            <li>전 캠페인 버튼 우선순위 통일</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 성과 추적 -->
-  <div class="section-title">성과 추적 체계 (신규 도입)</div>
-  <div style="background:white; border-radius:16px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:24px;">
-    <table style="width:100%; border-collapse:collapse; font-size:13px;">
-      <thead>
-        <tr style="background:#f0f0eb;">
-          <th style="padding:10px 12px; text-align:left; border-bottom:2px solid #ddd;">캠페인</th>
-          <th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">발송수</th>
-          <th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">오픈율</th>
-          <th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">클릭율</th>
-          <th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">전환율</th>
-          <th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">핵심 KPI</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">결제완료</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;">주문확인 클릭</td></tr>
-        <tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">배송시작</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;">배송조회 클릭</td></tr>
-        <tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">배송완료</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;"><b>정품등록율</b></td></tr>
-        <tr style="background:#f0faf0;"><td style="padding:10px 12px; border-bottom:1px solid #eee;">설치확인 <small>(NEW)</small></td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;">CS 감소율</td></tr>
-        <tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">구매확정 유도</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;"><b>구매확정율</b></td></tr>
-        <tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">리뷰 유도 (+7일)</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;"><b>리뷰 작성율</b></td></tr>
-        <tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">한달 리뷰 (+30일)</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;"><b>장기 리뷰율</b></td></tr>
-        <tr><td style="padding:10px 12px;" colspan="6" style="color:#999; font-size:12px;">취소/교환/반품 6개: 핵심 KPI = 의견 수집율, 윈백 전환율</td></tr>
-      </tbody>
-    </table>
-    <p style="margin-top:16px; font-size:12px; color:#888;">※ 알마니센터 데이터 기반 월 1회 리뷰 권장. 측정 시작 후 1개월 뒤 첫 성과 비교 가능.</p>
-  </div>
-
-  <div class="footer">
-    포레몽 알림톡 CX 개선안 · 2026-03-10 · 그로밋팀
-  </div>
+<div class="summary-grid">
+<div class="summary-card"><div class="num">12</div><div class="label">기존 캠페인</div></div>
+<div class="summary-card"><div class="num">+1</div><div class="label">신규 캠페인 제안</div></div>
+<div class="summary-card"><div class="num">8</div><div class="label">개선 원칙 적용</div></div>
+<div class="summary-card"><div class="num">12/12</div><div class="label">버튼 CTA 통일</div></div>
 </div>
+<div class="section-title">고객 여정 (Customer Journey)</div>
+<div class="journey" style="background:white;border-radius:12px;margin-bottom:24px;padding:20px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+<div class="journey-step active">결제완료</div><div class="journey-arrow">→</div>
+<div class="journey-step active">배송시작</div><div class="journey-arrow">→</div>
+<div class="journey-step active">배송완료</div><div class="journey-arrow">→</div>
+<div class="journey-step new-step">설치확인<br/><small>+1~2일 NEW</small></div><div class="journey-arrow">→</div>
+<div class="journey-step active">구매확정<br/><small>+3일</small></div><div class="journey-arrow">→</div>
+<div class="journey-step active">리뷰유도<br/><small>+7일</small></div><div class="journey-arrow">→</div>
+<div class="journey-step active">한달리뷰<br/><small>+30일</small></div>
+<div class="journey-arrow" style="margin:0 12px;">|</div>
+<div class="journey-step" style="background:#fff5f5;border-color:#ffd4d4;">취소요청</div><div class="journey-arrow">→</div>
+<div class="journey-step" style="background:#fff5f5;border-color:#ffd4d4;">취소완료</div>
+<div class="journey-arrow" style="margin:0 8px;">|</div>
+<div class="journey-step" style="background:#fff8f0;border-color:#ffe0b0;">교환요청</div><div class="journey-arrow">→</div>
+<div class="journey-step" style="background:#fff8f0;border-color:#ffe0b0;">교환완료</div>
+<div class="journey-arrow" style="margin:0 8px;">|</div>
+<div class="journey-step" style="background:#f5f0ff;border-color:#d4c4f5;">반품요청</div><div class="journey-arrow">→</div>
+<div class="journey-step" style="background:#f5f0ff;border-color:#d4c4f5;">반품완료</div>
+</div>
+<div class="section-title">적용 개선 원칙 (8가지)</div>
+<div class="principles">
+<div class="principle"><span class="tag">원칙 1</span><h3>정보의 적시 배치</h3><p>인증 5종을 결제→배송시작으로 이동. 각 시점에 가장 필요한 정보만 전달.</p></div>
+<div class="principle"><span class="tag">원칙 2</span><h3>버튼 CTA 우선순위 통일</h3><p>1번: 핵심 행동 → 2번: 보조 행동 → 3번: 채널추가. 전 캠페인 동일.</p></div>
+<div class="principle"><span class="tag">원칙 3</span><h3>구매확정 ↔ 리뷰 분리</h3><p>구매확정만 집중 → +7일 캠페인에서 리뷰 전담.</p></div>
+<div class="principle"><span class="tag">원칙 4</span><h3>설치확인 터치포인트 신설</h3><p>배송완료 +1~2일 "뽀글뽀글" 소음 선제 안내로 CS 차단.</p></div>
+<div class="principle"><span class="tag">원칙 5</span><h3>배송완료 정품등록 CTA + 혜택 명시</h3><p>정품등록 버튼 1번 복원. A/S 연장 등 구체적 혜택 명시.</p></div>
+<div class="principle"><span class="tag">원칙 6</span><h3>시즌 대응 (한달 리뷰)</h3><p>"겨울이 끝나갈 무렵" 제거 → 시즌 중립 구조로.</p></div>
+<div class="principle"><span class="tag">원칙 7</span><h3>성과 추적 체계</h3><p>캠페인별 오픈율/클릭율/전환율 추적. 월 1회 데이터 기반 개선.</p></div>
+<div class="principle"><span class="tag">원칙 8</span><h3>"작은 브랜드의 진심" 톤 유지</h3><p>"내 가족이 직접 쓴다", "끝까지 책임지겠습니다" — 포레몽 진정성 전 캠페인 유지.</p></div>
+</div>
+<div class="section-title">캠페인별 전 / 후 비교 + 실무 도구</div>
+<!-- 1. 결제완료 -->
+<div class="campaign-card open" data-cid="foremong-0">
+<div class="campaign-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="left"><div class="num-badge">1</div><span class="name">결제완료</span><span class="impact high">HIGH</span></div>
+<div style="display:flex;align-items:center;gap:12px;"><span class="timing">결제 직후</span><span class="arrow">▼</span></div>
+</div>
+<div class="campaign-body">
+<div class="adopt-bar">
+<div class="adopt-toggle">
+<button class="adopt-btn keep">⬜ 현행 유지</button>
+<button class="adopt-btn adopt active">✅ 개선 채택</button>
+</div>
+</div>
+<div class="comparison">
+<div class="before">
+<div class="col-label">❌ BEFORE</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">
+안녕하세요.<br/>온수매트 전문 브랜드 포레몽입니다.<br/><br/>#{고객명}님의<br/>주문이 정상적으로 완료되었습니다 !<br/>따뜻한 선택, 진심으로 감사드립니다.<br/><br/>📦 <b>주문 정보</b><br/>▪️주문일 : #{주문일}<br/>▪️상품명 : #{상품명}<br/>▪️결제금액 : #{총결제금액}원<br/><br/>💚 포레몽 온수매트는요 💚<br/>✔ 전자파 인증 / 라돈 시험성적서<br/>✔ 호스부터 카본(탄소) 함유 인증서<br/>✔ 진드기 통과 0% 시험서<br/>✔ 알러지 · 세탁 · 땀 견뢰도 테스트<br/>✔ 호스 유해 물질 안전 검사 완료<br/><br/>👪 '내 가족이 직접 쓴다'는 마음으로...<br/><br/>🎬 포레몽의 진짜 이야기, 들어보세요.
+<div class="btn-group"><div class="btn">채널 추가하기</div><div class="btn">주문내역 바로가기</div><div class="btn">포레몽 스토리보기</div></div></div></div>
+<ul class="issues"><li>인증 정보 5종이 결제 직후 시점에 과다</li><li>브랜드 스토리+인증+문의 혼재</li><li>메시지 길어 스크롤 필요</li><li>1번 버튼이 채널추가</li></ul>
+</div>
+<div class="arrow-col">→</div>
+<div class="after">
+<div class="col-label">✅ AFTER</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">
+#{고객명}님, 반갑습니다!<br/>온수매트 전문 브랜드 <b>포레몽</b>입니다.<br/><br/>주문이 정상적으로 완료되었습니다.<br/><span class="good">따뜻한 선택, 진심으로 감사드립니다.</span><br/><br/>📦 <b>주문 정보</b><br/>▪️주문일 : #{주문일}<br/>▪️상품명 : #{상품명}<br/>▪️결제금액 : #{총결제금액}원<br/><br/>지금부터 전담 검수 인력이<br/>작동 테스트와 포장 상태를<br/>하나하나 점검한 뒤 출고합니다.<br/><br/><span class="good">"내 가족이 직접 쓴다"는 마음으로<br/>정성껏 준비하겠습니다.</span><br/><br/>혹시 궁금한 점이 있으시면<br/>언제든지 문의해 주세요.<br/><b>"끝까지 책임감 있게 도와드리겠습니다."</b>
+<div class="btn-group"><div class="btn primary" data-url="https://new-m.pay.naver.com/">주문내역 확인하기</div><div class="btn">포레몽 채널 추가</div></div></div></div>
+<ul class="issues"><li>인증 5종 → 배송시작으로 이동</li><li>"내 가족이 직접 쓴다" 핵심 철학 유지</li><li>전수검수 예고로 신뢰감 형성</li><li>버튼 2개 축소, 핵심 CTA 1번</li></ul>
 
+<div class="tool-section-wrap">
+<button class="copy-after-btn" onclick="event.stopPropagation();_copyMsg('foremong-0-after',this)">📋 AFTER 복사</button>
+<button class="copy-before-btn" onclick="event.stopPropagation();_copyBefore('foremong-0-before',this)">📋 현행 복사</button>
+<textarea id="foremong-0-after" style="display:none">카카오 알림톡
 
+#{고객명}님, 반갑습니다!
+온수매트 전문 브랜드 
+포레몽
+입니다.
+주문이 정상적으로 완료되었습니다.
+따뜻한 선택, 진심으로 감사드립니다.
+📦 
+주문 정보
+▪️주문일 : #{주문일}
+▪️상품명 : #{상품명}
+▪️결제금액 : #{총결제금액}원
+지금부터 전담 검수 인력이
+작동 테스트와 포장 상태를
+하나하나 점검한 뒤 출고합니다.
+"내 가족이 직접 쓴다"는 마음으로
+정성껏 준비하겠습니다.
+혹시 궁금한 점이 있으시면
+언제든지 문의해 주세요.
+"끝까지 책임감 있게 도와드리겠습니다."</textarea>
+<textarea id="foremong-0-before" style="display:none">카카오 알림톡
 
-
-
-<script>
-(function() {
-  var urlMap = {
-    "주문내역 확인하기": "https://new-m.pay.naver.com/",
-    "주문내역 바로가기": "https://new-m.pay.naver.com/",
-    "배송조회 바로가기": "https://new-m.pay.naver.com/",
-    "구매확정 하기": "https://new-m.pay.naver.com/",
-    "설치 가이드 영상": "https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1",
-    "소음 해결 가이드": "https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1",
-    "물 교체 가이드": "https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1",
-    "정품등록 하기": "https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform",
-    "리뷰 남기기": "https://smartstore.naver.com/foremong",
-    "내돈내산 이벤트": "https://smartstore.naver.com/foremong",
-    "한달 사용 후기 남기기": "https://smartstore.naver.com/foremong",
-    "포레몽 채널 추가": "https://smartstore.naver.com/foremong",
-    "채널 추가하기": "https://smartstore.naver.com/foremong"
-  };
-
-  var STORAGE_KEY = 'alimtalk-adopt-foremong';
-
-  function getText(phone) {
-    var clone = phone.cloneNode(true);
-    clone.querySelectorAll('.btn-group').forEach(function(b){ b.remove(); });
-    clone.querySelectorAll('.highlight,.good').forEach(function(s){ s.replaceWith(document.createTextNode(s.textContent)); });
-    return clone.innerText.trim();
-  }
-
-  function loadState() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
-  }
-  function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
-
-  function applyState(card, state) {
-    var id = card.dataset.cid;
-    var kept = state[id] === 'keep';
-    card.classList.toggle('kept', kept);
-    card.classList.toggle('adopted', !kept);
-    var keepBtn = card.querySelector('.adopt-btn.keep');
-    var adoptBtn = card.querySelector('.adopt-btn.adopt');
-    if (keepBtn) keepBtn.classList.toggle('active', kept);
-    if (adoptBtn) adoptBtn.classList.toggle('active', !kept);
-    updateSummary();
-  }
-
-  function updateSummary() {
-    var cards = document.querySelectorAll('.campaign-card[data-cid]');
-    var state = loadState();
-    var adopted = 0;
-    cards.forEach(function(c){ if (state[c.dataset.cid] !== 'keep') adopted++; });
-    var el = document.getElementById('adopt-count');
-    if (el) el.textContent = adopted + '/' + cards.length + '개 개선 채택';
-  }
-
-  function initCard(card, idx) {
-    var cid = 'card-' + idx;
-    card.dataset.cid = cid;
-
-    var afterDiv = card.querySelector('.after');
-    var beforeDiv = card.querySelector('.before');
-    if (!afterDiv) return;
-
-    var phone = afterDiv.querySelector('.phone');
-    if (!phone) return;
-    var beforePhone = beforeDiv ? beforeDiv.querySelector('.phone') : null;
-
-    var afterText = getText(phone);
-    var beforeText = beforePhone ? getText(beforePhone) : '';
-
-    // 버튼 클릭 → URL 연결
-    var buttons = phone.querySelectorAll('.btn');
-    var urlItems = [];
-    buttons.forEach(function(btn) {
-      var text = btn.textContent.trim();
-      var url = urlMap[text];
-      if (url) {
-        btn.style.cursor = 'pointer';
-        (function(u) {
-          btn.addEventListener('click', function(e){ e.stopPropagation(); window.open(u, '_blank'); });
-        })(url);
-        urlItems.push({ label: text, url: url });
-      }
-    });
-
-    // adopt-bar (헤더 아래 추가)
-    var bar = document.createElement('div');
-    bar.className = 'adopt-bar';
-
-    var toggle = document.createElement('div');
-    toggle.className = 'adopt-toggle';
-
-    var keepBtn = document.createElement('button');
-    keepBtn.className = 'adopt-btn keep';
-    keepBtn.textContent = '⬜ 현행 유지';
-    var adoptBtn = document.createElement('button');
-    adoptBtn.className = 'adopt-btn adopt active';
-    adoptBtn.textContent = '✅ 개선 채택';
-
-    (function(c) {
-      keepBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var s = loadState(); s[c.dataset.cid] = 'keep'; saveState(s); applyState(c, s);
-      });
-      adoptBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var s = loadState(); delete s[c.dataset.cid]; saveState(s); applyState(c, s);
-      });
-    })(card);
-
-    toggle.appendChild(keepBtn);
-    toggle.appendChild(adoptBtn);
-    bar.appendChild(toggle);
-
-    var body = card.querySelector('.campaign-body');
-    if (body) body.insertBefore(bar, body.firstChild);
-
-    // tool-section
-    var tool = document.createElement('div');
-    tool.className = 'tool-section';
-
-    // after 복사
-    var copyAfterBtn = document.createElement('button');
-    copyAfterBtn.className = 'copy-btn-tool';
-    copyAfterBtn.textContent = '📋 AFTER 메시지 복사';
-    (function(t, b) {
-      b.addEventListener('click', function(e) {
-        e.stopPropagation();
-        (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject())
-          .catch(function(){
-            var ta = document.createElement('textarea');
-            ta.value = t; document.body.appendChild(ta); ta.select();
-            document.execCommand('copy'); document.body.removeChild(ta);
-          })
-          .then(function(){
-            b.textContent = '✅ 복사됨!'; b.classList.add('copied');
-            setTimeout(function(){ b.textContent = '📋 AFTER 메시지 복사'; b.classList.remove('copied'); }, 2000);
-          });
-      });
-    })(afterText, copyAfterBtn);
-    tool.appendChild(copyAfterBtn);
-
-    // before 복사 (현행 유지 모드에서만 표시)
-    if (beforeText) {
-      var copyBeforeBtn = document.createElement('button');
-      copyBeforeBtn.className = 'copy-btn-before';
-      copyBeforeBtn.textContent = '📋 현행 메시지 복사';
-      (function(t, b) {
-        b.addEventListener('click', function(e) {
-          e.stopPropagation();
-          (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject())
-            .catch(function(){
-              var ta = document.createElement('textarea');
-              ta.value = t; document.body.appendChild(ta); ta.select();
-              document.execCommand('copy'); document.body.removeChild(ta);
-            })
-            .then(function(){
-              b.textContent = '✅ 복사됨!';
-              setTimeout(function(){ b.textContent = '📋 현행 메시지 복사'; }, 2000);
-            });
-        });
-      })(beforeText, copyBeforeBtn);
-      tool.appendChild(copyBeforeBtn);
-    }
-
-    // URL 섹션
-    if (urlItems.length > 0) {
-      var urlSec = document.createElement('div');
-      urlSec.className = 'url-section-tool';
-      urlItems.forEach(function(item) {
-        var row = document.createElement('div');
-        row.className = 'url-item-tool';
-        var encodedUrl = item.url.replace(/'/g, "\'");
-        row.innerHTML =
-          '<span class="url-label-tool">' + item.label + '</span>' +
-          '<div class="url-actions-tool">' +
-          '<a href="' + item.url + '" target="_blank" class="url-btn-open-tool" onclick="event.stopPropagation()">↗ 열기</a>' +
-          '<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('' + encodedUrl + '',this)">복사</button>' +
-          '</div>';
-        urlSec.appendChild(row);
-      });
-      tool.appendChild(urlSec);
-    }
-
-    afterDiv.appendChild(tool);
-
-    // 초기 상태 적용
-    applyState(card, loadState());
-  }
-
-  window._copyUrl = function(url, btn) {
-    (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject())
-      .catch(function(){
-        var ta = document.createElement('textarea');
-        ta.value = url; document.body.appendChild(ta); ta.select();
-        document.execCommand('copy'); document.body.removeChild(ta);
-      })
-      .then(function(){ btn.textContent = '✅'; setTimeout(function(){ btn.textContent = '복사'; }, 2000); });
-  };
-
-  document.addEventListener('DOMContentLoaded', function(){
-    // 상단 요약 바 추가
-    var summary = document.createElement('div');
-    summary.className = 'adopt-summary';
-    summary.innerHTML =
-      '<span>캠페인 채택 현황: <span id="adopt-count" class="count">0/0개 개선 채택</span></span>' +
-      '<button class="adopt-all-btn" onclick="_adoptAll()">전체 개선 채택</button>';
-    var container = document.querySelector('.container');
-    if (container) container.parentNode.insertBefore(summary, container);
-
-    document.querySelectorAll('.campaign-card').forEach(initCard);
-    updateSummary();
-  });
-
-  window._adoptAll = function() {
-    var s = loadState();
-    document.querySelectorAll('.campaign-card[data-cid]').forEach(function(c){
-      delete s[c.dataset.cid]; applyState(c, s);
-    });
-    saveState(s);
-  };
-})();
-</script>
-
-</body>
-</html>
-
-  <!-- 1. 결제완료 -->
-  <div class="campaign-card open" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge">1</div>
-        <span class="name">결제완료</span>
-        <span class="impact high">HIGH</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">결제 직후</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              안녕하세요.<br>
-              온수매트 전문 브랜드 포레몽입니다.<br><br>
-              #{고객명}님의<br>
-              주문이 정상적으로 완료되었습니다 !<br>
-              따뜻한 선택, 진심으로 감사드립니다.<br><br>
-              📦 <b>주문 정보</b><br>
-              ▪️주문일 : #{주문일}<br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️결제금액 : #{총결제금액}원<br><br>
-              고객님의 주문은 꼼꼼히 준비하여<br>
-              가장 안전한 상태로 배송 될 예정입니다.<br><br>
-              💚 포레몽 온수매트는요 💚<br>
-              ✔ 전자파 인증 / 라돈 시험성적서<br>
-              ✔ 호스부터 카본(탄소) 함유 인증서<br>
-              ✔ 진드기 통과 0% 시험서<br>
-              ✔ 알러지 · 세탁 · 땀 견뢰도 테스트<br>
-              ✔ 호스 유해 물질 안전 검사 완료<br><br>
-              👪 '내 가족이 직접 쓴다'는 마음으로<br>
-              모든 제품을 정성껏 제작하고 있습니다.<br>
-              혹시라도 사용 중 불편한 점이 있다면<br>
-              언제든지 아래 채널을 통해 문의주세요.<br><br>
-              "끝까지 책임감 있게 도와드리겠습니다."<br><br>
-              🎬 포레몽의 진짜 이야기, 들어보세요.<br>
-              따뜻함에 진심인 포레몽 !<br>
-              브랜드의 시작을 영상으로 만나보세요.
-              <div class="btn-group">
-                <div class="btn">채널 추가하기</div>
-                <div class="btn">주문내역 바로가기</div>
-                <div class="btn">포레몽 스토리보기</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>인증 정보 5종이 결제 직후 시점에 과다</li>
-            <li>브랜드 스토리+인증+문의 안내까지 한 메시지에 혼재</li>
-            <li>메시지가 매우 길어 스크롤 필요</li>
-            <li>1번 버튼이 채널추가 (핵심CTA인 주문확인이 2번)</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님, 반갑습니다!<br>
-              온수매트 전문 브랜드 <b>포레몽</b>입니다.<br><br>
-              주문이 정상적으로 완료되었습니다.<br>
-              <span class="good">따뜻한 선택, 진심으로 감사드립니다.</span><br><br>
-              📦 <b>주문 정보</b><br>
-              ▪️주문일 : #{주문일}<br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️결제금액 : #{총결제금액}원<br><br>
-              지금부터 전담 검수 인력이<br>
-              작동 테스트와 포장 상태를<br>
-              하나하나 점검한 뒤 출고합니다.<br><br>
-              <span class="good">"내 가족이 직접 쓴다"는 마음으로<br>
-              정성껏 준비하겠습니다.</span><br><br>
-              혹시 궁금한 점이 있으시면<br>
-              언제든지 문의해 주세요.<br>
-              <b>"끝까지 책임감 있게 도와드리겠습니다."</b>
-              <div class="btn-group">
-                <div class="btn primary">주문내역 확인하기</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>인증 5종 → 배송시작 시점으로 이동 (적절한 타이밍)</li>
-            <li>브랜드 스토리 → 결제 직후엔 주문 확인에 집중</li>
-            <li>"내 가족이 직접 쓴다" 핵심 철학은 유지</li>
-            <li>전수검수 예고로 신뢰감 + 기대감 형성</li>
-            <li>버튼 2개로 축소, 핵심 CTA(주문확인) 1번 배치</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Tool Section -->
-      <div class="tool-inline" onclick="event.stopPropagation()">
-        <div class="tool-inline-title">🔧 실무 도구</div>
-        <div class="tool-inline-grid">
-          <div class="tool-box">
-            <div class="tool-box-header">
-              <span>📋 AFTER 메시지 복사</span>
-              <button class="copy-btn" onclick="copyMsg('payment-msg', this)">📋 복사</button>
-            </div>
-            <pre id="payment-msg" class="tool-msg-pre">#{고객명}님, 반갑습니다!
+안녕하세요.
+온수매트 전문 브랜드 포레몽입니다.
+#{고객명}님의
+주문이 정상적으로 완료되었습니다 !
+따뜻한 선택, 진심으로 감사드립니다.
+📦 
+주문 정보
+▪️주문일 : #{주문일}
+▪️상품명 : #{상품명}
+▪️결제금액 : #{총결제금액}원
+💚 포레몽 온수매트는요 💚
+✔ 전자파 인증 / 라돈 시험성적서
+✔ 호스부터 카본(탄소) 함유 인증서
+✔ 진드기 통과 0% 시험서
+✔ 알러지 · 세탁 · 땀 견뢰도 테스트
+✔ 호스 유해 물질 안전 검사 완료
+👪 '내 가족이 직접 쓴다'는 마음으로...
+🎬 포레몽의 진짜 이야기, 들어보세요.</textarea>
+<div class="url-section-tool">
+<div class="url-item-tool">
+<span class="url-label-tool">주문내역 확인하기</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://new-m.pay.naver.com/" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://new-m.pay.naver.com/',this)">복사</button>
+</div>
+</div></div>
+</div></div>
+</div>
+<div class="card-tools" onclick="event.stopPropagation()">
+<div class="card-tools-label">📋 실무 도구 — AFTER 문구 복사 &amp; URL 확인</div>
+<div class="card-tools-inner">
+<div class="tool-box">
+<div class="tool-box-header"><span>AFTER 메시지</span><button class="copy-btn" onclick="copyMsg('msg-1',this)">📋 복사</button></div>
+<pre class="tool-msg-pre" id="msg-1">#{고객명}님, 반갑습니다!
 온수매트 전문 브랜드 포레몽입니다.
 
 주문이 정상적으로 완료되었습니다.
@@ -1557,142 +287,92 @@
 혹시 궁금한 점이 있으시면
 언제든지 문의해 주세요.
 "끝까지 책임감 있게 도와드리겠습니다."</pre>
-            <div class="tool-stats">발송 <b>6,292</b> &nbsp;|&nbsp; 오픈율 <b>64.9%</b> &nbsp;|&nbsp; 클릭율 <b>7.3%</b></div>
-          </div>
-          <div class="tool-box">
-            <div class="tool-box-header"><span>🔗 URL 확인</span></div>
-            <div class="url-list">
-              <div class="url-item">
-                <span class="url-status-warn">⚠️</span>
-                <span class="url-label">주문내역 확인하기</span>
-                <span class="url-note">직접 링크 아님</span>
-                <span class="url-spacer"></span>
-                <div class="url-actions">
-                  <a href="https://new-m.pay.naver.com/" target="_blank" class="url-btn url-btn-open">↗ 열기</a>
-                  <button class="url-btn url-btn-copy" onclick="copyUrl('https://new-m.pay.naver.com/', this)">복사</button>
-                </div>
-              </div>
-              <div class="url-item">
-                <span class="url-kakao">채널 추가 버튼 (카카오 자동, URL 없음)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="tool-stats">발송 <b>6,292</b>  |  오픈율 <b>64.9%</b>  |  클릭율 <b>7.3%</b></div>
+</div>
+<div class="tool-box">
+<div class="tool-box-header"><span>버튼 &amp; 랜딩 URL</span></div>
+<div class="url-list">
+<div class="url-item"><span class="url-status-warn">⚠️</span><span class="url-label">주문내역 확인하기</span><span class="url-note">직접 링크 아님</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://new-m.pay.naver.com/" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://new-m.pay.naver.com/',this)">복사</button></div></div>
+<div class="url-item"><span class="url-kakao">채널 추가 버튼 (URL 없음)</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. 배송시작 -->
+<div class="campaign-card" data-cid="foremong-1">
+<div class="campaign-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="left"><div class="num-badge">2</div><span class="name">배송시작</span><span class="impact low">LOW</span></div>
+<div style="display:flex;align-items:center;gap:12px;"><span class="timing">출고 시</span><span class="arrow">▼</span></div>
+</div>
+<div class="campaign-body">
+<div class="adopt-bar">
+<div class="adopt-toggle">
+<button class="adopt-btn keep">⬜ 현행 유지</button>
+<button class="adopt-btn adopt active">✅ 개선 채택</button>
+</div>
+</div>
+<div class="comparison">
+<div class="before">
+<div class="col-label">❌ BEFORE</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님이 주문하신 상품이<br/>출발했습니다!<br/><br/>검수 완료 → 안전 포장 → 출고<br/><br/>📦 <b>배송 정보</b><br/>▪️상품명 : #{상품명}<br/>▪️송장번호 : #{송장번호}<br/><br/>📐 설치 전, 이것만 확인하세요!<br/><span class="highlight">↓ 아래 버튼에서 바로 확인하세요!</span><div class="btn-group"><div class="btn">배송조회 바로가기</div><div class="btn">설치 가이드 영상</div><div class="btn">채널 추가하기</div></div></div></div>
+<ul class="issues"><li>"↓ 아래 버튼" 심사 리스크</li><li>인증 정보 없음</li></ul>
+</div>
+<div class="arrow-col">→</div>
+<div class="after">
+<div class="col-label">✅ AFTER</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님이 주문하신 상품이<br/>출발했습니다!<br/><br/>검수 완료 → 안전 포장 → 출고<br/><br/>📦 <b>배송 정보</b><br/>▪️상품명 : #{상품명}<br/>▪️송장번호 : #{송장번호}<br/><br/><span class="good">💚 안심하세요!</span><br/>전자파 인증 · 라돈 검사 · 진드기 0%<br/>모든 안전 검증을 통과한 제품입니다.<br/><br/>📐 설치 전, 가이드 영상을 확인해 주세요.<div class="btn-group"><div class="btn primary" data-url="https://new-m.pay.naver.com/">배송조회 바로가기</div><div class="btn" data-url="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1">설치 가이드 영상</div><div class="btn">포레몽 채널 추가</div></div></div></div>
+<ul class="issues"><li>인증 정보 2줄 요약 배치</li><li>심사 리스크 표현 제거</li><li>핵심 CTA 1번 배치</li></ul>
 
-  <!-- 2. 배송시작 -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge">2</div>
-        <span class="name">배송시작</span>
-        <span class="impact low">LOW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">출고 시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              안녕하세요. #{고객명}님!<br>
-              포레몽에서 주문하신 제품이<br>
-              지금 막 출발했습니다 !<br><br>
-              🚚 <b>배송 정보</b><br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️주문번호 : #{주문번호}<br>
-              ▪️택배사 : #{배송회사}<br>
-              ▪️송장번호 : #{송장번호}<br>
-              ▪️배송지 : #{배송지주소}<br><br>
-              지역에 따라 평균 1~2일 이내 도착하며,<br>
-              배송 현황은 송장번호로 실시간 조회<br>
-              가능합니다.<br><br>
-              🧡 출고 전, 전수 검수 완료 🧡<br>
-              포레몽은 제품의 작동과 포장 상태를<br>
-              전문 검수 인력이 테스트+검수합니다.<br>
-              구성품 누락 없이 꼼꼼히 준비했으니<br>
-              조금만 기다려주세요 ^^<br><br>
-              💡 설치 전, 미리 확인해 주세요 !<br>
-              먼저, 받아보신 제품의 구성품이<br>
-              빠짐없이 모두 있는지 확인해 주세요.<br>
-              동봉된 사용설명서를 반드시 정독하신 뒤<br>
-              불량인 부분은 없는지 체크해 주세요.<br><br>
-              놓치기 쉬운 주의사항을 준비했으니<br>
-              단, 30초! 짧은 영상 시청 부탁드립니다.<br>
-              (대부분 초기 문제는 바로 해결 가능)<br><br>
-              ↓ 아래 버튼에서 바로 확인하세요!
-              <div class="btn-group">
-                <div class="btn">설치 전 주의사항</div>
-                <div class="btn">배송조회 바로가기</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>전체적으로 잘 구성되어 있음</li>
-            <li>"↓ 아래 버튼" 화살표 표현 카카오 심사 리스크</li>
-            <li>배송정보 5항목 포함 (상세)</li>
-            <li>버튼이 2개만 (채널추가 없음)</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님!<br>
-              포레몽에서 주문하신 제품이<br>
-              지금 막 출발했습니다!<br><br>
-              🚚 <b>배송 정보</b><br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️택배사 : #{배송회사}<br>
-              ▪️송장번호 : #{송장번호}<br><br>
-              <span class="good">🧡 출고 전, 전수 검수 완료</span><br>
-              전문 검수 인력이 작동과 포장 상태를<br>
-              테스트하고 구성품 누락 없이<br>
-              꼼꼼히 확인했습니다.<br><br>
-              💚 <b>포레몽 안심 인증</b><br>
-              ✔ 전자파 인증 / 라돈 시험성적서<br>
-              ✔ 진드기 통과 0% / 유해물질 검사 완료<br><br>
-              💡 <b>도착 전, 30초만 투자해 주세요!</b><br>
-              설치 전 주의사항을 짧은 영상으로<br>
-              준비했습니다.<br>
-              (초기 문제의 대부분이 바로 해결돼요)<br><br>
-              🎁 사은품 안내<br>
-              주문하신 제품과 함께 온수매트 전용<br>
-              세탁망을 함께 보내드립니다.
-              <div class="btn-group">
-                <div class="btn primary">설치 전 주의사항</div>
-                <div class="btn">배송조회 바로가기</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>결제완료에서 이동한 인증 정보를 2줄 요약으로 배치 (적절한 타이밍)</li>
-            <li>전수검수 스토리 유지 — 포레몽 차별점</li>
-            <li>"↓ 아래 버튼" → "30초만 투자해 주세요" 순화 (심사 리스크 제거)</li>
-            <li>채널추가 3번 버튼 복원</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Tool Section -->
-      <div class="tool-inline" onclick="event.stopPropagation()">
-        <div class="tool-inline-title">🔧 실무 도구</div>
-        <div class="tool-inline-grid">
-          <div class="tool-box">
-            <div class="tool-box-header">
-              <span>📋 AFTER 메시지 복사</span>
-              <button class="copy-btn" onclick="copyMsg('ship-start-msg', this)">📋 복사</button>
-            </div>
-            <pre id="ship-start-msg" class="tool-msg-pre">#{고객명}님!
+<div class="tool-section-wrap">
+<button class="copy-after-btn" onclick="event.stopPropagation();_copyMsg('foremong-1-after',this)">📋 AFTER 복사</button>
+<button class="copy-before-btn" onclick="event.stopPropagation();_copyBefore('foremong-1-before',this)">📋 현행 복사</button>
+<textarea id="foremong-1-after" style="display:none">카카오 알림톡
+#{고객명}님이 주문하신 상품이
+출발했습니다!
+검수 완료 → 안전 포장 → 출고
+📦 
+배송 정보
+▪️상품명 : #{상품명}
+▪️송장번호 : #{송장번호}
+💚 안심하세요!
+전자파 인증 · 라돈 검사 · 진드기 0%
+모든 안전 검증을 통과한 제품입니다.
+📐 설치 전, 가이드 영상을 확인해 주세요.</textarea>
+<textarea id="foremong-1-before" style="display:none">카카오 알림톡
+#{고객명}님이 주문하신 상품이
+출발했습니다!
+검수 완료 → 안전 포장 → 출고
+📦 
+배송 정보
+▪️상품명 : #{상품명}
+▪️송장번호 : #{송장번호}
+📐 설치 전, 이것만 확인하세요!
+↓ 아래 버튼에서 바로 확인하세요!</textarea>
+<div class="url-section-tool">
+<div class="url-item-tool">
+<span class="url-label-tool">배송조회 바로가기</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://new-m.pay.naver.com/" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://new-m.pay.naver.com/',this)">복사</button>
+</div>
+</div>
+<div class="url-item-tool">
+<span class="url-label-tool">설치 가이드 영상</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1',this)">복사</button>
+</div>
+</div></div>
+</div></div>
+</div>
+<div class="card-tools" onclick="event.stopPropagation()">
+<div class="card-tools-label">📋 실무 도구 — AFTER 문구 복사 &amp; URL 확인</div>
+<div class="card-tools-inner">
+<div class="tool-box">
+<div class="tool-box-header"><span>AFTER 메시지</span><button class="copy-btn" onclick="copyMsg('msg-2',this)">📋 복사</button></div>
+<pre class="tool-msg-pre" id="msg-2">#{고객명}님!
 포레몽에서 주문하신 제품이
 지금 막 출발했습니다!
 
@@ -1719,138 +399,95 @@
 🎁 사은품 안내
 주문하신 제품과 함께 온수매트 전용
 세탁망을 함께 보내드립니다.</pre>
-            <div class="tool-stats">발송 <b>6,070</b> &nbsp;|&nbsp; 오픈율 <b>56.4%</b> &nbsp;|&nbsp; 클릭율 <b>15.4%</b></div>
-          </div>
-          <div class="tool-box">
-            <div class="tool-box-header"><span>🔗 URL 확인</span></div>
-            <div class="url-list">
-              <div class="url-item">
-                <span class="url-status-ok">✅</span>
-                <span class="url-label">설치 전 주의사항</span>
-                <span class="url-spacer"></span>
-                <div class="url-actions">
-                  <a href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" target="_blank" class="url-btn url-btn-open">↗ 열기</a>
-                  <button class="url-btn url-btn-copy" onclick="copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1', this)">복사</button>
-                </div>
-              </div>
-              <div class="url-item">
-                <span class="url-status-warn">⚠️</span>
-                <span class="url-label">배송조회 바로가기</span>
-                <span class="url-note">메인으로 연결</span>
-                <span class="url-spacer"></span>
-                <div class="url-actions">
-                  <a href="https://new-m.pay.naver.com/" target="_blank" class="url-btn url-btn-open">↗ 열기</a>
-                  <button class="url-btn url-btn-copy" onclick="copyUrl('https://new-m.pay.naver.com/', this)">복사</button>
-                </div>
-              </div>
-              <div class="url-item">
-                <span class="url-kakao">채널 추가 버튼 (카카오 자동, URL 없음)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="tool-stats">발송 <b>6,070</b>  |  오픈율 <b>56.4%</b>  |  클릭율 <b>15.4%</b></div>
+</div>
+<div class="tool-box">
+<div class="tool-box-header"><span>버튼 &amp; 랜딩 URL</span></div>
+<div class="url-list">
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">설치 전 주의사항</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1',this)">복사</button></div></div>
+<div class="url-item"><span class="url-status-warn">⚠️</span><span class="url-label">배송조회 바로가기</span><span class="url-note">메인으로 연결</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://new-m.pay.naver.com/" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://new-m.pay.naver.com/',this)">복사</button></div></div>
+<div class="url-item"><span class="url-kakao">채널 추가 버튼 (URL 없음)</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. 배송완료 -->
+<div class="campaign-card" data-cid="foremong-2">
+<div class="campaign-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="left"><div class="num-badge">3</div><span class="name">배송완료</span><span class="impact high">HIGH</span></div>
+<div style="display:flex;align-items:center;gap:12px;"><span class="timing">배송 완료 시</span><span class="arrow">▼</span></div>
+</div>
+<div class="campaign-body">
+<div class="adopt-bar">
+<div class="adopt-toggle">
+<button class="adopt-btn keep">⬜ 현행 유지</button>
+<button class="adopt-btn adopt active">✅ 개선 채택</button>
+</div>
+</div>
+<div class="comparison">
+<div class="before">
+<div class="col-label">❌ BEFORE</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님의 상품이<br/>배송 완료되었습니다!<br/><br/>📦 <b>배송 완료 정보</b><br/>▪️상품명 : #{상품명}<br/>▪️송장번호 : #{송장번호}<br/><br/>🧾 <b>정품등록 안내</b><br/>포레몽 공식 구매 고객님께<br/>정품 등록 서비스를 제공합니다.<br/><br/>브랜드 스토리 영상...<div class="btn-group"><div class="btn">채널 추가하기</div><div class="btn">주문내역 바로가기</div><div class="btn"><span class="highlight">포레몽 스토리보기 ← 정품등록 아님!</span></div></div></div></div>
+<ul class="issues"><li>정품등록 안내 있는데 버튼 없음!</li><li>3번이 스토리보기</li><li>변경요청/작업본 불일치</li></ul>
+</div>
+<div class="arrow-col">→</div>
+<div class="after">
+<div class="col-label">✅ AFTER</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님의 상품이<br/>배송 완료되었습니다!<br/><br/>📦 <b>배송 완료 정보</b><br/>▪️상품명 : #{상품명}<br/>▪️송장번호 : #{송장번호}<br/><br/>🧾 <b>정품등록 안내</b><br/>포레몽 공식 구매 고객님께<br/>정품 등록 서비스를 제공합니다.<br/><span class="good">아래 버튼으로 간편하게 등록해 주세요.</span><div class="btn-group"><div class="btn primary" data-url="https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform">정품등록 하기</div><div class="btn" data-url="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1">설치 가이드 영상</div><div class="btn">포레몽 채널 추가</div></div></div></div>
+<ul class="issues"><li>정품등록 버튼 1번 복원</li><li>설치 가이드 2번 유지</li></ul>
 
-  <!-- 3. 배송완료 -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge">3</div>
-        <span class="name">배송완료</span>
-        <span class="impact high">HIGH</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">배송 완료 시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              안녕하세요. #{고객명}님<br>
-              포레몽에서 주문하신 제품이<br>
-              안전하게 고객님 주소로 도착했습니다 !<br><br>
-              포레몽 온수매트를 믿고<br>
-              선택해주셔서 진심으로 감사드립니다.<br>
-              따뜻한 숙면, 오늘부터 시작이에요 !<br><br>
-              📦 <b>배송 정보</b><br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️주문번호 : #{주문번호}<br>
-              ▪️택배사 : #{배송회사}<br>
-              ▪️송장번호 : #{송장번호}<br><br>
-              ❤️ 상품은 잘 받아 보셨나요? ❤️<br>
-              포레몽 온수매트를 더욱<br>
-              안전하게 오래 사용하실 수 있도록<br>
-              [정품등록] 서비스를 운영하고 있습니다.<br><br>
-              📋 <b>정품등록 시 제공되는 서비스</b><br>
-              &gt; 무상 A/S 1년 + 추가 1년 연장<br>
-              &gt; 제품 이력 관리 / 맞춤형 케어 서비스<br><br>
-              정품 등록은 단 1분이면 끝!<br>
-              아래 버튼을 눌러 간편 등록해보세요 :)
-              <div class="btn-group">
-                <div class="btn">채널 추가하기</div>
-                <div class="btn">주문내역 바로가기</div>
-                <div class="btn">포레몽 스토리보기</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>본문에 정품등록 안내가 상세하지만 버튼에 정품등록이 없음!</li>
-            <li>변경요청과 작업본 버튼 불일치</li>
-            <li>3번 버튼이 "포레몽 스토리보기" (정품등록 폼 아님)</li>
-          </ul>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님!<br>
-              포레몽 온수매트가<br>
-              <b>안전하게 도착했습니다!</b><br><br>
-              <span class="good">따뜻한 숙면, 오늘부터 시작이에요!</span><br><br>
-              📦 <b>배송 완료 정보</b><br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️송장번호 : #{송장번호}<br><br>
-              🧾 <b>정품등록 — 1분이면 끝!</b><br>
-              포레몽 공식 구매 고객님께<br>
-              정품등록 서비스를 제공합니다.<br><br>
-              📋 <b>등록 시 혜택</b><br>
-              &gt; 무상 A/S 1년 + 추가 1년 연장<br>
-              &gt; 제품 이력 관리 / 맞춤형 케어<br><br>
-              아래 버튼으로 간편하게 등록해 주세요 :)
-              <div class="btn-group">
-                <div class="btn primary">정품등록 하기</div>
-                <div class="btn">설치 가이드 영상</div>
-                <div class="btn">포레몽 채널 추가</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>정품등록 버튼 1번으로 복원 (작업본에서 누락된 핵심 CTA)</li>
-            <li>"따뜻한 숙면, 오늘부터 시작이에요" BEFORE 명카피 유지</li>
-            <li>정품등록 혜택 구체적으로 제시 → 등록 동기 강화</li>
-            <li>설치 가이드를 2번으로 유지 (도착 직후 필요)</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Tool Section -->
-      <div class="tool-inline" onclick="event.stopPropagation()">
-        <div class="tool-inline-title">🔧 실무 도구</div>
-        <div class="tool-inline-grid">
-          <div class="tool-box">
-            <div class="tool-box-header">
-              <span>📋 AFTER 메시지 복사</span>
-              <button class="copy-btn" onclick="copyMsg('ship-done-msg', this)">📋 복사</button>
-            </div>
-            <pre id="ship-done-msg" class="tool-msg-pre">#{고객명}님!
+<div class="tool-section-wrap">
+<button class="copy-after-btn" onclick="event.stopPropagation();_copyMsg('foremong-2-after',this)">📋 AFTER 복사</button>
+<button class="copy-before-btn" onclick="event.stopPropagation();_copyBefore('foremong-2-before',this)">📋 현행 복사</button>
+<textarea id="foremong-2-after" style="display:none">카카오 알림톡
+#{고객명}님의 상품이
+배송 완료되었습니다!
+📦 
+배송 완료 정보
+▪️상품명 : #{상품명}
+▪️송장번호 : #{송장번호}
+🧾 
+정품등록 안내
+포레몽 공식 구매 고객님께
+정품 등록 서비스를 제공합니다.
+아래 버튼으로 간편하게 등록해 주세요.</textarea>
+<textarea id="foremong-2-before" style="display:none">카카오 알림톡
+#{고객명}님의 상품이
+배송 완료되었습니다!
+📦 
+배송 완료 정보
+▪️상품명 : #{상품명}
+▪️송장번호 : #{송장번호}
+🧾 
+정품등록 안내
+포레몽 공식 구매 고객님께
+정품 등록 서비스를 제공합니다.
+브랜드 스토리 영상...</textarea>
+<div class="url-section-tool">
+<div class="url-item-tool">
+<span class="url-label-tool">정품등록 하기</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform',this)">복사</button>
+</div>
+</div>
+<div class="url-item-tool">
+<span class="url-label-tool">설치 가이드 영상</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1',this)">복사</button>
+</div>
+</div></div>
+</div></div>
+</div>
+<div class="card-tools" onclick="event.stopPropagation()">
+<div class="card-tools-label">📋 실무 도구 — AFTER 문구 복사 &amp; URL 확인</div>
+<div class="card-tools-inner">
+<div class="tool-box">
+<div class="tool-box-header"><span>AFTER 메시지</span><button class="copy-btn" onclick="copyMsg('msg-3',this)">📋 복사</button></div>
+<pre class="tool-msg-pre" id="msg-3">#{고객명}님!
 포레몽 온수매트가
 안전하게 도착했습니다!
 
@@ -1866,109 +503,85 @@
 정품등록 서비스를 제공합니다.
 
 📋 등록 시 혜택
-> 무상 A/S 1년 + 추가 1년 연장
-> 제품 이력 관리 / 맞춤형 케어
+&gt; 무상 A/S 1년 + 추가 1년 연장
+&gt; 제품 이력 관리 / 맞춤형 케어
 
 아래 버튼으로 간편하게 등록해 주세요 :)</pre>
-            <div class="tool-stats">발송 <b>1,959</b> &nbsp;|&nbsp; 오픈율 <b>32.2%</b> &nbsp;|&nbsp; 클릭율 <b>11.4%</b></div>
-          </div>
-          <div class="tool-box">
-            <div class="tool-box-header"><span>🔗 URL 확인</span></div>
-            <div class="url-list">
-              <div class="url-item">
-                <span class="url-status-ok">✅</span>
-                <span class="url-label">정품등록 하기</span>
-                <span class="url-spacer"></span>
-                <div class="url-actions">
-                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform?usp=send_form" target="_blank" class="url-btn url-btn-open">↗ 열기</a>
-                  <button class="url-btn url-btn-copy" onclick="copyUrl('https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform?usp=send_form', this)">복사</button>
-                </div>
-              </div>
-              <div class="url-item">
-                <span class="url-status-ok">✅</span>
-                <span class="url-label">설치 가이드 영상</span>
-                <span class="url-spacer"></span>
-                <div class="url-actions">
-                  <a href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" target="_blank" class="url-btn url-btn-open">↗ 열기</a>
-                  <button class="url-btn url-btn-copy" onclick="copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1', this)">복사</button>
-                </div>
-              </div>
-              <div class="url-item">
-                <span class="url-kakao">채널 추가 버튼 (카카오 자동, URL 없음)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="tool-stats">발송 <b>1,959</b>  |  오픈율 <b>32.2%</b>  |  클릭율 <b>11.4%</b></div>
+</div>
+<div class="tool-box">
+<div class="tool-box-header"><span>버튼 &amp; 랜딩 URL</span></div>
+<div class="url-list">
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">정품등록 하기</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform?usp=send_form" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform?usp=send_form',this)">복사</button></div></div>
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">설치 가이드 영상</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1',this)">복사</button></div></div>
+<div class="url-item"><span class="url-kakao">채널 추가 버튼 (URL 없음)</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. 설치확인 (NEW) -->
+<div class="campaign-card" data-cid="foremong-3">
+<div class="campaign-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="left"><div class="num-badge" style="background:#e8a020;">N</div><span class="name">설치확인</span><span class="new-badge">NEW</span></div>
+<div style="display:flex;align-items:center;gap:12px;"><span class="timing">배송완료 +1~2일</span><span class="arrow">▼</span></div>
+</div>
+<div class="campaign-body">
+<div class="adopt-bar">
+<div class="adopt-toggle">
+<button class="adopt-btn keep">⬜ 현행 유지</button>
+<button class="adopt-btn adopt active">✅ 개선 채택</button>
+</div>
+</div>
+<div class="comparison">
+<div class="before">
+<div class="col-label" style="color:#999;">⬜ 기존: 없음</div>
+<div style="text-align:center;padding:60px 20px;color:#999;font-size:14px;">배송완료 → 구매확정(+3일) 사이<br/><b>터치포인트 공백</b><br/><br/>설치 실수/초기 불량 CS가<br/>구매확정 시점에 몰림</div>
+</div>
+<div class="arrow-col">→</div>
+<div class="after">
+<div class="col-label">✅ NEW 캠페인</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 안녕하세요!<br/>포레몽 온수매트<br/><b>설치는 잘 되셨나요?</b><br/><br/>혹시 설치 중 어려운 점이 있으셨다면<br/>아래 가이드 영상을 참고해 주세요.<br/><br/>처음 가동 시 보일러 내부 공기로<br/>소음이 발생할 수 있습니다.<br/><span class="good"><b>에어 빼기 1회</b>만 하시면 해결돼요!</span><br/><br/>불편한 점이 있다면<br/>언제든지 문의해 주세요.<div class="btn-group"><div class="btn primary" data-url="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1">설치 가이드 영상</div><div class="btn" data-url="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1">소음 해결 가이드</div><div class="btn">포레몽 채널 추가</div></div></div></div>
+<ul class="issues"><li>가장 흔한 CS(소음) 선제 대응</li><li>"뽀글뽀글" 친근 표현으로 불안 해소</li><li>구매확정 전 만족도 확보</li></ul>
 
-  <!-- 4. 설치확인 (NEW) -->
-  <div class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
-      <div class="left">
-        <div class="num-badge" style="background:#e8a020;">N</div>
-        <span class="name">설치확인</span>
-        <span class="new-badge">NEW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="timing">배송완료 +1~2일</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label" style="color:#999;">⬜ 기존: 없음</div>
-          <div style="text-align:center; padding:60px 20px; color:#999; font-size:14px;">
-            배송완료 → 구매확정(+3일) 사이<br>
-            <b>터치포인트 공백</b><br><br>
-            설치 실수/초기 불량 CS가<br>
-            구매확정 시점에 몰림
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ NEW 캠페인</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
-              #{고객명}님, 안녕하세요!<br>
-              포레몽입니다.<br><br>
-              온수매트 <b>설치는 잘 되셨나요?</b><br><br>
-              혹시 처음 가동하실 때<br>
-              "뽀글뽀글" 소리가 들리셨나요?<br>
-              보일러 내부 공기 때문이에요.<br>
-              <span class="good"><b>에어 빼기 1회</b>면 깨끗이 사라집니다!</span><br><br>
-              설치 중 어려운 점이 있으셨다면<br>
-              아래 가이드 영상을 참고해 주세요.<br><br>
-              불편한 점은 언제든 문의 주세요.<br>
-              <b>포레몽이 끝까지 책임지겠습니다.</b>
-              <div class="btn-group">
-                <div class="btn primary">설치 가이드 영상</div>
-                <div class="btn">소음 해결 가이드</div>
-                <div class="btn">1:1 문의하기</div>
-              </div>
-            </div>
-          </div>
-          <ul class="issues">
-            <li>설치 직후 가장 흔한 CS(소음) 선제 대응</li>
-            <li>"뽀글뽀글" 친근한 표현 → 불안감 해소</li>
-            <li>3번 버튼을 채널추가 대신 1:1 문의 (CS 시점에 맞게)</li>
-            <li>구매확정 전 만족도 확보 → 확정 전환율 상승</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Tool Section -->
-      <div class="tool-inline" onclick="event.stopPropagation()">
-        <div class="tool-inline-title">🔧 실무 도구</div>
-        <div class="tool-inline-grid">
-          <div class="tool-box">
-            <div class="tool-box-header">
-              <span>📋 AFTER 메시지 복사</span>
-              <button class="copy-btn" onclick="copyMsg('install-msg', this)">📋 복사</button>
-            </div>
-            <pre id="install-msg" class="tool-msg-pre">#{고객명}님, 안녕하세요!
+<div class="tool-section-wrap">
+<button class="copy-after-btn" onclick="event.stopPropagation();_copyMsg('foremong-3-after',this)">📋 AFTER 복사</button>
+<textarea id="foremong-3-after" style="display:none">카카오 알림톡
+#{고객명}님, 안녕하세요!
+포레몽 온수매트
+설치는 잘 되셨나요?
+혹시 설치 중 어려운 점이 있으셨다면
+아래 가이드 영상을 참고해 주세요.
+처음 가동 시 보일러 내부 공기로
+소음이 발생할 수 있습니다.
+에어 빼기 1회
+만 하시면 해결돼요!
+불편한 점이 있다면
+언제든지 문의해 주세요.</textarea>
+<div class="url-section-tool">
+<div class="url-item-tool">
+<span class="url-label-tool">설치 가이드 영상</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1',this)">복사</button>
+</div>
+</div>
+<div class="url-item-tool">
+<span class="url-label-tool">소음 해결 가이드</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1',this)">복사</button>
+</div>
+</div></div>
+</div></div>
+</div>
+<div class="card-tools" onclick="event.stopPropagation()">
+<div class="card-tools-label">📋 실무 도구 <span style="background:#ff6b6b;color:white;font-size:9px;padding:1px 6px;border-radius:10px;margin-left:4px;">NEW</span></div>
+<div class="card-tools-inner">
+<div class="tool-box">
+<div class="tool-box-header"><span>AFTER 메시지 <span style="background:#ff6b6b;color:white;font-size:9px;padding:1px 6px;border-radius:10px;margin-left:4px;">NEW</span></span><button class="copy-btn" onclick="copyMsg('msg-4',this)">📋 복사</button></div>
+<pre class="tool-msg-pre" id="msg-4">#{고객명}님, 안녕하세요!
 포레몽입니다.
 
 온수매트 설치는 잘 되셨나요?
@@ -1984,41 +597,578 @@
 
 불편한 점은 언제든 문의 주세요.
 포레몽이 끝까지 책임지겠습니다.</pre>
-            <div class="tool-stats" style="color:rgba(255,255,255,0.4)">신규 캠페인 — 발송 데이터 없음</div>
-          </div>
-          <div class="tool-box">
-            <div class="tool-box-header"><span>🔗 URL 확인</span></div>
-            <div class="url-list">
-              <div class="url-item">
-                <span class="url-status-ok">✅</span>
-                <span class="url-label">설치 가이드 영상</span>
-                <span class="url-spacer"></span>
-                <div class="url-actions">
-                  <a href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" target="_blank" class="url-btn url-btn-open">↗ 열기</a>
-                  <button class="url-btn url-btn-copy" onclick="copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1', this)">복사</button>
-                </div>
-              </div>
-              <div class="url-item">
-                <span class="url-status-ok">✅</span>
-                <span class="url-label">소음 해결 가이드</span>
-                <span class="url-spacer"></span>
-                <div class="url-actions">
-                  <a href="https://youtu.be/p7mXhG1XI7g?si=QhjF7T_P7wXud46o" target="_blank" class="url-btn url-btn-open">↗ 열기</a>
-                  <button class="url-btn url-btn-copy" onclick="copyUrl('https://youtu.be/p7mXhG1XI7g?si=QhjF7T_P7wXud46o', this)">복사</button>
-                </div>
-              </div>
-              <div class="url-item">
-                <span class="url-status-ok">✅</span>
-                <span class="url-label">1:1 문의하기</span>
-                <span class="url-spacer"></span>
-                <div class="url-actions">
-                  <a href="http://pf.kakao.com/_AUhMK" target="_blank" class="url-btn url-btn-open">↗ 열기</a>
-                  <button class="url-btn url-btn-copy" onclick="copyUrl('http://pf.kakao.com/_AUhMK', this)">복사</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="tool-stats" style="color:rgba(255,255,255,0.4)">신규 캠페인 — 발송 데이터 없음</div>
+</div>
+<div class="tool-box">
+<div class="tool-box-header"><span>버튼 &amp; 랜딩 URL</span></div>
+<div class="url-list">
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">설치 가이드 영상</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1',this)">복사</button></div></div>
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">소음 해결 가이드</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://youtu.be/p7mXhG1XI7g?si=QhjF7T_P7wXud46o" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://youtu.be/p7mXhG1XI7g?si=QhjF7T_P7wXud46o',this)">복사</button></div></div>
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">1:1 문의하기</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="http://pf.kakao.com/_AUhMK" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('http://pf.kakao.com/_AUhMK',this)">복사</button></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. 구매확정 유도 -->
+<div class="campaign-card" data-cid="foremong-4">
+<div class="campaign-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="left"><div class="num-badge">5</div><span class="name">구매확정 유도</span><span class="impact high">HIGH</span></div>
+<div style="display:flex;align-items:center;gap:12px;"><span class="timing">배송완료 +3일</span><span class="arrow">▼</span></div>
+</div>
+<div class="campaign-body">
+<div class="adopt-bar">
+<div class="adopt-toggle">
+<button class="adopt-btn keep">⬜ 현행 유지</button>
+<button class="adopt-btn adopt active">✅ 개선 채택</button>
+</div>
+</div>
+<div class="comparison">
+<div class="before">
+<div class="col-label">❌ BEFORE</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님!<br/>주문하신 포레몽 온수매트<br/>만족스럽게 사용하고 계신가요?<br/><br/><span class="highlight">구매확정 + 포토리뷰 동시 요청 (행동 분산)</span><br/><br/>"구매확정해주시면 정산에 도움이 됩니다"<br/><br/>📷 포토리뷰도 남겨주세요!<div class="btn-group"><div class="btn">채널 추가하기</div><div class="btn"><span class="highlight">포토리뷰 남기기 ← URL이 리뷰 페이지 아님!</span></div><div class="btn">주문내역 바로가기</div></div></div></div>
+<ul class="issues"><li>구매확정+리뷰 혼재</li><li>포토리뷰 URL이 네이버페이 마이페이지</li><li>핵심CTA 3번 배치</li></ul>
+</div>
+<div class="arrow-col">→</div>
+<div class="after">
+<div class="col-label">✅ AFTER</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님!<br/>포레몽 온수매트<br/>만족스럽게 사용하고 계신가요?<br/><br/>상품에 만족하셨다면<br/><b>구매확정</b>을 눌러주세요.<br/><br/><span class="good">구매확정은 판매자에게<br/>큰 힘이 됩니다.</span><br/><br/>혹시 불편한 점이 있으시면<br/>언제든 문의해 주세요.<div class="btn-group"><div class="btn primary" data-url="https://new-m.pay.naver.com/">구매확정 하기</div><div class="btn">포레몽 채널 추가</div></div></div></div>
+<ul class="issues"><li>구매확정 1가지만 요청</li><li>"작은 브랜드" 진심 어필</li><li>리뷰 → +7일로 분리</li></ul>
+
+<div class="tool-section-wrap">
+<button class="copy-after-btn" onclick="event.stopPropagation();_copyMsg('foremong-4-after',this)">📋 AFTER 복사</button>
+<button class="copy-before-btn" onclick="event.stopPropagation();_copyBefore('foremong-4-before',this)">📋 현행 복사</button>
+<textarea id="foremong-4-after" style="display:none">카카오 알림톡
+#{고객명}님!
+포레몽 온수매트
+만족스럽게 사용하고 계신가요?
+상품에 만족하셨다면
+구매확정
+을 눌러주세요.
+구매확정은 판매자에게
+큰 힘이 됩니다.
+혹시 불편한 점이 있으시면
+언제든 문의해 주세요.</textarea>
+<textarea id="foremong-4-before" style="display:none">카카오 알림톡
+#{고객명}님!
+주문하신 포레몽 온수매트
+만족스럽게 사용하고 계신가요?
+구매확정 + 포토리뷰 동시 요청 (행동 분산)
+"구매확정해주시면 정산에 도움이 됩니다"
+📷 포토리뷰도 남겨주세요!</textarea>
+<div class="url-section-tool">
+<div class="url-item-tool">
+<span class="url-label-tool">구매확정 하기</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://new-m.pay.naver.com/" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://new-m.pay.naver.com/',this)">복사</button>
+</div>
+</div></div>
+</div></div>
+</div>
+<div class="card-tools" onclick="event.stopPropagation()">
+<div class="card-tools-label">📋 실무 도구 — AFTER 문구 복사 &amp; URL 확인</div>
+<div class="card-tools-inner">
+<div class="tool-box">
+<div class="tool-box-header"><span>AFTER 메시지</span><button class="copy-btn" onclick="copyMsg('msg-5',this)">📋 복사</button></div>
+<pre class="tool-msg-pre" id="msg-5">#{고객명}님!
+포레몽 온수매트
+만족스럽게 사용하고 계신가요?
+
+상품에 만족하셨다면
+[구매확정]을 눌러주세요.
+
+고객님의 구매확정 한 번이
+작은 브랜드 포레몽에게는
+더 좋은 제품을 만들 수 있는
+큰 힘이 됩니다.
+
+혹시 불편한 점이 있으시면
+확정 전에 언제든 말씀해 주세요.
+해결해 드리겠습니다.</pre>
+<div class="tool-stats">발송 <b>1,073</b>  |  오픈율 <b>32.2%</b>  |  클릭율 <b>6.1%</b></div>
+</div>
+<div class="tool-box">
+<div class="tool-box-header"><span>버튼 &amp; 랜딩 URL</span></div>
+<div class="url-list">
+<div class="url-item"><span class="url-status-warn">⚠️</span><span class="url-label">구매확정 하기</span><span class="url-note">직접 URL 필요</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://new-m.pay.naver.com/" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://new-m.pay.naver.com/',this)">복사</button></div></div>
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">1:1 문의하기</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="http://pf.kakao.com/_AUhMK" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('http://pf.kakao.com/_AUhMK',this)">복사</button></div></div>
+<div class="url-item"><span class="url-kakao">채널 추가 버튼 (URL 없음)</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 6. 리뷰 유도 -->
+<div class="campaign-card" data-cid="foremong-5">
+<div class="campaign-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="left"><div class="num-badge">6</div><span class="name">리뷰 유도 (배송+7일)</span><span class="impact mid">MID</span></div>
+<div style="display:flex;align-items:center;gap:12px;"><span class="timing">배송완료 +7일</span><span class="arrow">▼</span></div>
+</div>
+<div class="campaign-body">
+<div class="adopt-bar">
+<div class="adopt-toggle">
+<button class="adopt-btn keep">⬜ 현행 유지</button>
+<button class="adopt-btn adopt active">✅ 개선 채택</button>
+</div>
+</div>
+<div class="comparison">
+<div class="before">
+<div class="col-label">❌ BEFORE</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">잘 지내시나요, #{고객명}님<br/>#{상품명} 따뜻하게 잘 사용하고 계신가요?<br/><br/>🌿 <b>사용해 보니 어떠셨나요?</b><br/>(소음 해결 안내)...<br/><br/>👂🏽 <b>귀 기울이겠습니다.</b><br/>(내돈내산 후기 유도)...<div class="btn-group"><div class="btn">소음 해결 가이드</div><div class="btn"><span class="highlight">내돈내산 이벤트 ← 링크 깨짐 가능성</span></div><div class="btn">채널 추가하기</div></div></div></div>
+<ul class="issues"><li>소음해결 + 리뷰 혼재</li><li>내돈내산 URL 잘림 가능성</li><li>소음은 +1~2일이 적합</li></ul>
+</div>
+<div class="arrow-col">→</div>
+<div class="after">
+<div class="col-label">✅ AFTER</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님,<br/>#{상품명} 일주일째<br/>따뜻하게 잘 사용하고 계신가요?<br/><br/><span class="good">일주일간의 경험이<br/>가장 생생한 후기입니다.</span><br/><br/>고객님의 솔직한 사용 후기가<br/>다음 고객의 선택에 큰 도움이 됩니다.<br/><br/>소중한 후기를 남겨주신 분께<br/>공식몰을 통해 감사의 마음을<br/>드리고 있습니다.<div class="btn-group"><div class="btn primary" data-url="https://smartstore.naver.com/foremong">리뷰 남기기</div><div class="btn" data-url="https://smartstore.naver.com/foremong">내돈내산 이벤트</div><div class="btn">포레몽 채널 추가</div></div></div></div>
+<ul class="issues"><li>리뷰에만 집중</li><li>소음 → 설치확인으로 이동</li><li>리뷰 1번 배치</li></ul>
+
+<div class="tool-section-wrap">
+<button class="copy-after-btn" onclick="event.stopPropagation();_copyMsg('foremong-5-after',this)">📋 AFTER 복사</button>
+<button class="copy-before-btn" onclick="event.stopPropagation();_copyBefore('foremong-5-before',this)">📋 현행 복사</button>
+<textarea id="foremong-5-after" style="display:none">카카오 알림톡
+#{고객명}님,
+#{상품명} 일주일째
+따뜻하게 잘 사용하고 계신가요?
+일주일간의 경험이
+가장 생생한 후기입니다.
+고객님의 솔직한 사용 후기가
+다음 고객의 선택에 큰 도움이 됩니다.
+소중한 후기를 남겨주신 분께
+공식몰을 통해 감사의 마음을
+드리고 있습니다.</textarea>
+<textarea id="foremong-5-before" style="display:none">카카오 알림톡
+잘 지내시나요, #{고객명}님
+#{상품명} 따뜻하게 잘 사용하고 계신가요?
+🌿 
+사용해 보니 어떠셨나요?
+(소음 해결 안내)...
+👂🏽 
+귀 기울이겠습니다.
+(내돈내산 후기 유도)...</textarea>
+<div class="url-section-tool">
+<div class="url-item-tool">
+<span class="url-label-tool">리뷰 남기기</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://smartstore.naver.com/foremong" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://smartstore.naver.com/foremong',this)">복사</button>
+</div>
+</div>
+<div class="url-item-tool">
+<span class="url-label-tool">내돈내산 이벤트</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://smartstore.naver.com/foremong" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://smartstore.naver.com/foremong',this)">복사</button>
+</div>
+</div></div>
+</div></div>
+</div>
+<div class="card-tools" onclick="event.stopPropagation()">
+<div class="card-tools-label">📋 실무 도구 — AFTER 문구 복사 &amp; URL 확인</div>
+<div class="card-tools-inner">
+<div class="tool-box">
+<div class="tool-box-header"><span>AFTER 메시지</span><button class="copy-btn" onclick="copyMsg('msg-6',this)">📋 복사</button></div>
+<pre class="tool-msg-pre" id="msg-6">#{고객명}님,
+#{상품명}과 함께한 일주일,
+따뜻하게 주무시고 계신가요?
+
+👂 귀 기울이겠습니다.
+
+일주일간의 경험이
+가장 생생한 후기입니다.
+
+고객님의 솔직한 사용 후기가
+다음 고객의 선택에 큰 도움이 되고,
+포레몽이 더 나은 제품을
+만들어가는 원동력이 됩니다.
+
+소중한 후기를 남겨주신 분께
+공식몰에서 감사의 마음을
+드리고 있습니다.</pre>
+<div class="tool-stats">발송 <b>1,014</b>  |  오픈율 <b>32.1%</b>  |  클릭율 <b>1.9%</b></div>
+</div>
+<div class="tool-box">
+<div class="tool-box-header"><span>버튼 &amp; 랜딩 URL</span></div>
+<div class="url-list">
+<div class="url-item"><span class="url-status-warn">⚠️</span><span class="url-label">리뷰 남기기</span><span class="url-note">리뷰 직접 링크 필요</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://new-m.pay.naver.com/" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://new-m.pay.naver.com/',this)">복사</button></div></div>
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">내돈내산 이벤트</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://docs.google.com/forms/d/e/1FAIpQLSfUlowCaXIpzRUEyUs8bzdjnSsyjy4Udxje_2q-S1vbo958QA/viewform" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://docs.google.com/forms/d/e/1FAIpQLSfUlowCaXIpzRUEyUs8bzdjnSsyjy4Udxje_2q-S1vbo958QA/viewform',this)">복사</button></div></div>
+<div class="url-item"><span class="url-kakao">채널 추가 버튼 (URL 없음)</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 7. 한달 리뷰 -->
+<div class="campaign-card" data-cid="foremong-6">
+<div class="campaign-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="left"><div class="num-badge">7</div><span class="name">한달 리뷰 (배송+30일)</span><span class="impact mid">MID</span></div>
+<div style="display:flex;align-items:center;gap:12px;"><span class="timing">배송완료 +30일</span><span class="arrow">▼</span></div>
+</div>
+<div class="campaign-body">
+<div class="adopt-bar">
+<div class="adopt-toggle">
+<button class="adopt-btn keep">⬜ 현행 유지</button>
+<button class="adopt-btn adopt active">✅ 개선 채택</button>
+</div>
+</div>
+<div class="comparison">
+<div class="before">
+<div class="col-label">❌ BEFORE</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님!<br/>포레몽 온수매트 사용하신 지<br/>어느덧 한 달!<br/><br/><span class="highlight">"겨울이 끝나갈 무렵" ← 시즌 고정</span><br/><br/>물 제거 방법 안내...<br/>한달 사용 후기 부탁...<br/>감사 인사...<br/><br/>(메시지가 매우 길어 스크롤 과다)<div class="btn-group"><div class="btn">물제거 가이드 영상</div><div class="btn">한달 사용 후기 남기기</div><div class="btn">채널 추가하기</div></div></div></div>
+<ul class="issues"><li>4가지 혼재 (역대 최장)</li><li>"겨울이 끝나갈 무렵" 시즌 고정</li><li>체크리스트 4단계</li></ul>
+</div>
+<div class="arrow-col">→</div>
+<div class="after">
+<div class="col-label">✅ AFTER</div>
+<div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님!<br/>포레몽 온수매트 사용하신 지<br/>어느덧 <b>한 달</b>이 되었습니다.<br/><br/><span class="good">한 달 동안 따뜻하게<br/>보내셨길 바랍니다.</span><br/><br/>💧 <b>시즌 관리 팁</b><br/>장기 사용 시 매트 내부 물 교체를<br/>권장합니다. 가이드 영상을 참고해 주세요.<br/><br/>한 달 사용 후기를 남겨주시면<br/>공식몰에서 <b>감사 혜택</b>을 드립니다.<div class="btn-group"><div class="btn primary" data-url="https://smartstore.naver.com/foremong">한달 사용 후기 남기기</div><div class="btn" data-url="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1">물 교체 가이드</div><div class="btn">포레몽 채널 추가</div></div></div></div>
+<ul class="issues"><li>시즌 중립 전환</li><li>체크리스트 → 영상 대체</li><li>세탁망 인센티브 유지</li></ul>
+
+<div class="tool-section-wrap">
+<button class="copy-after-btn" onclick="event.stopPropagation();_copyMsg('foremong-6-after',this)">📋 AFTER 복사</button>
+<button class="copy-before-btn" onclick="event.stopPropagation();_copyBefore('foremong-6-before',this)">📋 현행 복사</button>
+<textarea id="foremong-6-after" style="display:none">카카오 알림톡
+#{고객명}님!
+포레몽 온수매트 사용하신 지
+어느덧 
+한 달
+이 되었습니다.
+한 달 동안 따뜻하게
+보내셨길 바랍니다.
+💧 
+시즌 관리 팁
+장기 사용 시 매트 내부 물 교체를
+권장합니다. 가이드 영상을 참고해 주세요.
+한 달 사용 후기를 남겨주시면
+공식몰에서 
+감사 혜택
+을 드립니다.</textarea>
+<textarea id="foremong-6-before" style="display:none">카카오 알림톡
+#{고객명}님!
+포레몽 온수매트 사용하신 지
+어느덧 한 달!
+"겨울이 끝나갈 무렵" ← 시즌 고정
+물 제거 방법 안내...
+한달 사용 후기 부탁...
+감사 인사...
+(메시지가 매우 길어 스크롤 과다)</textarea>
+<div class="url-section-tool">
+<div class="url-item-tool">
+<span class="url-label-tool">한달 사용 후기 남기기</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://smartstore.naver.com/foremong" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://smartstore.naver.com/foremong',this)">복사</button>
+</div>
+</div>
+<div class="url-item-tool">
+<span class="url-label-tool">물 교체 가이드</span>
+<div class="url-actions-tool">
+<a class="url-btn-open-tool" href="https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1" onclick="event.stopPropagation()" target="_blank">↗ 열기</a>
+<button class="url-btn-copy-tool" onclick="event.stopPropagation();_copyUrl('https://youtu.be/n9LniIz1ruo?si=IouiCYuJXiSfeha1',this)">복사</button>
+</div>
+</div></div>
+</div></div>
+</div>
+<div class="card-tools" onclick="event.stopPropagation()">
+<div class="card-tools-label">📋 실무 도구 — AFTER 문구 복사 &amp; URL 확인</div>
+<div class="card-tools-inner">
+<div class="tool-box">
+<div class="tool-box-header"><span>AFTER 메시지</span><button class="copy-btn" onclick="copyMsg('msg-7',this)">📋 복사</button></div>
+<pre class="tool-msg-pre" id="msg-7">#{고객명}님!
+포레몽 온수매트와 함께한 지
+어느덧 한 달이 되었습니다! (짝짝)
+
+한 달 동안 따뜻하게
+숙면하고 계셨길 바랍니다.
+
+💧 오래 쓰시려면 — 물 관리 팁
+
+장기 보관 전 매트 내부 물을
+안전하게 제거해 주시면
+다음 시즌에도 처음처럼
+사용하실 수 있습니다.
+
+(아래 가이드 영상 30초 참고)
+
+🌿 한 달 사용 후기를 들려주세요
+
+정성 어린 후기를 남겨주신 분께
+온수매트 전용 무형광 특대형 세탁망을
+보내드립니다.
+
+이 메시지를 끝으로
+정기 안내는 마무리됩니다.
+
+함께해주셔서 감사했습니다 💚</pre>
+<div class="tool-stats">발송 <b>4,500</b>  |  오픈율 <b>56.0%</b>  |  클릭율 <b>5.8%</b></div>
+</div>
+<div class="tool-box">
+<div class="tool-box-header"><span>버튼 &amp; 랜딩 URL</span></div>
+<div class="url-list">
+<div class="url-item"><span class="url-status-warn">⚠️</span><span class="url-label">한달 후기 남기기</span><span class="url-note">직접 링크 필요</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://new-m.pay.naver.com/" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://new-m.pay.naver.com/',this)">복사</button></div></div>
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">물 제거 가이드</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://www.youtube.com/watch?v=PrmMdzZ6o2I" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://www.youtube.com/watch?v=PrmMdzZ6o2I',this)">복사</button></div></div>
+<div class="url-item"><span class="url-kakao">채널 추가 버튼 (URL 없음)</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 8. 취소/교환/반품 -->
+<div class="campaign-card" data-cid="foremong-7">
+<div class="campaign-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="left"><div class="num-badge" style="background:#c44;">8</div><span class="name">취소/교환/반품 (6개 캠페인)</span><span class="impact mid">MID</span></div>
+<div style="display:flex;align-items:center;gap:12px;"><span class="timing">CS 발생 시</span><span class="arrow">▼</span></div>
+</div>
+<div class="campaign-body">
+<div class="adopt-bar">
+<div class="adopt-toggle">
+<button class="adopt-btn keep">⬜ 현행 유지</button>
+<button class="adopt-btn adopt active">✅ 개선 채택</button>
+</div>
+</div>
+<div class="comparison">
+<div class="before">
+<div class="col-label">❌ BEFORE (6개 공통 패턴)</div>
+<div style="padding:20px;"><div style="font-size:13px;color:#555;line-height:1.8;"><b>취소요청</b> — 사유별 4가지 분기 설계됨 but 통합 운영<br/><b>취소완료</b> — 의견 남기기 구글폼 (OK), 윈백 없음<br/><b>교환요청</b> — 7가지 사유 분기 설계됨 but 통합 운영<br/><b>교환완료</b> — 전수검수 + FAQ (진정성 우수, 장문)<br/><b>반품요청</b> — "끝까지 책임감 있게" (포레몽 철학)<br/><b>반품완료</b> — 환불금액 투명 제공 (우수)</div>
+<ul class="issues" style="margin-top:16px;"><li>취소 사유별 맞춤 미적용</li><li>재구매 유도(윈백) 장치 없음</li><li>1번 버튼 CTA 불일치</li><li>메시지 장문 경향</li></ul>
+</div>
+</div>
+<div class="arrow-col">→</div>
+<div class="after">
+<div class="col-label">✅ AFTER (개선 방향)</div>
+<div style="padding:20px;"><div style="font-size:13px;color:#555;line-height:1.8;"><b>Phase 1: 통합 메시지 + 톤 개선</b><br/>• 풀필먼트 안내 부드럽게 축약<br/>• "혹시 도울 수 있는 부분" → 이탈 방지<br/><br/><b>Phase 2: 사유별 분기</b><br/>• 취소 4가지 / 교환 7가지 맞춤<br/><br/><b>취소완료: 윈백 장치 추가</b><br/>• "다시 찾아주시면 특별 혜택"<br/><br/><b>교환완료: 재만족 확인</b><br/>• 전수검수 핵심 + 감동 카피 압축<br/><br/><b>전체 버튼 CTA 통일</b><br/>• 1: 핵심(문의/환불확인) / 2: 의견 / 3: 채널추가</div></div>
+
+<div class="tool-section-wrap">
+<button class="copy-after-btn" onclick="event.stopPropagation();_copyMsg('foremong-7-after',this)">📋 AFTER 복사</button>
+<textarea id="foremong-7-after" style="display:none"></textarea>
+</div></div>
+</div>
+<div class="card-tools" onclick="event.stopPropagation()">
+<div class="card-tools-label">📋 실무 도구 — 취소 통합 AFTER 문구 &amp; URL</div>
+<div class="card-tools-inner">
+<div class="tool-box">
+<div class="tool-box-header"><span>AFTER 메시지 (취소 통합)</span><button class="copy-btn" onclick="copyMsg('msg-8',this)">📋 복사</button></div>
+<pre class="tool-msg-pre" id="msg-8">안녕하세요. #{고객명}님
+
+주문 취소 요청이
+정상적으로 접수되었습니다.
+
+📦 주문 취소 정보
+▪️주문번호 : #{주문번호}
+▪️상품명 : #{상품명}
+▪️결제금액 : #{총결제금액}원
+
+💳 환불 안내
+
+취소 승인 시, 결제 수단에 따라
+영업일 기준 3~5일 내 환불이 처리됩니다.
+
+진행 상황은 네이버페이
+[ 마이페이지 &gt; 결제내역 ] 에서
+확인 가능합니다.
+
+💬 혹시 저희가 도울 수 있는
+부분이 있을까요?
+
+불편한 점이 있으시면
+아래 버튼으로 말씀해 주세요.
+포레몽이 끝까지 책임지겠습니다.</pre>
+<div class="tool-stats">발송 <b>288</b>  |  오픈율 <b>6.9%</b>  |  클릭율 <b>2.1%</b></div>
+</div>
+<div class="tool-box">
+<div class="tool-box-header"><span>버튼 &amp; 랜딩 URL</span></div>
+<div class="url-list">
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">실시간 문의하기</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="http://pf.kakao.com/_AUhMK" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('http://pf.kakao.com/_AUhMK',this)">복사</button></div></div>
+<div class="url-item"><span class="url-status-ok">✅</span><span class="url-label">의견 남기기</span><span class="url-spacer"></span><div class="url-actions"><a class="url-btn url-btn-open" href="https://forms.gle/99ADqX3eVZRW65C56" target="_blank">↗ 열기</a><button class="url-btn url-btn-copy" onclick="copyUrl('https://forms.gle/99ADqX3eVZRW65C56',this)">복사</button></div></div>
+<div class="url-item"><span class="url-kakao">채널 추가 버튼 (URL 없음)</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 성과 추적 -->
+<div class="section-title">성과 추적 체계</div>
+<div style="background:white;border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:24px;overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:13px;min-width:600px;">
+<thead><tr style="background:#f0f0eb;">
+<th style="padding:10px 12px;text-align:left;border-bottom:2px solid #ddd;">캠페인</th>
+<th style="padding:10px 12px;text-align:center;border-bottom:2px solid #ddd;">발송수</th>
+<th style="padding:10px 12px;text-align:center;border-bottom:2px solid #ddd;">오픈율</th>
+<th style="padding:10px 12px;text-align:center;border-bottom:2px solid #ddd;">클릭율</th>
+<th style="padding:10px 12px;text-align:center;border-bottom:2px solid #ddd;">전환율</th>
+<th style="padding:10px 12px;text-align:center;border-bottom:2px solid #ddd;">핵심 KPI</th>
+</tr></thead>
+<tbody>
+<tr><td style="padding:10px 12px;border-bottom:1px solid #eee;">결제완료</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>6,292</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>64.9%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>7.3%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">측정 예정</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;">주문확인 클릭</td></tr>
+<tr><td style="padding:10px 12px;border-bottom:1px solid #eee;">배송시작</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>6,070</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>56.4%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>15.4%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">측정 예정</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;">설치가이드 클릭</td></tr>
+<tr><td style="padding:10px 12px;border-bottom:1px solid #eee;">배송완료</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>1,959</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>32.2%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>11.4%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">측정 예정</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>정품등록율</b></td></tr>
+<tr style="background:#f0faf0;"><td style="padding:10px 12px;border-bottom:1px solid #eee;">설치확인 <small>(NEW)</small></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">—</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">—</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">—</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">—</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;">CS 감소율</td></tr>
+<tr><td style="padding:10px 12px;border-bottom:1px solid #eee;">구매확정 유도</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>1,073</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>32.2%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>6.1%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">측정 예정</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>구매확정율</b></td></tr>
+<tr><td style="padding:10px 12px;border-bottom:1px solid #eee;">리뷰 유도 (+7일)</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>1,014</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>32.1%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>1.9%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">측정 예정</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>리뷰 작성율</b></td></tr>
+<tr><td style="padding:10px 12px;border-bottom:1px solid #eee;">한달 리뷰 (+30일)</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>4,500</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>56.0%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>5.8%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">측정 예정</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>장기 리뷰율</b></td></tr>
+<tr><td style="padding:10px 12px;border-bottom:1px solid #eee;">취소/교환/반품 (6개)</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>288</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>6.9%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;"><b>2.1%</b></td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;color:#999;">측정 예정</td><td style="text-align:center;padding:10px;border-bottom:1px solid #eee;">의견 수집율 / 윈백 전환율</td></tr>
+</tbody>
+</table>
+<p style="margin-top:16px;font-size:12px;color:#888;">※ 알마니센터 데이터 기반 월 1회 리뷰 권장. 측정 시작 후 1개월 뒤 첫 성과 비교 가능.</p>
+</div>
+<div class="footer">포레몽 알림톡 CX 개선안 · 2026-03-12 · 그로밋팀</div>
+</div>
+<script>
+function copyMsg(id, btn) {
+  var text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = '✅ 복사됨';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = '📋 복사'; btn.classList.remove('copied'); }, 1500);
+  });
+}
+function copyUrl(url, btn) {
+  navigator.clipboard.writeText(url).then(function() {
+    var orig = btn.textContent;
+    btn.textContent = '✅';
+    setTimeout(function() { btn.textContent = orig; }, 1200);
+  });
+}
+</script>
+
+<script>
+(function(){
+  var STORAGE_PREFIX = 'alimtalk-adopt-';
+
+  function loadState(brand){ try{ return JSON.parse(localStorage.getItem(STORAGE_PREFIX+brand)||'{}'); }catch(e){ return {}; } }
+  function saveState(brand,s){ localStorage.setItem(STORAGE_PREFIX+brand, JSON.stringify(s)); }
+
+  function updateSummary(brand){
+    var cards = document.querySelectorAll('.campaign-card[data-cid]');
+    var s = loadState(brand); var adopted = 0;
+    cards.forEach(function(c){ if(s[c.dataset.cid]!=='keep') adopted++; });
+    var el = document.getElementById('adopt-count');
+    if(el) el.textContent = adopted+'/'+cards.length+'개 채택';
+  }
+
+  function applyState(card, s, brand){
+    var id = card.dataset.cid;
+    var kept = s[id]==='keep';
+    card.classList.toggle('kept', kept);
+    card.classList.toggle('adopted', !kept);
+    var kb = card.querySelector('.adopt-btn.keep');
+    var ab = card.querySelector('.adopt-btn.adopt');
+    if(kb) kb.classList.toggle('active', kept);
+    if(ab) ab.classList.toggle('active', !kept);
+    updateSummary(brand);
+  }
+
+  window._copyMsg = function(msgId, btn){
+    var ta = document.getElementById(msgId);
+    var text = ta ? ta.value : '';
+    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+      .catch(function(){ var t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); })
+      .then(function(){ btn.textContent='✅ 복사됨!'; btn.classList.add('copied'); setTimeout(function(){ btn.textContent='📋 AFTER 복사'; btn.classList.remove('copied'); },2000); });
+  };
+  window._copyBefore = function(msgId, btn){
+    var ta = document.getElementById(msgId);
+    var text = ta ? ta.value : '';
+    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+      .catch(function(){ var t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); })
+      .then(function(){ btn.textContent='✅ 복사됨!'; setTimeout(function(){ btn.textContent='📋 현행 복사'; },2000); });
+  };
+  window._copyUrl = function(url, btn){
+    (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject())
+      .catch(function(){ var t=document.createElement('textarea'); t.value=url; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); })
+      .then(function(){ btn.textContent='✅'; setTimeout(function(){ btn.textContent='복사'; },2000); });
+  };
+  window._adoptAll = function(brand){
+    var s=loadState(brand);
+    document.querySelectorAll('.campaign-card[data-cid]').forEach(function(c){ delete s[c.dataset.cid]; applyState(c,s,brand); });
+    saveState(brand,s);
+  };
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var brand = document.body.dataset.brand || 'unknown';
+
+    // 요약 바 추가
+    var container = document.querySelector('.container');
+    if(container){
+      var summary = document.createElement('div');
+      summary.className = 'adopt-summary';
+      summary.innerHTML = '<span>채택 현황: <span id="adopt-count" class="count">0/0개 채택</span></span>' +
+        '<button class="adopt-all-btn" onclick="_adoptAll(\'' + brand + '\')">전체 채택</button>';
+      container.parentNode.insertBefore(summary, container);
+    }
+
+    // 카드 초기화
+    document.querySelectorAll('.campaign-card[data-cid]').forEach(function(card){
+      // adopt-btn 이벤트
+      var kb = card.querySelector('.adopt-btn.keep');
+      var ab = card.querySelector('.adopt-btn.adopt');
+      var s = loadState(brand);
+      if(kb) kb.addEventListener('click',function(e){ e.stopPropagation(); var s=loadState(brand); s[card.dataset.cid]='keep'; saveState(brand,s); applyState(card,s,brand); });
+      if(ab) ab.addEventListener('click',function(e){ e.stopPropagation(); var s=loadState(brand); delete s[card.dataset.cid]; saveState(brand,s); applyState(card,s,brand); });
+      // 버튼 URL 클릭
+      card.querySelectorAll('.phone .btn[data-url]').forEach(function(btn){
+        btn.addEventListener('click',function(e){ e.stopPropagation(); window.open(btn.dataset.url,'_blank'); });
+      });
+      applyState(card, loadState(brand), brand);
+    });
+    updateSummary(brand);
+  });
+})();
+</script>
+</body>
+</html>
+<!-- 성과 추적 -->
+<div class="section-title">성과 추적 체계 (신규 도입)</div>
+<div style="background:white; border-radius:16px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:24px;">
+<table style="width:100%; border-collapse:collapse; font-size:13px;">
+<thead>
+<tr style="background:#f0f0eb;">
+<th style="padding:10px 12px; text-align:left; border-bottom:2px solid #ddd;">캠페인</th>
+<th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">발송수</th>
+<th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">오픈율</th>
+<th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">클릭율</th>
+<th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">전환율</th>
+<th style="padding:10px 12px; text-align:center; border-bottom:2px solid #ddd;">핵심 KPI</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">결제완료</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;">주문확인 클릭</td></tr>
+<tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">배송시작</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;">배송조회 클릭</td></tr>
+<tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">배송완료</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;"><b>정품등록율</b></td></tr>
+<tr style="background:#f0faf0;"><td style="padding:10px 12px; border-bottom:1px solid #eee;">설치확인 <small>(NEW)</small></td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;">CS 감소율</td></tr>
+<tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">구매확정 유도</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;"><b>구매확정율</b></td></tr>
+<tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">리뷰 유도 (+7일)</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;"><b>리뷰 작성율</b></td></tr>
+<tr><td style="padding:10px 12px; border-bottom:1px solid #eee;">한달 리뷰 (+30일)</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">측정 예정</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee; color:#999;">—</td><td style="text-align:center; padding:10px; border-bottom:1px solid #eee;"><b>장기 리뷰율</b></td></tr>
+<tr><td colspan="6" style="color:#999; font-size:12px;">취소/교환/반품 6개: 핵심 KPI = 의견 수집율, 윈백 전환율</td></tr>
+</tbody>
+</table>
+<p style="margin-top:16px; font-size:12px; color:#888;">※ 알마니센터 데이터 기반 월 1회 리뷰 권장. 측정 시작 후 1개월 뒤 첫 성과 비교 가능.</p>
+</div>
+<div class="footer">
+    포레몽 알림톡 CX 개선안 · 2026-03-10 · 그로밋팀
   </div>
+
+<script>
+function copyMsg(elId, btn) {
+  const text = document.getElementById(elId).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✅ 복사됨!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+  });
+}
+function copyUrl(url, btn) {
+  navigator.clipboard.writeText(url).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✅';
+    setTimeout(() => { btn.textContent = orig; }, 1200);
+  });
+}
+</script>
+
+
