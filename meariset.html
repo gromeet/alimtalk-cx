@@ -846,8 +846,8 @@
     <div class="section-title">캠페인별 전 / 후 비교</div>
 
     <!-- 1. 결제완료 -->
-    <div data-campaign="campaign-1" class="campaign-card" onclick="this.classList.toggle('open')">
-      <div class="campaign-header">
+    <div data-campaign="campaign-1" class="campaign-card">
+      <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
         <div class="left">
           <div class="num-badge">1</div>
           <span class="name">결제완료</span>
@@ -957,11 +957,18 @@
             </ul>
           </div>
         </div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-1', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-1', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-1', 'skip')">⏭️ 보류</button>
+      </div>
+
       </div>
     </div>
 
-  <div data-campaign="campaign-2" class="campaign-card" onclick="this.classList.toggle('open')">
-      <div class="campaign-header">
+  <div data-campaign="campaign-2" class="campaign-card">
+      <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
         <div class="left">
           <div class="num-badge">2</div>
           <span class="name">배송시작</span>
@@ -1068,11 +1075,18 @@
             </ul>
           </div>
         </div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-2', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-2', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-2', 'skip')">⏭️ 보류</button>
+      </div>
+
       </div>
     </div>
 
-  <div data-campaign="crm-1" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-1" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">3</div>
         <span class="name">배송도착 (시작의 메아리)</span>
@@ -1080,6 +1094,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-1" onchange="toggleModify('crm-1', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-1').click();"></span>
+            <label for="modify-crm-1" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">배송완료 D+0</span>
         <span class="arrow">▼</span>
       </div>
@@ -1131,8 +1150,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-2" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-2" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">4</div>
         <span class="name">에코 트라이앵글</span>
@@ -1140,6 +1159,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-2" onchange="toggleModify('crm-2', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-2').click();"></span>
+            <label for="modify-crm-2" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+7</span>
         <span class="arrow">▼</span>
       </div>
@@ -1191,8 +1215,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-3" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-3" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">5</div>
         <span class="name">월간 관제탑</span>
@@ -1200,6 +1224,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-3" onchange="toggleModify('crm-3', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-3').click();"></span>
+            <label for="modify-crm-3" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+14</span>
         <span class="arrow">▼</span>
       </div>
@@ -1251,8 +1280,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-4" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-4" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">6</div>
         <span class="name">C.E.O 시스템</span>
@@ -1260,6 +1289,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-4" onchange="toggleModify('crm-4', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-4').click();"></span>
+            <label for="modify-crm-4" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+21</span>
         <span class="arrow">▼</span>
       </div>
@@ -1311,8 +1345,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-5" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-5" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">7</div>
         <span class="name">습관의 과학</span>
@@ -1320,6 +1354,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-5" onchange="toggleModify('crm-5', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-5').click();"></span>
+            <label for="modify-crm-5" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+28</span>
         <span class="arrow">▼</span>
       </div>
@@ -1371,8 +1410,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-6" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-6" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">8</div>
         <span class="name">Brain Dump</span>
@@ -1380,6 +1419,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-6" onchange="toggleModify('crm-6', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-6').click();"></span>
+            <label for="modify-crm-6" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+35</span>
         <span class="arrow">▼</span>
       </div>
@@ -1431,8 +1475,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-7" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-7" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">9</div>
         <span class="name">중간 회고</span>
@@ -1440,6 +1484,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-7" onchange="toggleModify('crm-7', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-7').click();"></span>
+            <label for="modify-crm-7" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+42</span>
         <span class="arrow">▼</span>
       </div>
@@ -1491,8 +1540,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-8" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-8" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">10</div>
         <span class="name">기록의 복리</span>
@@ -1500,6 +1549,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-8" onchange="toggleModify('crm-8', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-8').click();"></span>
+            <label for="modify-crm-8" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+49</span>
         <span class="arrow">▼</span>
       </div>
@@ -1551,8 +1605,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-9" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-9" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">11</div>
         <span class="name">영감 보관소</span>
@@ -1560,6 +1614,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-9" onchange="toggleModify('crm-9', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-9').click();"></span>
+            <label for="modify-crm-9" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+56</span>
         <span class="arrow">▼</span>
       </div>
@@ -1611,8 +1670,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-10" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-10" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">12</div>
         <span class="name">휴식의 힘</span>
@@ -1620,6 +1679,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-10" onchange="toggleModify('crm-10', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-10').click();"></span>
+            <label for="modify-crm-10" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+63</span>
         <span class="arrow">▼</span>
       </div>
@@ -1671,8 +1735,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-11" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-11" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">13</div>
         <span class="name">마지막 스퍼트</span>
@@ -1680,6 +1744,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-11" onchange="toggleModify('crm-11', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-11').click();"></span>
+            <label for="modify-crm-11" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+70</span>
         <span class="arrow">▼</span>
       </div>
@@ -1731,8 +1800,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-12" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-12" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">14</div>
         <span class="name">회고 준비</span>
@@ -1740,6 +1809,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-12" onchange="toggleModify('crm-12', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-12').click();"></span>
+            <label for="modify-crm-12" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+77</span>
         <span class="arrow">▼</span>
       </div>
@@ -1799,8 +1873,8 @@
     </div>
   </div>
 
-  <div data-campaign="crm-13" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="crm-13" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5c6bc0;">15</div>
         <span class="name">완주 + 시즌2</span>
@@ -1808,6 +1882,11 @@
         <span class="ch-badge">친구톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-crm-13" onchange="toggleModify('crm-13', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-crm-13').click();"></span>
+            <label for="modify-crm-13" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">D+84</span>
         <span class="arrow">▼</span>
       </div>
@@ -1859,8 +1938,8 @@
     </div>
   </div>
 
-  <div data-campaign="campaign-cs16" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-cs16" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#888;">16</div>
         <span class="name">취소요청</span>
@@ -1868,6 +1947,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs16" onchange="toggleModify('campaign-cs16', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs16').click();"></span>
+            <label for="modify-campaign-cs16" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">취소 요청 시 즉시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1923,8 +2007,8 @@
     </div>
   </div>
 
-  <div data-campaign="campaign-cs17" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-cs17" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#888;">17</div>
         <span class="name">취소완료</span>
@@ -1932,6 +2016,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs17" onchange="toggleModify('campaign-cs17', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs17').click();"></span>
+            <label for="modify-campaign-cs17" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">취소 완료 후 즉시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1987,8 +2076,8 @@
     </div>
   </div>
 
-  <div data-campaign="campaign-cs18" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-cs18" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#888;">18</div>
         <span class="name">교환요청</span>
@@ -1996,6 +2085,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs18" onchange="toggleModify('campaign-cs18', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs18').click();"></span>
+            <label for="modify-campaign-cs18" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">교환 요청 시 즉시</span>
         <span class="arrow">▼</span>
       </div>
@@ -2051,8 +2145,8 @@
     </div>
   </div>
 
-  <div data-campaign="campaign-cs19" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-cs19" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#888;">19</div>
         <span class="name">교환완료</span>
@@ -2060,6 +2154,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs19" onchange="toggleModify('campaign-cs19', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs19').click();"></span>
+            <label for="modify-campaign-cs19" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">교환 상품 발송 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -2115,8 +2214,8 @@
     </div>
   </div>
 
-  <div data-campaign="campaign-cs20" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-cs20" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#888;">20</div>
         <span class="name">반품요청</span>
@@ -2124,6 +2223,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs20" onchange="toggleModify('campaign-cs20', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs20').click();"></span>
+            <label for="modify-campaign-cs20" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">반품 요청 시 즉시</span>
         <span class="arrow">▼</span>
       </div>
@@ -2179,8 +2283,8 @@
     </div>
   </div>
 
-  <div data-campaign="campaign-cs21" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-cs21" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#888;">21</div>
         <span class="name">반품완료</span>
@@ -2188,6 +2292,11 @@
         <span class="ch-badge">알림톡</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs21" onchange="toggleModify('campaign-cs21', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs21').click();"></span>
+            <label for="modify-campaign-cs21" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">반품 환불 완료 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -2243,8 +2352,8 @@
     </div>
   </div>
 
-  <div data-campaign="campaign-6" class="campaign-card" onclick="this.classList.toggle('open')">
-      <div class="campaign-header">
+  <div data-campaign="campaign-6" class="campaign-card">
+      <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
         <div class="left">
           <div class="num-badge">W</div>
           <span class="name">웰컴 메시지</span>
@@ -2394,7 +2503,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar').forEach(el => {
+    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar, .campaign-body, .after-url-box, .comparison').forEach(el => {
       el.addEventListener('click', e => e.stopPropagation());
     });
   });

@@ -844,8 +844,8 @@
   <div class="section-title">캠페인별 전 / 후 비교</div>
 
   <!-- 1. 결제완료 -->
-  <div data-campaign="campaign-1" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-1" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge">1</div>
         <span class="name">결제완료</span>
@@ -982,8 +982,8 @@
   </div>
 
   <!-- 2. 배송시작 -->
-  <div data-campaign="campaign-2" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-2" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge">2</div>
         <span class="name">배송시작</span>
@@ -1116,8 +1116,8 @@
   </div>
 
   <!-- 3. 배송완료 -->
-  <div data-campaign="campaign-3" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-3" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge">3</div>
         <span class="name">배송완료</span>
@@ -1254,8 +1254,8 @@
   </div>
 
   <!-- 4. 구매확정 -->
-  <div data-campaign="campaign-4" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-4" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge">4</div>
         <span class="name">구매확정</span>
@@ -1393,8 +1393,8 @@
   </div>
 
   <!-- 5. 리뷰유도 (NEW) -->
-  <div data-campaign="campaign-5" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-5" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#e8a020;">N</div>
         <span class="name">리뷰유도</span>
@@ -1466,8 +1466,8 @@
   </div>
 
   <!-- 6. 한달 사용 후기 -->
-  <div data-campaign="campaign-6" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+  <div data-campaign="campaign-6" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge">6</div>
         <span class="name">한달 사용 후기</span>
@@ -1583,14 +1583,19 @@
   </div>
 
 
-<div data-campaign="campaign-cs7" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+<div data-campaign="campaign-cs7" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5b5ea6;">7</div>
         <span class="name">취소요청</span>
         <span class="impact mid">MID</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs7" onchange="toggleModify('campaign-cs7', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs7').click();"></span>
+            <label for="modify-campaign-cs7" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">취소 요청 시 즉시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1613,17 +1618,29 @@
           </div>
         </div>
       </div>
+    
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs7', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs7', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs7', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
-<div data-campaign="campaign-cs8" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+<div data-campaign="campaign-cs8" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5b5ea6;">8</div>
         <span class="name">취소완료</span>
         <span class="impact mid">MID</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs8" onchange="toggleModify('campaign-cs8', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs8').click();"></span>
+            <label for="modify-campaign-cs8" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">취소 완료 후 즉시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1646,17 +1663,29 @@
           </div>
         </div>
       </div>
+    
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs8', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs8', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs8', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
-<div data-campaign="campaign-cs9" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+<div data-campaign="campaign-cs9" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5b5ea6;">9</div>
         <span class="name">교환요청</span>
         <span class="impact mid">LOW</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs9" onchange="toggleModify('campaign-cs9', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs9').click();"></span>
+            <label for="modify-campaign-cs9" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">교환 요청 시 즉시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1679,17 +1708,29 @@
           </div>
         </div>
       </div>
+    
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs9', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs9', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs9', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
-<div data-campaign="campaign-cs10" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+<div data-campaign="campaign-cs10" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5b5ea6;">10</div>
         <span class="name">교환완료</span>
         <span class="impact mid">LOW</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs10" onchange="toggleModify('campaign-cs10', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs10').click();"></span>
+            <label for="modify-campaign-cs10" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">교환 상품 발송 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1712,17 +1753,29 @@
           </div>
         </div>
       </div>
+    
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs10', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs10', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs10', 'skip')">⏭️ 보류</button>
+      </div>
     </div>
   </div>
 
-<div data-campaign="campaign-cs11" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+<div data-campaign="campaign-cs11" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5b5ea6;">11</div>
         <span class="name">반품요청</span>
         <span class="impact mid">MID</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs11" onchange="toggleModify('campaign-cs11', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs11').click();"></span>
+            <label for="modify-campaign-cs11" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">반품 요청 시 즉시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1745,14 +1798,19 @@
           </div>
         </div>
       </div>
-<div data-campaign="campaign-cs12" class="campaign-card" onclick="this.classList.toggle('open')">
-    <div class="campaign-header">
+<div data-campaign="campaign-cs12" class="campaign-card">
+    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
       <div class="left">
         <div class="num-badge" style="background:#5b5ea6;">12</div>
         <span class="name">반품완료</span>
         <span class="impact mid">LOW</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-cs12" onchange="toggleModify('campaign-cs12', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs12').click();"></span>
+            <label for="modify-campaign-cs12" onclick="event.stopPropagation()">수정필요</label>
+          </div>
         <span class="timing">반품 환불 완료 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1772,7 +1830,21 @@
     </div>
   </div>
 
- </div>
+ 
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs11', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs11', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs11', 'skip')">⏭️ 보류</button>
+      </div>
+    
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs11', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs11', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs11', 'skip')">⏭️ 보류</button>
+      </div>
+    </div>
 
   <!-- 성과 추적 -->
   <div class="section-title">성과 추적 체계 (신규 도입)</div>
@@ -1908,7 +1980,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar').forEach(el => {
+    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar, .campaign-body, .after-url-box, .comparison').forEach(el => {
       el.addEventListener('click', e => e.stopPropagation());
     });
   });
