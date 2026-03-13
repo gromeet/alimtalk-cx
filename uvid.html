@@ -160,13 +160,16 @@
 
   .phone {
     width: 280px;
+    min-width: 280px;
+    max-width: 280px;
     margin: 0 auto;
     background: #f7f7f2;
     border-radius: 24px;
-    border: 2px solid #ddd;
+    border: 2px solid #ccc;
     padding: 12px;
-    font-size: 12.5px;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.65;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   }
   .phone .kakao-header {
     text-align: center;
@@ -1584,111 +1587,196 @@
   <div data-campaign="campaign-7" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#c44;">7-12</div>
-        <span class="name">취소 / 교환 / 반품 (6개 캠페인)</span>
+        <div data-campaign="campaign-cs7" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#5b5ea6;">7</div>
+        <span class="name">취소요청</span>
         <span class="impact mid">MID</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-7" onchange="toggleModify('campaign-7', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-7').click();"></span>
-            <label for="modify-campaign-7" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-
-        <span class="timing">이벤트 발생 시</span>
+        <span class="timing">취소 요청 시 즉시</span>
         <span class="arrow">▼</span>
       </div>
     </div>
     <div class="campaign-body">
       <div class="comparison">
         <div class="before">
-<div class="col-label">❌ BEFORE (현재 발송 중)</div>
-<div style="margin-bottom:16px">
-  <div style="font-size:11px;font-weight:600;color:#e55;margin-bottom:6px;">취소요청</div>
-  <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 주문 취소 요청이 접수되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>환불은 결제 수단에 따라 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div></div>
-</div>
-<div style="margin-bottom:16px">
-  <div style="font-size:11px;font-weight:600;color:#e55;margin-bottom:6px;">취소완료</div>
-  <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 취소가 완료되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div></div>
-</div>
-<div style="margin-bottom:16px">
-  <div style="font-size:11px;font-weight:600;color:#e55;margin-bottom:6px;">교환요청</div>
-  <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 교환 요청이 접수되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>상품 회수 후 새 상품 발송이 영업일 기준 3~5일 내 진행됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div></div>
-</div>
-<div style="margin-bottom:16px">
-  <div style="font-size:11px;font-weight:600;color:#e55;margin-bottom:6px;">교환완료</div>
-  <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 교환 처리가 완료되었습니다.<br><br>상품명: #{상품명}<br><br>새 상품이 발송되었습니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div></div>
-</div>
-<div style="margin-bottom:16px">
-  <div style="font-size:11px;font-weight:600;color:#e55;margin-bottom:6px;">반품요청</div>
-  <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 반품 요청이 접수되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>회수 후 환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div></div>
-</div>
-<div>
-  <div style="font-size:11px;font-weight:600;color:#e55;margin-bottom:6px;">반품완료</div>
-  <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 반품이 완료되었습니다.<br><br>상품명: #{상품명}<br><br>환불이 완료되었습니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div></div>
-</div>
-</div>
+          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 주문 취소 요청이 접수되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
+          </div>
+        </div>
         <div class="arrow-col">→</div>
         <div class="after">
-          <div class="col-label">✅ AFTER (개선 방향)</div>
-          <div style="padding:20px;">
-            <h4 style="font-size:14px; margin-bottom:12px;">개선 구조</h4>
-
-            <div class="btn-structure" style="margin-bottom:12px;">
-              <h4>취소요청/취소완료 — 환불 기간 구체화</h4>
-              <div style="font-size:12px; color:#555;">
-                결제 수단별 환불 기간 명확 안내:<br>
-                → 신용/체크카드: 3~7영업일<br>
-                → 무통장입금: 3영업일 이내<br>
-                → 휴대폰결제: 3영업일 이내<br><br>
-                사과 4단락 → "다음에 더 좋은 경험으로" 한 줄 마무리
-              </div>
-            </div>
-
-            <div class="btn-structure" style="margin-bottom:12px;">
-              <h4>교환요청/교환완료 — 절차 3단계 명시</h4>
-              <div style="font-size:12px; color:#555;">
-                1. 택배 회수 (1~2영업일)<br>
-                2. 상품 상태 확인<br>
-                3. 새 상품 발송 (확인 후 1~2영업일)<br><br>
-                FAQ 30 과다 제거, 본문 버튼 텍스트 중복 정리
-              </div>
-            </div>
-
-            <div class="btn-structure" style="margin-bottom:12px;">
-              <h4>반품요청/반품완료 — 절차 + 환불 기간</h4>
-              <div style="font-size:12px; color:#555;">
-                반품 절차 3단계 + 환불 기간 동시 안내:<br>
-                → 택배 회수 → 상태 확인 → 환불 처리(3~7영업일)<br><br>
-                🥲 제거, 사과 5단락 → "끝까지 도와드리겠습니다" 1줄
-              </div>
-            </div>
-
-            <div class="btn-structure">
-              <h4>전체 버튼 CTA 통일</h4>
-              <div class="btn-row"><div class="order">1</div><div class="desc">핵심 행동 <span class="role">(주문내역/배송조회)</span></div></div>
-              <div class="btn-row"><div class="order">2</div><div class="desc">1:1 문의하기 <span class="role">(CS 직통)</span></div></div>
-              <div class="btn-row"><div class="order">3</div><div class="desc">유비드 채널 추가 <span class="role">(플친 확보)</span></div></div>
-            </div>
+          <div class="col-label">✅ AFTER (개선안)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 취소 요청을 받았습니다.<br><br>📦 #{상품명}<br><br>혹시 원하시는 제품이나 용량이 달랐나요?<br>교환으로 변경 가능합니다.<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">교환으로 변경하기</div><div class="btn">그대로 취소하기</div></div></div>
           </div>
-          <ul class="issues" style="padding:0 20px 20px;">
-            <li>환불 수단별 기간 구체화 (고객 불안 해소)</li>
-            <li>교환/반품 절차 3단계 명확 안내</li>
-            <li>사과 과다 → 한 줄 진정성으로 압축</li>
-            <li>🥲 등 부적절 이모지 제거</li>
-            <li>전 캠페인 버튼 우선순위 통일</li>
-          </ul>
         </div>
-      </div>
-
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-7', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-7', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-7', 'skip')">⏭️ 보류</button>
       </div>
     </div>
   </div>
+
+<div data-campaign="campaign-cs8" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#5b5ea6;">8</div>
+        <span class="name">취소완료</span>
+        <span class="impact mid">MID</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="timing">취소 완료 후 즉시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 취소가 완료되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
+          </div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER (개선안)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 취소가 완료됐습니다.<br><br>이번에 아쉬운 점이 있으셨다면<br>한 말씀 남겨주세요.<br>다음엔 더 나은 경험을 드리겠습니다.<br><br>💜 다음에 유비드를 다시 찾으시면<br>특별 혜택을 준비할게요.<div class="btn-group"><div class="btn">한마디 남기기</div><div class="btn">유비드 채널 추가</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div data-campaign="campaign-cs9" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#5b5ea6;">9</div>
+        <span class="name">교환요청</span>
+        <span class="impact mid">LOW</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="timing">교환 요청 시 즉시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 교환 요청이 접수되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>회수 후 영업일 기준 3~5일 내 새 상품 발송됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
+          </div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER (개선안)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 교환 요청 접수됐어요.<br><br>✅ #{상품명}<br><br>수거 → 검수 → 새 상품 발송까지<br>영업일 기준 3~5일 내 완료됩니다.<div class="btn-group"><div class="btn">진행 상황 문의하기</div><div class="btn">유비드 채널 추가</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div data-campaign="campaign-cs10" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#5b5ea6;">10</div>
+        <span class="name">교환완료</span>
+        <span class="impact mid">LOW</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="timing">교환 상품 발송 시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 교환 처리가 완료되었습니다.<br><br>상품명: #{상품명}<br><br>새 상품이 발송되었습니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
+          </div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER (개선안)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 교환 상품이 발송됐어요! 📦<br><br>✅ #{상품명}<br><br>이번엔 만족스러운 경험이 되길 바랍니다.<br>피부 고민이 있으시면 언제든 연락 주세요.<div class="btn-group"><div class="btn">유비드 사용법 보기</div><div class="btn">유비드 채널 추가</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div data-campaign="campaign-cs11" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#5b5ea6;">11</div>
+        <span class="name">반품요청</span>
+        <span class="impact mid">MID</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="timing">반품 요청 시 즉시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 반품 요청이 접수되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>회수 후 환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
+          </div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER (개선안)</div>
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">#{고객명}님, 반품 요청을 받았습니다.<br><br>불편하셨을 텐데 정말 죄송합니다.<br><br>📦 #{상품명}<br>회수 → 검수 → 환불까지<br>영업일 기준 3~5일 안에 처리할게요.<div class="btn-group"><div class="btn">불편 사항 알리기</div><div class="btn">유비드 채널 추가</div></div></div>
+          </div>
+        </div>
+      </div>
+<div data-campaign="campaign-cs12" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#5b5ea6;">12</div>
+        <span class="name">반품완료</span>
+        <span class="impact mid">LOW</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="timing">반품 환불 완료 시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
+          <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 반품이 완료되었습니다.<br><br>상품명: #{상품명}<br><br>환불이 완료되었습니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div></div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER (개선안)</div>
+          <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 환불 처리가 완료됐습니다.<br><br>✅ #{상품명}<br><br>이번에 아쉬운 경험을 드려 죄송합니다.<br>더 나은 유비드가 되겠습니다.<br><br>💜 다음에 다시 찾아주시면<br>더 좋은 경험으로 보답할게요.<div class="btn-group"><div class="btn">한마디 남기기</div><div class="btn">유비드 채널 추가</div></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div>
 
   <!-- 성과 추적 -->
   <div class="section-title">성과 추적 체계 (신규 도입)</div>
