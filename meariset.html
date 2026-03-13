@@ -11,55 +11,26 @@
 
   body {
     font-family: 'Noto Sans KR', sans-serif;
-    background: #faf8f5;
+    background: #f5f5f0;
     color: #1a1a1a;
     line-height: 1.6;
   }
 
   .header {
-    background: linear-gradient(135deg, #D4540A 0%, #FF6B35 60%, #FF9F6B 100%);
+    background: linear-gradient(135deg, #2d5016 0%, #4a7c28 100%);
     color: white;
     padding: 48px 40px;
     text-align: center;
   }
   .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
-  .header p { font-size: 15px; opacity: 0.9; }
+  .header p { font-size: 15px; opacity: 0.85; }
 
   .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
-
-  /* Tabs */
-  .tab-nav {
-    display: flex;
-    gap: 0;
-    margin-bottom: 32px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-  }
-  .tab-btn {
-    flex: 1;
-    padding: 16px;
-    text-align: center;
-    font-size: 15px;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    background: white;
-    color: #666;
-    transition: all 0.3s;
-  }
-  .tab-btn.active {
-    background: #FF6B35;
-    color: white;
-  }
-  .tab-btn:hover:not(.active) { background: #fff3ec; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
 
   /* Summary Cards */
   .summary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 16px;
     margin-bottom: 40px;
   }
@@ -70,19 +41,20 @@
     text-align: center;
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
-  .summary-card .num { font-size: 32px; font-weight: 700; color: #FF6B35; }
+  .summary-card .num { font-size: 32px; font-weight: 700; color: #4a7c28; }
   .summary-card .label { font-size: 13px; color: #666; margin-top: 4px; }
 
+  /* Section */
   .section-title {
     font-size: 20px;
     font-weight: 700;
     margin: 40px 0 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #FF6B35;
-    color: #D4540A;
+    border-bottom: 2px solid #4a7c28;
+    color: #2d5016;
   }
 
-  /* Principles */
+  /* Improvement Principle */
   .principles {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -93,13 +65,13 @@
     background: white;
     border-radius: 12px;
     padding: 20px 24px;
-    border-left: 4px solid #FF6B35;
+    border-left: 4px solid #4a7c28;
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
   .principle .tag {
     display: inline-block;
-    background: #fff3ec;
-    color: #D4540A;
+    background: #e8f5e0;
+    color: #2d5016;
     font-size: 11px;
     font-weight: 600;
     padding: 3px 10px;
@@ -109,7 +81,7 @@
   .principle h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
   .principle p { font-size: 13px; color: #555; }
 
-  /* Campaign Cards */
+  /* Campaign Card */
   .campaign-card {
     background: white;
     border-radius: 16px;
@@ -122,16 +94,16 @@
     align-items: center;
     justify-content: space-between;
     padding: 16px 24px;
-    background: #fafbfd;
+    background: #fafaf7;
     border-bottom: 1px solid #eee;
     cursor: pointer;
     user-select: none;
   }
-  .campaign-header:hover { background: #fff5ef; }
+  .campaign-header:hover { background: #f0f0eb; }
   .campaign-header .left { display: flex; align-items: center; gap: 12px; }
   .campaign-header .num-badge {
     width: 32px; height: 32px;
-    background: #FF6B35;
+    background: #4a7c28;
     color: white;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -141,7 +113,7 @@
   .campaign-header .timing {
     font-size: 12px;
     color: #888;
-    background: #f0f2f7;
+    background: #f0f0eb;
     padding: 4px 12px;
     border-radius: 20px;
   }
@@ -152,20 +124,57 @@
   }
   .campaign-card.open .campaign-header .arrow { transform: rotate(180deg); }
 
-  .campaign-body { display: none; padding: 24px; }
+  .campaign-body { display: none; padding: 0; }
   .campaign-card.open .campaign-body { display: block; }
-  .campaign-body.comparison-body { padding: 0; }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    gap: 0;
+    padding: 24px;
+  }
+
+  .before, .after {
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .before { background: #fff5f5; border: 1px solid #ffd4d4; }
+  .after { background: #f0faf0; border: 1px solid #c4e8c4; }
+
+  .col-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .before .col-label { color: #c44; }
+  .after .col-label { color: #2d7a2d; }
+
+  .arrow-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #4a7c28;
+  }
 
   /* Phone mockup */
-  .phone-wrap { display: flex; justify-content: center; }
   .phone {
-    width: 300px;
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    margin: 0 auto;
     background: #f7f7f2;
     border-radius: 24px;
-    border: 2px solid #ddd;
+    border: 2px solid #ccc;
     padding: 12px;
-    font-size: 12.5px;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.65;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   }
   .phone .kakao-header {
     text-align: center;
@@ -182,6 +191,8 @@
     margin-bottom: 8px;
     color: #1a1a1a;
     word-break: keep-all;
+    font-size: 14px;
+    line-height: 1.65;
   }
   .phone .msg.white {
     background: white;
@@ -204,221 +215,14 @@
     font-weight: 500;
   }
   .phone .btn.primary {
-    background: #FF6B35;
+    background: #4a7c28;
     color: white;
-    border-color: #FF6B35;
+    border-color: #4a7c28;
   }
-  .phone .good { background: #fff3ec; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+  .phone .highlight { background: #ffe0e0; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+  .phone .good { background: #d4f5d4; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
 
-  .design-note {
-    margin-top: 16px;
-    padding: 12px 16px;
-    background: #fff8f3;
-    border: 1px solid #ffe0c8;
-    border-radius: 8px;
-    font-size: 12.5px;
-    color: #555;
-  }
-  .design-note strong { color: #D4540A; }
-
-  /* Journey */
-  .journey {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 20px 24px;
-    overflow-x: auto;
-    background: white;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  }
-  .journey-step {
-    flex-shrink: 0;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 500;
-    text-align: center;
-    min-width: 80px;
-    border: 1px solid #ddd;
-    background: white;
-  }
-  .journey-step.active { background: #FF6B35; color: white; border-color: #FF6B35; }
-  .journey-step.crm { background: #fff3ec; color: #D4540A; border: 2px dashed #FF6B35; }
-  .journey-step.cancel { background: #fff5f5; border-color: #ffd4d4; }
-  .journey-arrow { color: #999; font-size: 16px; flex-shrink: 0; }
-
-  /* CRM Timeline */
-  .timeline {
-    position: relative;
-    padding-left: 40px;
-    margin: 24px 0;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 15px;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, #FF6B35, #FF9F6B, #FFD4A8);
-    border-radius: 2px;
-  }
-  .timeline-item {
-    position: relative;
-    margin-bottom: 16px;
-    padding: 16px 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .timeline-item:hover { box-shadow: 0 2px 12px rgba(255,107,53,0.15); }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -33px;
-    top: 20px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #FF6B35;
-    border: 3px solid #fff3ec;
-  }
-  .timeline-item.friendtalk::before { background: #e74c3c; }
-  .timeline-item.special::before { background: #9b59b6; border-color: #f0e6f6; }
-
-  .timeline-item .day-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 10px;
-    border-radius: 20px;
-    margin-right: 8px;
-  }
-  .timeline-item .day-badge.alimtalk { background: #fff3ec; color: #D4540A; }
-  .timeline-item .day-badge.friendtalk { background: #fde8e8; color: #c44; }
-  .timeline-item .day-badge.special { background: #f0e6f6; color: #7b3fa0; }
-
-  .timeline-item .title { font-size: 14px; font-weight: 600; margin: 4px 0; }
-  .timeline-item .desc { font-size: 12px; color: #777; }
-  .timeline-item .channel-tag {
-    display: inline-block;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-left: 6px;
-  }
-  .channel-tag.at { background: #e0f0e0; color: #2d7a2d; }
-  .channel-tag.ft { background: #ffe0e0; color: #c44; }
-  .channel-tag.solapi { background: #e0e0f5; color: #4a4a9e; }
-
-  .timeline-detail { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0f0f0; }
-  .timeline-item.open .timeline-detail { display: block; }
-
-  .msg-preview {
-    background: #f7f7f2;
-    border-radius: 12px;
-    border: 1px solid #eee;
-    padding: 14px;
-    font-size: 12px;
-    line-height: 1.8;
-    max-width: 320px;
-    margin: 8px 0;
-  }
-  .msg-preview .btn-preview {
-    display: block;
-    text-align: center;
-    padding: 6px;
-    margin-top: 8px;
-    background: #FF6B35;
-    color: white;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 500;
-  }
-
-  /* Cost table */
-  .cost-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  }
-  .cost-table th, .cost-table td {
-    padding: 12px 16px;
-    text-align: left;
-    font-size: 13px;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .cost-table th { background: #fff3ec; color: #D4540A; font-weight: 600; }
-  .cost-table tr:last-child td { border-bottom: none; font-weight: 600; }
-  .cost-table .right { text-align: right; }
-
-  /* Impact */
-  .impact {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-left: 8px;
-  }
-  .impact.high { background: #ffe0e0; color: #c44; }
-  .impact.mid { background: #fff3d0; color: #b08800; }
-
-  .footer {
-    text-align: center;
-    padding: 32px;
-    color: #999;
-    font-size: 12px;
-  }
-
-  @media (max-width: 768px) {
-    .phone { width: 100%; }
-    .comparison { grid-template-columns: 1fr; gap: 16px; }
-    .arrow-col { transform: rotate(90deg); }
-    .tab-nav { flex-direction: column; }
-    .principles { grid-template-columns: 1fr; }
-  }
-
-  /* BEFORE/AFTER comparison */
-  .comparison {
-    display: grid;
-    grid-template-columns: 1fr 48px 1fr;
-    gap: 0;
-    padding: 24px;
-  }
-  .before, .after {
-    border-radius: 12px;
-    padding: 20px;
-  }
-  .before { background: #fff5f5; border: 1px solid #ffd4d4; }
-  .after { background: #f0faf0; border: 1px solid #c4e8c4; }
-  .col-label {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .before .col-label { color: #c44; }
-  .after .col-label { color: #2d7a2d; }
-  .arrow-col {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #FF6B35;
-  }
+  /* Issues list */
   .issues { margin-top: 12px; }
   .issues li {
     font-size: 12.5px;
@@ -435,20 +239,68 @@
     color: #c44;
   }
   .after .issues li::before { color: #2d7a2d; }
+
+  /* Impact badge */
+  .impact {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+  }
+  .impact.high { background: #ffe0e0; color: #c44; }
+  .impact.mid { background: #fff3d0; color: #b08800; }
   .impact.low { background: #e0f0e0; color: #2d7a2d; }
+
+  /* New campaign badge */
+  .new-badge {
+    display: inline-block;
+    background: #4a7c28;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+  }
+
+  /* Journey */
+  .journey {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    background: #fafaf7;
+  }
+  .journey-step {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    min-width: 80px;
+    border: 1px solid #ddd;
+    background: white;
+  }
+  .journey-step.active { background: #4a7c28; color: white; border-color: #4a7c28; }
+  .journey-step.new-step { background: #e8f5e0; color: #2d5016; border: 2px dashed #4a7c28; }
+  .journey-arrow { color: #999; font-size: 16px; flex-shrink: 0; }
 
   /* Bottom CTA structure */
   .btn-structure {
     margin-top: 16px;
     padding: 12px;
-    background: #fff8f3;
+    background: #fafaf7;
     border-radius: 8px;
   }
   .btn-structure h4 {
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 8px;
-    color: #D4540A;
+    color: #2d5016;
   }
   .btn-row {
     display: flex;
@@ -459,7 +311,7 @@
   }
   .btn-row .order {
     width: 20px; height: 20px;
-    background: #FF6B35;
+    background: #4a7c28;
     color: white;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -470,6 +322,22 @@
   .btn-row .desc { color: #555; }
   .btn-row .role { color: #999; font-size: 11px; }
 
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    color: #999;
+    font-size: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .comparison {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .arrow-col { transform: rotate(90deg); }
+    .phone { width: 100%; }
+  }
 
   /* ========== INTERACTIVE DECISION TOOLS ========== */
   .decision-bar {
@@ -1021,6 +889,13 @@
             </div>
               </div>
             </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">주문내역 바로가기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
             <ul class="issues">
               <li>브랜드 정체성 없는 기본 템플릿</li>
               <li>"90일 여정" 기대감 형성 기회 부재</li>
@@ -1049,6 +924,17 @@
                   <div class="btn primary">주문내역 확인하기</div>
                   <div class="btn">메아리셋 채널 추가</div>
                 </div>
+              </div>
+            </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">주문내역 확인하기</span>
+                <span class="url-suggest">—</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">—</span>
               </div>
             </div>
             <div class="after-url-box" onclick="event.stopPropagation()">
@@ -1117,6 +1003,13 @@
             </div>
               </div>
             </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">배송조회</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
             <ul class="issues">
               <li>수령 후 행동 유도 없음</li>
               <li>"시작의 메아리" 사전 프라이밍 기회 부재</li>
@@ -1143,6 +1036,17 @@
                   <div class="btn primary">배송조회 바로가기</div>
                   <div class="btn">메아리셋 채널 추가</div>
                 </div>
+              </div>
+            </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">배송조회 바로가기</span>
+                <span class="url-suggest">—</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">—</span>
               </div>
             </div>
             <div class="after-url-box" onclick="event.stopPropagation()">
@@ -1181,7 +1085,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-1', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-1', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-1', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1192,17 +1101,31 @@
               <div class="btn-group"><div class="btn">시작의 메아리 등록하기</div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">시작의 메아리 등록하기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 노트 도착했어요 📬<br><br>딱 하나만 지금 해주세요.<br><br>📖 4~5p 펴서 90일 뒤의 나에게 편지 쓰기.<br>손으로 적으면 이룰 확률 42% ↑<br><br>사진 찍어 등록하면 3개월 후 카톡으로 돌아와요.
               <div class="btn-group"><div class="btn">✍️ 시작의 메아리 등록하기</div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">✍️ 시작의 메아리 등록하기</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1222,7 +1145,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-2', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-2', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-2', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1233,17 +1161,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1930" target="_blank" style="color:inherit;text-decoration:none;">에코 트라이앵글 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">에코 트라이앵글 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 일주일이 됐어요!<br><br>오타니는 64칸이었어요.<br>메아리셋은 13칸이면 충분해요.<br><br>📖 6~7p 펴서 채워보세요.<br>큰 목표 1 · 방향 3 · 실행 9.<br><br>완벽하게 안 써도 돼요. 90일 동안 고칠 수 있으니까.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1930" target="_blank" style="color:inherit;text-decoration:none;">📐 에코 트라이앵글 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">📐 에코 트라이앵글 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1263,7 +1205,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-3', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-3', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-3', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1274,17 +1221,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1931" target="_blank" style="color:inherit;text-decoration:none;">월간 관제탑 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">월간 관제탑 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 할 일이 너무 많죠?<br><br>선택지 6개 vs 24개 실험에서<br>"아무것도 안 고른" 비율이 10배 차이났어요.<br><br>📖 8~9p 펴세요.<br>5개 중 3개만 고르세요.<br>"뭘 안 할지"부터 정하는 게 시작이에요.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1931" target="_blank" style="color:inherit;text-decoration:none;">📅 월간 관제탑 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">📅 월간 관제탑 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1304,7 +1265,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-4', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-4', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-4', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1315,17 +1281,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1932" target="_blank" style="color:inherit;text-decoration:none;">C.E.O 시스템 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">C.E.O 시스템 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 할 일 20개에 5개만 했을 때<br>그 자책감 — 당신 잘못 아니에요.<br><br>못 끝낸 일이 머릿속에 남아서 에너지를 먹어요.<br><br>📖 주간 페이지(10p~) 펴세요.<br>핵심 3 · 실행 3 · 비울 것 6.<br>핵심 3개만 끝내면 오늘은 이긴 거예요.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1932" target="_blank" style="color:inherit;text-decoration:none;">📋 C.E.O 시스템 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">📋 C.E.O 시스템 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1345,7 +1325,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-5', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-5', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-5', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1356,17 +1341,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1933" target="_blank" style="color:inherit;text-decoration:none;">습관의 과학 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">습관의 과학 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 한 달이 됐어요.<br><br>귀찮아지기 시작했다면 정상이에요.<br>"21일이면 습관" — 그거 거짓말이에요.<br>실제론 평균 66일이 걸려요.<br><br>하루 빠져도 괜찮아요.<br>지금이 가장 힘든 구간이에요.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1933" target="_blank" style="color:inherit;text-decoration:none;">🧬 습관의 과학 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">🧬 습관의 과학 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1386,7 +1385,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-6', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-6', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-6', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1397,17 +1401,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1934" target="_blank" style="color:inherit;text-decoration:none;">Brain Dump 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">Brain Dump 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 머릿속 복잡하면<br>정리하려 하지 마세요.<br><br>그냥 다 꺼내세요.<br><br>📖 20~21p 타이머 10분.<br>판단 없이 그냥 쏟아내세요.<br><br>다 적고 나면<br>"이게 나를 무겁게 했구나" 보여요.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1934" target="_blank" style="color:inherit;text-decoration:none;">🧠 Brain Dump 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">🧠 Brain Dump 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1427,7 +1445,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-7', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-7', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-7', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1438,17 +1461,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1935" target="_blank" style="color:inherit;text-decoration:none;">중간 회고 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">중간 회고 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님,<br>"처음만큼 못 하고 있는데..."<br><br>맞아요. 지금이 제일 힘들어요.<br>근데 이 메시지를 읽고 있다면<br>아직 포기 안 한 거예요.<br><br>📖 22~23p 펴서 딱 3줄만.<br>잘한 것 / 아쉬운 것 / 바꿀 것.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1935" target="_blank" style="color:inherit;text-decoration:none;">🔍 중간 회고 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">🔍 중간 회고 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1468,7 +1505,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-8', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-8', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-8', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1479,17 +1521,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1936" target="_blank" style="color:inherit;text-decoration:none;">기록의 복리 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">기록의 복리 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 49일이 됐어요.<br><br>주간 페이지(10p~)를 처음부터 쭉 넘겨보세요.<br><br>반복되는 단어, 매번 미루는 일,<br>에너지 높은 요일과 낮은 요일.<br><br>그게 "나의 패턴"이에요.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1936" target="_blank" style="color:inherit;text-decoration:none;">📈 기록의 복리 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">📈 기록의 복리 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1509,7 +1565,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-9', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-9', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-9', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1520,17 +1581,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1937" target="_blank" style="color:inherit;text-decoration:none;">영감 보관소 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">영감 보관소 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님,<br>"오 이거 좋다" 했던 거 기억해요?<br><br>아마 이미 잊으셨을 거예요.<br><br>📖 60~61p 영감 보관소 펴세요.<br>날짜 · 출처 · 핵심 한 줄.<br>3개월 후엔 "내가 이런 걸 좋아하는 사람이구나"가 보여요.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1937" target="_blank" style="color:inherit;text-decoration:none;">💡 영감 보관소 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">💡 영감 보관소 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1550,7 +1625,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-10', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-10', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-10', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1561,17 +1641,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1938" target="_blank" style="color:inherit;text-decoration:none;">휴식의 힘 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">휴식의 힘 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 지치기 시작했다면<br>지금이 타이밍이에요.<br><br>"더 열심히"가 아니라<br>"잠깐 쉬기"가 필요한 때예요.<br><br>📖 34~35p 펴세요.<br>"나를 지치게 하는 것들"부터 적어보세요.<br>적으면 한결 가벼워져요.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1938" target="_blank" style="color:inherit;text-decoration:none;">💤 휴식의 힘 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">💤 휴식의 힘 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1591,7 +1685,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-11', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-11', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-11', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1602,17 +1701,31 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1939" target="_blank" style="color:inherit;text-decoration:none;">마지막 스퍼트 가이드</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">마지막 스퍼트 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 70일이 됐어요.<br><br>에코 트라이앵글 말고,<br>지금 마음속에 떠오르는 딱 하나만.<br><br>9개 다 못 이뤄도 괜찮아요.<br>하나를 끝까지 한 사람이<br>열 개 시작만 한 사람보다 강해요.<br><br>남은 20일, 그 하나에만 집중해요.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1939" target="_blank" style="color:inherit;text-decoration:none;">🏃 마지막 스퍼트 가이드</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">🏃 마지막 스퍼트 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1632,7 +1745,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-12', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-12', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-12', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1643,17 +1761,39 @@
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1940" target="_blank" style="color:inherit;text-decoration:none;">회고 준비 가이드</a></div><div class="btn"><a href="https://cafe.naver.com/f-e/cafes/23719567/menus/119" target="_blank" style="color:inherit;text-decoration:none;">완주 인증하기</a></div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">회고 준비 가이드</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">완주 인증하기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 마지막 주예요.<br><br>노트 앞쪽을 펼쳐보세요.<br><br>그때의 글씨체, 그때의 고민.<br>지금이랑 달라진 거 느껴지나요?<br><br>그게 12주의 힘이에요.
               <div class="btn-group"><div class="btn"><a href="https://cafe.naver.com/yangfams/1940" target="_blank" style="color:inherit;text-decoration:none;">📝 회고 준비 가이드</a></div><div class="btn"><a href="https://cafe.naver.com/f-e/cafes/23719567/menus/119" target="_blank" style="color:inherit;text-decoration:none;">🏅 완주 인증하기</a></div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">📝 회고 준비 가이드</span>
+                <span class="url-suggest">—</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">🏅 완주 인증하기</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1673,7 +1813,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('crm-13', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('crm-13', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('crm-13', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1684,17 +1829,31 @@
               <div class="btn-group"><div class="btn">새로운 90일 시작하기</div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">새로운 90일 시작하기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">친구톡 (광고)</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님.<br><br>90일이에요.<br><br>한 번이라도 노트를 펼쳤다면,<br>당신은 기록하는 사람이에요.<br><br>처음 편지(4~5p)를 다시 읽어보세요.<br>그때의 나와 지금의 나.<br><br>다음 90일도 함께할게요.
               <div class="btn-group"><div class="btn">🔄 시즌2 시작하기</div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">🔄 시즌2 시작하기</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1714,7 +1873,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs16', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs16', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs16', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1725,17 +1889,35 @@
               <div class="btn-group"><div class="btn">채널 추가하기</div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">채널 추가하기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 취소 요청 받았습니다.<br><br>📔 #{상품명}<br><br>혹시 마음에 안 드신 부분이 있나요?<br>의견 남겨주시면 더 나은 노트로 다시 찾아뵐게요.<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.
               <div class="btn-group"><div class="btn">의견 남기기</div><div class="btn">메아리셋 채널 추가</div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">의견 남기기</span>
+                <span class="url-suggest">—</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1755,7 +1937,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs17', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs17', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs17', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1766,17 +1953,35 @@
               <div class="btn-group"><div class="btn">채널 추가하기</div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">채널 추가하기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 취소가 완료됐습니다.<br><br>이번에 아쉬운 경험을 드려 죄송합니다.<br><br>💚 다음 시즌 노트를 다시 만나시게 되면 더 좋은 경험으로 준비할게요.
               <div class="btn-group"><div class="btn">메아리셋 소식 받기</div><div class="btn">메아리셋 채널 추가</div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 소식 받기</span>
+                <span class="url-suggest">—</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1796,7 +2001,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs18', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs18', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs18', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1807,17 +2017,35 @@
               <div class="btn-group"><div class="btn">채널 추가하기</div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">채널 추가하기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 교환 요청 접수됐어요.<br><br>📔 #{상품명}<br><br>수거 → 검수 → 새 노트 발송까지 영업일 기준 3~5일 안에 완료됩니다.
               <div class="btn-group"><div class="btn">진행 상황 문의하기</div><div class="btn">메아리셋 채널 추가</div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">진행 상황 문의하기</span>
+                <span class="url-suggest">—</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1837,7 +2065,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs19', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs19', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs19', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1848,17 +2081,35 @@
               <div class="btn-group"><div class="btn">채널 추가하기</div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">채널 추가하기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 새 노트가 발송됐어요! 📔<br><br>✅ #{상품명}<br><br>이번엔 만족스러운 기록 여정이 되길 바랍니다.
               <div class="btn-group"><div class="btn">시작 가이드 보기</div><div class="btn">메아리셋 채널 추가</div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">시작 가이드 보기</span>
+                <span class="url-suggest">—</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1878,7 +2129,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs20', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs20', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs20', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1889,17 +2145,35 @@
               <div class="btn-group"><div class="btn">채널 추가하기</div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">채널 추가하기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 반품 요청 받았습니다.<br><br>불편하셨을 텐데 정말 죄송합니다.<br><br>📔 회수 → 검수 → 환불까지 영업일 기준 3~5일 안에 처리할게요.
               <div class="btn-group"><div class="btn">불편 사항 알리기</div><div class="btn">메아리셋 채널 추가</div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">불편 사항 알리기</span>
+                <span class="url-suggest">—</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1919,7 +2193,12 @@
       </div>
     </div>
     <div class="campaign-body">
-      <div class="adopt-bar-placeholder"></div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs21', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs21', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs21', 'skip')">⏭️ 보류</button>
+      </div>
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE (현재 발송 중)</div>
@@ -1930,17 +2209,35 @@
               <div class="btn-group"><div class="btn">채널 추가하기</div></div>
             </div>
           </div>
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">채널 추가하기</span>
+                <input type="text" class="url-input" placeholder="현재 랜딩 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+            </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
           <div class="col-label">✅ AFTER (개선안)</div>
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">
+            <div class="msg white" contenteditable="true">
               #{고객명}님, 환불 처리가 완료됐습니다.<br><br>기대에 못 미쳐 정말 죄송합니다.<br>메아리셋은 더 나은 노트로 계속 발전하겠습니다.<br><br>💚 다음 시즌도 기다릴게요.
               <div class="btn-group"><div class="btn">한마디 남기기</div><div class="btn">메아리셋 채널 추가</div></div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">한마디 남기기</span>
+                <span class="url-suggest">—</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">—</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -1994,6 +2291,123 @@
       </div>
       </div>
     </div>
+</div>
+
+<script>
+  // Decision tracking
+  const decisions = {};
+
+  function decide(campaignId, type) {
+    decisions[campaignId] = type;
+    const card = document.querySelector(`[data-campaign="${campaignId}"]`);
+    if (!card) return;
+
+    card.classList.remove('decided-adopt', 'decided-modify', 'decided-skip');
+    card.classList.add('decided-' + type);
+
+    // Update buttons
+    card.querySelectorAll('.decision-btn').forEach(b => b.classList.remove('selected'));
+    card.querySelector(`.decision-btn.${type}`).classList.add('selected');
+
+    // If modify, focus the editable area
+    if (type === 'modify') {
+      const editable = card.querySelector('[contenteditable]');
+      if (editable) editable.focus();
+    }
+
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const vals = Object.values(decisions);
+    const adopt = vals.filter(v => v === 'adopt').length;
+    const modify = vals.filter(v => v === 'modify').length;
+    const skip = vals.filter(v => v === 'skip').length;
+    const total = adopt + modify + skip;
+
+    const bar = document.getElementById('decision-summary');
+    if (total > 0) {
+      bar.classList.remove('hidden');
+      document.getElementById('count-adopt').textContent = adopt;
+      document.getElementById('count-modify').textContent = modify;
+      document.getElementById('count-skip').textContent = skip;
+    } else {
+      bar.classList.add('hidden');
+    }
+  }
+
+  function exportDecisions() {
+    let result = '# 알림톡 CX 개선안 — 채택 결과\n\n';
+    result += `날짜: ${new Date().toLocaleDateString('ko-KR')}\n\n`;
+
+    document.querySelectorAll('[data-campaign]').forEach(card => {
+      const id = card.dataset.campaign;
+      const name = card.querySelector('.name')?.textContent || card.querySelector('.title')?.textContent || id;
+      const status = decisions[id] || '미결정';
+      const statusEmoji = status === 'adopt' ? '✅' : status === 'modify' ? '✏️' : status === 'skip' ? '⏭️' : '⬜';
+
+      result += `${statusEmoji} **${name}** — ${status === 'adopt' ? '채택' : status === 'modify' ? '수정 채택' : status === 'skip' ? '보류' : '미결정'}\n`;
+
+      if (status === 'modify' || status === 'adopt') {
+        const afterText = card.querySelector('.after [contenteditable], .after-col [contenteditable]');
+        if (afterText) {
+          result += `> ${afterText.innerText.substring(0, 200).replace(/\n/g, '\n> ')}...\n`;
+        }
+      }
+      result += '\n';
+    });
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(result).then(() => {
+      const btn = document.querySelector('.export-btn');
+      btn.textContent = '✓ 복사됨!';
+      setTimeout(() => btn.textContent = '📋 결과 복사', 2000);
+    });
+  }
+
+  // Prevent card toggle when interacting with inputs and editable areas
+  
+  // 수정 필요 토글
+  function toggleModify(campaignId, checkbox, event) {
+    event.stopPropagation();
+    const card = document.querySelector('[data-campaign="' + campaignId + '"]');
+    if (checkbox.checked) {
+      card.classList.add('needs-modify');
+    } else {
+      card.classList.remove('needs-modify');
+    }
+    updateModifyCount();
+  }
+
+  function updateModifyCount() {
+    const total = document.querySelectorAll('.campaign-card').length;
+    const needsModify = document.querySelectorAll('.campaign-card.needs-modify').length;
+    const bar = document.getElementById('modify-count-bar');
+    if (bar) {
+      if (needsModify > 0) {
+        bar.textContent = '⚠️ 수정 필요: ' + needsModify + '개 / 전체 ' + total + '개 캠페인';
+        bar.classList.add('visible');
+      } else {
+        bar.classList.remove('visible');
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar').forEach(el => {
+      el.addEventListener('click', e => e.stopPropagation());
+    });
+  });
+</script>
+
+<!-- Decision Summary Bar -->
+<div id="decision-summary" class="decision-summary hidden">
+  <div class="count">
+    <span><span class="dot green"></span> 채택 <b id="count-adopt">0</b></span>
+    <span><span class="dot yellow"></span> 수정 <b id="count-modify">0</b></span>
+    <span><span class="dot gray"></span> 보류 <b id="count-skip">0</b></span>
+  </div>
+  <button class="export-btn" onclick="exportDecisions()">📋 결과 복사</button>
 </div>
 
 </body>
