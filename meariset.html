@@ -718,10 +718,173 @@
   }
   .change-note strong { color: #15803d; }
 
+
+  /* 수정 필요 토글 */
+  .modify-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    margin-right: 16px;
+  }
+  .modify-toggle label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .modify-toggle input[type="checkbox"] {
+    display: none;
+  }
+  .modify-toggle .toggle-switch {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .modify-toggle .toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .modify-toggle input:checked + .toggle-switch {
+    background: #f59e0b;
+  }
+  .modify-toggle input:checked + .toggle-switch::after {
+    transform: translateX(16px);
+  }
+  .modify-toggle input:checked ~ label {
+    color: #f59e0b;
+  }
+  .campaign-card.needs-modify {
+    border-left: 4px solid #f59e0b;
+  }
+  .campaign-card.needs-modify .campaign-header {
+    background: #fffbeb;
+  }
+  .modify-count-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(245, 158, 11, 0.95);
+    color: white;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    z-index: 1001;
+    transition: transform 0.3s;
+    display: none;
+  }
+  .modify-count-bar.visible { display: block; }
+
+
+  /* AFTER 제안 랜딩 URL 박스 */
+  .after-url-box {
+    margin: 8px 0 0 0;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  .after-url-box .url-box-title {
+    font-weight: 600;
+    color: #15803d;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  .after-url-box .url-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .after-url-box .url-btn-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #166534;
+    min-width: 100px;
+    white-space: nowrap;
+  }
+  .after-url-box .url-suggest {
+    flex: 1;
+    font-size: 11px;
+    color: #15803d;
+    background: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #86efac;
+    word-break: break-all;
+  }
+  .after-url-box .url-note {
+    font-size: 10px;
+    color: #6b7280;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+
+  /* Cross-brand navigation */
+  .top-nav {
+    background: #1a1a1a;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 1002;
+  }
+  .top-nav .logo {
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    margin-right: 8px;
+    text-decoration: none;
+  }
+  .top-nav .brand-btn {
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    opacity: 0.7;
+    transition: all 0.3s;
+  }
+  .top-nav .brand-btn:hover { opacity: 1; }
+  .top-nav .brand-btn.active { opacity: 1; box-shadow: 0 0 0 2px white; }
+  .top-nav .brand-btn.foremong { background: #4a7c28; }
+  .top-nav .brand-btn.uvid { background: #4A6FA5; }
+  .top-nav .brand-btn.meariset { background: #FF6B35; }
+
 </style>
 </head>
 <body>
 
+<div class="top-nav">
+    <a href="index.html" class="logo">🌿 알림톡 CX 개선안</a>
+    <a href="foremong.html" class="brand-btn foremong ">🌿 Foremong</a>
+    <a href="uvid.html" class="brand-btn uvid ">🌞 UVID</a>
+    <a href="meariset.html" class="brand-btn meariset active">📓 메아리셋</a>
+  </div>
+<div id="modify-count-bar" class="modify-count-bar"></div>
 <div class="header">
   <h1>메아리셋 알림톡 CX 대시보드</h1>
   <p>카페24 표준 알림톡 + CRM 12주 자동화 · "모든 기록은 메아리가 된다" · 2026-03-11</p>
@@ -815,7 +978,7 @@
     <div class="section-title">캠페인별 전 / 후 비교</div>
 
     <!-- 1. 결제완료 -->
-    <div data-campaign="campaign-1" class="campaign-card open" onclick="this.classList.toggle('open')">
+    <div data-campaign="campaign-1" class="campaign-card" onclick="this.classList.toggle('open')">
       <div class="campaign-header">
         <div class="left">
           <div class="num-badge">1</div>
@@ -823,6 +986,12 @@
           <span class="impact mid">MID</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-1" onchange="toggleModify('campaign-1', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-1').click();"></span>
+            <label for="modify-campaign-1" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
           <span class="timing">결제 직후</span>
           <span class="arrow">▼</span>
         </div>
@@ -882,6 +1051,19 @@
                 </div>
               </div>
             </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">주문내역 확인하기</span>
+                <span class="url-suggest">카페24 주문내역 페이지</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+              </div>
+              <div class="url-note">채널추가로 CRM 여정 진입 유도 — 12주 메시지 자동 발송 트리거</div>
+            </div>
+          
             <ul class="issues">
               <li>"새로운 90일의 시작" — 기대감 형성</li>
               <li>브랜드 슬로건으로 제품 가치 전달</li>
@@ -901,6 +1083,12 @@
           <span class="impact low">LOW</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-2" onchange="toggleModify('campaign-2', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-2').click();"></span>
+            <label for="modify-campaign-2" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
           <span class="timing">출고 시</span>
           <span class="arrow">▼</span>
         </div>
@@ -958,6 +1146,19 @@
                 </div>
               </div>
             </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">배송조회 바로가기</span>
+                <span class="url-suggest">카페24 배송조회 페이지</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+              </div>
+              <div class="url-note">'시작의 메아리' 프라이밍 — 도착 후 첫 행동 유도</div>
+            </div>
+          
             <ul class="issues">
               <li>"시작의 메아리" 사전 프라이밍</li>
               <li>도착 예상일 안내로 기대감 유지</li>
@@ -976,6 +1177,12 @@
           <span class="impact high">HIGH · CRM 진입점</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-3" onchange="toggleModify('campaign-3', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-3').click();"></span>
+            <label for="modify-campaign-3" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
           <span class="timing">배송 완료 시</span>
           <span class="arrow">▼</span>
         </div>
@@ -1042,6 +1249,23 @@
                 </div>
               </div>
             </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">시작의 메아리 등록하기</span>
+                <span class="url-suggest">Tally 폼 (시작의 메아리 등록)</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">90일 가이드 미리보기</span>
+                <span class="url-suggest">네이버 카페 가이드 페이지 (https://cafe.naver.com/yangfams)</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+              </div>
+              <div class="url-note">배송완료 = CRM 진입점. Tally 폼으로 '시작의 메아리' 사진 등록 유도 → 12주 여정 시작</div>
+            </div>
+          
             <ul class="issues">
               <li>CRM 진입의 핵심 터치포인트 (Tally 폼 직행)</li>
               <li>노트 사용법 3단계 명확 안내</li>
@@ -1062,6 +1286,12 @@
           <span class="impact mid">MID</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-4" onchange="toggleModify('campaign-4', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-4').click();"></span>
+            <label for="modify-campaign-4" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
           <span class="timing">구매확정 시</span>
           <span class="arrow">▼</span>
         </div>
@@ -1117,6 +1347,19 @@
                 </div>
               </div>
             </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">구매확정 하기</span>
+                <span class="url-suggest">카페24 구매확정 페이지</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">메아리셋 채널 추가</span>
+                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+              </div>
+              <div class="url-note">구매확정 단독 CTA — 리뷰 요청은 별도 '리뷰유도' 캠페인으로 분리</div>
+            </div>
+          
             <ul class="issues">
               <li>구매확정에만 집중 (리뷰 유도 분리)</li>
               <li>카페 유입 CTA로 커뮤니티 전환</li>
@@ -1136,6 +1379,12 @@
           <span class="impact mid">MID</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-5" onchange="toggleModify('campaign-5', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-5').click();"></span>
+            <label for="modify-campaign-5" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
           <span class="timing">이벤트 발생 시</span>
           <span class="arrow">▼</span>
         </div>
@@ -1288,7 +1537,7 @@
 
     <!-- 웰컴 메시지 -->
     <div class="section-title">웰컴 메시지 (카톡 채널 추가 즉시)</div>
-    <div data-campaign="campaign-6" class="campaign-card open" onclick="this.classList.toggle('open')">
+    <div data-campaign="campaign-6" class="campaign-card" onclick="this.classList.toggle('open')">
       <div class="campaign-header">
         <div class="left">
           <div class="num-badge">W</div>
@@ -1296,6 +1545,12 @@
           <span class="impact mid">v3</span>
         </div>
         <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-6" onchange="toggleModify('campaign-6', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-6').click();"></span>
+            <label for="modify-campaign-6" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
           <span class="timing">채널 추가 즉시</span>
           <span class="arrow">▼</span>
         </div>
@@ -2732,6 +2987,33 @@ function switchTab(tab) {
   }
 
   // Prevent card toggle when interacting with inputs and editable areas
+  
+  // 수정 필요 토글
+  function toggleModify(campaignId, checkbox, event) {
+    event.stopPropagation();
+    const card = document.querySelector('[data-campaign="' + campaignId + '"]');
+    if (checkbox.checked) {
+      card.classList.add('needs-modify');
+    } else {
+      card.classList.remove('needs-modify');
+    }
+    updateModifyCount();
+  }
+
+  function updateModifyCount() {
+    const total = document.querySelectorAll('.campaign-card').length;
+    const needsModify = document.querySelectorAll('.campaign-card.needs-modify').length;
+    const bar = document.getElementById('modify-count-bar');
+    if (bar) {
+      if (needsModify > 0) {
+        bar.textContent = '⚠️ 수정 필요: ' + needsModify + '개 / 전체 ' + total + '개 캠페인';
+        bar.classList.add('visible');
+      } else {
+        bar.classList.remove('visible');
+      }
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar').forEach(el => {
       el.addEventListener('click', e => e.stopPropagation());

@@ -575,11 +575,174 @@
   }
   .change-note strong { color: #15803d; }
 
+
+  /* 수정 필요 토글 */
+  .modify-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    margin-right: 16px;
+  }
+  .modify-toggle label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .modify-toggle input[type="checkbox"] {
+    display: none;
+  }
+  .modify-toggle .toggle-switch {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .modify-toggle .toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .modify-toggle input:checked + .toggle-switch {
+    background: #f59e0b;
+  }
+  .modify-toggle input:checked + .toggle-switch::after {
+    transform: translateX(16px);
+  }
+  .modify-toggle input:checked ~ label {
+    color: #f59e0b;
+  }
+  .campaign-card.needs-modify {
+    border-left: 4px solid #f59e0b;
+  }
+  .campaign-card.needs-modify .campaign-header {
+    background: #fffbeb;
+  }
+  .modify-count-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(245, 158, 11, 0.95);
+    color: white;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    z-index: 1001;
+    transition: transform 0.3s;
+    display: none;
+  }
+  .modify-count-bar.visible { display: block; }
+
+
+  /* AFTER 제안 랜딩 URL 박스 */
+  .after-url-box {
+    margin: 8px 0 0 0;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  .after-url-box .url-box-title {
+    font-weight: 600;
+    color: #15803d;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  .after-url-box .url-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .after-url-box .url-btn-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #166534;
+    min-width: 100px;
+    white-space: nowrap;
+  }
+  .after-url-box .url-suggest {
+    flex: 1;
+    font-size: 11px;
+    color: #15803d;
+    background: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #86efac;
+    word-break: break-all;
+  }
+  .after-url-box .url-note {
+    font-size: 10px;
+    color: #6b7280;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+
+  /* Cross-brand navigation */
+  .top-nav {
+    background: #1a1a1a;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 1002;
+  }
+  .top-nav .logo {
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    margin-right: 8px;
+    text-decoration: none;
+  }
+  .top-nav .brand-btn {
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    opacity: 0.7;
+    transition: all 0.3s;
+  }
+  .top-nav .brand-btn:hover { opacity: 1; }
+  .top-nav .brand-btn.active { opacity: 1; box-shadow: 0 0 0 2px white; }
+  .top-nav .brand-btn.foremong { background: #4a7c28; }
+  .top-nav .brand-btn.uvid { background: #4A6FA5; }
+  .top-nav .brand-btn.meariset { background: #FF6B35; }
+
 </style>
 
 </head>
 <body>
 
+<div class="top-nav">
+    <a href="index.html" class="logo">🌿 알림톡 CX 개선안</a>
+    <a href="foremong.html" class="brand-btn foremong ">🌿 Foremong</a>
+    <a href="uvid.html" class="brand-btn uvid active">🌞 UVID</a>
+    <a href="meariset.html" class="brand-btn meariset ">📓 메아리셋</a>
+  </div>
+<div id="modify-count-bar" class="modify-count-bar"></div>
 <div class="header">
   <h1>UVID 알림톡 CX 개선안</h1>
   <p>11개 캠페인 전/후 비교 · UV Ends. ID Remains. · 2026-03-10</p>
@@ -678,7 +841,7 @@
   <div class="section-title">캠페인별 전 / 후 비교</div>
 
   <!-- 1. 결제완료 -->
-  <div data-campaign="campaign-1" class="campaign-card open" onclick="this.classList.toggle('open')">
+  <div data-campaign="campaign-1" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
         <div class="num-badge">1</div>
@@ -686,6 +849,12 @@
         <span class="impact high">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-1" onchange="toggleModify('campaign-1', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-1').click();"></span>
+            <label for="modify-campaign-1" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">결제 직후</span>
         <span class="arrow">▼</span>
       </div>
@@ -697,44 +866,54 @@
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
             <div class="msg white">
-              안녕하세요.<br>
-              피부 정체성 방어 브랜드 유비드입니다.<br><br>
-              #{고객명}님의<br>
-              주문이 정상적으로 완료되었습니다 !<br>
-              현명한 선택, 진심으로 감사드립니다.<br><br>
-              📦 <b>주문 정보</b><br>
-              ▪️주문일 : #{주문일}<br>
-              ▪️상품명 : #{상품명}<br>
-              ▪️결제금액 : #{총결제금액}원<br><br>
-              고객님의 주문은 꼼꼼히 준비하여<br>
-              가장 안전한 상태로 배송 될 예정입니다.<br><br>
-              <span class="highlight">☀️ 유비드 선케어, 이렇게 사용해보세요<br>
-              ✓ 외출 15~20분 전, 얼굴/목에 충분히 도포<br>
-              ✓ 야외 활동 시 2~3시간 간격으로 덧바르면 더 좋아요<br>
-              ✓ 세안 후 기초 케어 마무리 단계에 사용을 권장드립니다</span><br><br>
-              🤍 유비드는 이렇게 약속드립니다<br>
-              …(중략)…<br>
-              " 자외선 앞에서도, 피부는 늘 당신답게.<br>
-              유비드가 지키겠습니다"<br><br>
-              감사합니다.<br>
-              유비드 드림 🌿
-              <div class="btn-group">
-                <div class="btn">채널 추가하기</div>
-                <div class="btn">주문내역 바로가기</div>
-              </div>
+                안녕하세요.<br>
+                피부 정체성 방어 브랜드 유비드입니다.<br>
+                <br>
+                #{고객명}님의<br>
+                주문이 정상적으로 완료되었습니다 !<br>
+                현명한 선택, 진심으로 감사드립니다.<br>
+                <br>
+                📦 <b>주문 정보</b><br>
+                <br>
+                <b>▪️주문일</b> : #{주문일}<br>
+                <b>▪️상품명</b> : #{상품명}<br>
+                <b>▪️결제금액</b> : #{총결제금액}원<br>
+                <br>
+                고객님의 주문은 꼼꼼히 준비하여<br>
+                가장 안전한 상태로 배송 될 예정입니다.<br>
+                <br>
+                ☀️ 유비드 선케어, 이렇게 사용해보세요<br>
+                ✓ 외출 15~20분 전, 얼굴/목에 충분히 도포<br>
+                ✓ 야외 활동 시 2~3시간 간격으로 덧바르면 더 좋아요<br>
+                ✓ 세안 후 기초 케어 마무리 단계에 사용을 권장드립니다<br>
+                <br>
+                🤍 유비드는 이렇게 약속드립니다<br>
+                고객님이 매일 안심하고 사용하실 수 있도록<br>
+                제품과 상담, 안내까지 끝까지 책임지는 브랜드가 되겠습니다.<br>
+                <br>
+                " 자외선 앞에서도, 피부는 늘 당신답게.<br>
+                유비드가 지키겠습니다"<br>
+                <br>
+                사용 중 궁금한 점이나 불편함이 있으시면<br>
+                카카오톡 채널 '유비드' 로 편하게 문의해주세요.<br>
+                빠르게 도와드리겠습니다.<br>
+                <br>
+                감사합니다.<br>
+                유비드 드림 🌿<br>
+                <div class="btn-group">
+                  <div class="btn">채널추가하기</div>
+                  <div class="btn">주문내역 바로가기</div>
+                </div>
+            
             <div class="before-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
-                <span class="url-btn-label">채널 추가하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
-              </div>
-              <div class="url-row">
                 <span class="url-btn-label">주문내역 바로가기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+                <input type="text" class="url-input" value="https://new-m.pay.naver.com/" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
+              </div>
             </div>
-          </div>
           <ul class="issues">
             <li>사용법 가이드가 결제 직후에 배치 (제품을 아직 받지도 않음)</li>
             <li>사용법+브랜드 약속+문의안내까지 한 메시지에 혼재</li>
@@ -768,6 +947,19 @@
               </div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">주문내역 확인하기</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">유비드 채널 추가</span>
+                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+              </div>
+              <div class="url-note">네이버페이 주문내역 유지</div>
+            </div>
+          
           <ul class="issues">
             <li>사용법 → 배송완료 시점으로 이동 (적절한 타이밍)</li>
             <li>결제 직후에는 주문 확인에만 집중</li>
@@ -795,6 +987,12 @@
         <span class="impact high">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-2" onchange="toggleModify('campaign-2', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-2').click();"></span>
+            <label for="modify-campaign-2" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">출고 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -806,45 +1004,52 @@
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
             <div class="msg white">
-              안녕하세요, #{고객명}님!<br>
-              유비드에서 주문하신 제품이<br>
-              지금 막 출발했습니다 !<br><br>
-              🚚 <b>배송 정보</b><br>
-              ■ 상품명 : #{상품명}<br>
-              ■ 주문번호 : #{주문번호}<br>
-              ■ 택배사 : #{배송회사}<br>
-              ■ 송장번호 : #{송장번호}<br>
-              ■ 배송지 : #{배송지주소}<br><br>
-              <span class="highlight">🧡 출고 전 품질 점검 완료 🧡<br>
-              …(품질 점검 상세)…<br><br>
-              💡 사용 전, 이렇게 확인해주세요!<br>
-              …(수령 확인 가이드)…<br><br>
-              🌿 첫 사용 TIP (민감 피부라면 특히)<br>
-              …(패치테스트 안내)…<br><br>
-              📩 문제가 있으면 바로 도와드릴게요<br>
-              …(문제시 안내)…</span>
-              <div class="btn-group">
-                <div class="btn">채널추가하기</div>
-                <div class="btn">배송조회</div>
-                <div class="btn">스토어바로가기</div>
-              </div>
-            <div class="before-url-box" onclick="event.stopPropagation()">
-              <div class="url-box-title">🔗 현재 랜딩 URL</div>
-              <div class="url-row">
-                <span class="url-btn-label">채널추가하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">배송조회</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">스토어바로가기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+                안녕하세요, #{고객명}님!<br>
+                유비드에서 주문하신 제품이<br>
+                지금 막 출발했습니다 !<br>
+                <br>
+                🚚 배송 정보<br>
+                <br>
+                ▪️ 상품명 : #{상품명}<br>
+                ▪️ 주문번호 : #{주문번호}<br>
+                ▪️ 택배사 : #{배송회사}<br>
+                ▪️ 송장번호 : #{송장번호}<br>
+                ▪️ 배송지 : #{배송지주소}<br>
+                <br>
+                지역에 따라 평균 1~2일 이내 도착하며,<br>
+                배송 현황은 송장번호로<br>
+                실시간 조회 가능합니다.<br>
+                <br>
+                🧡 출고 전 품질 점검 완료 🧡<br>
+                유비드는 출고 전 포장 상태, 외관, 유통기한 등<br>
+                기본 품질 항목을 확인해 안전하게 출고하고 있습니다.<br>
+                제품이 도착할 때까지 조금만 기다려주세요 😊<br>
+                <br>
+                💡 사용 전, 이렇게 확인해주세요!<br>
+                <br>
+                먼저 제품을 받으시면 아래 내용을 확인해 주세요.<br>
+                <br>
+                누액/파손이 없는지<br>
+                유통기한 및 사용기한 표기 확인<br>
+                <br>
+                🌿 첫 사용 TIP (민감 피부라면 특히)<br>
+                처음 사용 시에는 팔 안쪽에<br>
+                소량 테스트(패치 테스트) 후 사용을 권장드립니다.<br>
+                <br>
+                눈가/상처 부위는 피하고, 이상 반응 시 사용을 중단해 주세요.<br>
+                <br>
+                📩 문제가 있으면 바로 도와드릴게요<br>
+                제품 이상(누액/파손/오배송 등)이 있다면 수령 직후<br>
+                사진과 함께 카카오톡 채널 '유비드'로 연락 주시면<br>
+                빠르게 안내드리겠습니다.<br>
+                <div class="btn-group">
+                  <div class="btn">채널추가하기</div>
+                  <div class="btn">배송조회</div>
+                  <div class="btn">스토어바로가기</div>
+                </div>
+            
               </div>
             </div>
-            </div>
-          </div>
           <ul class="issues">
             <li>품질점검+수령확인+패치테스트+문제안내 4섹션 과다</li>
             <li>아직 받지도 않은 시점에 사용법/이상반응 안내</li>
@@ -876,6 +1081,19 @@
               </div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">배송조회 바로가기</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">유비드 채널 추가</span>
+                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+              </div>
+              <div class="url-note">배송조회 네이버페이 유지</div>
+            </div>
+          
           <ul class="issues">
             <li>배송 정보 핵심 3항목만 (주문번호·배송지 제거)</li>
             <li>사용법/패치테스트 → 배송완료 시점으로 이동</li>
@@ -903,6 +1121,12 @@
         <span class="impact high">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-3" onchange="toggleModify('campaign-3', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-3').click();"></span>
+            <label for="modify-campaign-3" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">배송 완료 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -914,32 +1138,48 @@
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
             <div class="msg white">
-              안녕하세요. #{고객명}님<br>
-              유비드에서 주문하신 <span class="highlight">선제품</span>이<br>
-              안전하게 고객님 주소로 도착했습니다 !<br><br>
-              …(중략)…<br><br>
-              <span class="highlight">🎁 리뷰 혜택 안내<br>
-              사용 후 느낀 점을 리뷰로 남겨주시면<br>
-              적립금 혜택을 드립니다.<br>
-              텍스트 리뷰 : 적립금 지급<br>
-              포토/영상 리뷰 : 추가 적립금 지급</span>
-              <div class="btn-group">
-                <div class="btn">채널추가하기</div>
-                <div class="btn">후기 작성하기</div>
-              </div>
+                안녕하세요. #{고객명}님<br>
+                유비드에서 주문하신 선제품이<br>
+                안전하게 고객님 주소로 도착했습니다 !<br>
+                <br>
+                📦 배송 정보<br>
+                <br>
+                상품명 : #{상품명}<br>
+                주문번호 : #{주문번호}<br>
+                택배사 : #{택배사}<br>
+                송장번호 : #{송장번호}<br>
+                <br>
+                💛 상품은 잘 받아보셨나요? 💛<br>
+                <br>
+                자외선 앞에서도 고객님의 피부가 당신답게 유지되도록<br>
+                유비드가 늘 곁에서 도와드릴게요.<br>
+                <br>
+                권장 사용법만 지켜주시면<br>
+                나머지는 유비드가 챙기겠습니다 :)<br>
+                <br>
+                🎁 리뷰 혜택 안내<br>
+                사용 후 느낀 점을 리뷰로 남겨주시면 적립금 혜택을 드립니다.<br>
+                <br>
+                텍스트 리뷰 : 적립금 지급<br>
+                포토/영상 리뷰 : 추가 적립금 지급 (더 큰 혜택)<br>
+                ※ 적립 기준/금액은 이벤트 정책에 따라 적용됩니다.<br>
+                <br>
+                감사합니다.<br>
+                유비드 드림 🌿<br>
+                <div class="btn-group">
+                  <div class="btn">채널추가하기</div>
+                  <div class="btn">후기 작성하기</div>
+                </div>
+            
             <div class="before-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
-                <span class="url-btn-label">채널추가하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
-              </div>
-              <div class="url-row">
                 <span class="url-btn-label">후기 작성하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+                <input type="text" class="url-input" value="https://orders.pay.naver.com/order/status/{상품주문번호}" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
+              </div>
             </div>
-          </div>
           <ul class="issues">
             <li>배송완료에 리뷰 유도가 혼재 (너무 이른 시점)</li>
             <li>"선제품" 오타</li>
@@ -975,6 +1215,23 @@
               </div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">구매확정 바로가기</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">자주 묻는 질문</span>
+                <span class="url-suggest">네이버 스마트스토어 FAQ 페이지 or 자사몰 FAQ</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">유비드 채널 추가</span>
+                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+              </div>
+              <div class="url-note">구매확정 → 네이버페이 / FAQ → 네이버 스마트스토어 FAQ 페이지</div>
+            </div>
+          
           <ul class="issues">
             <li>결제완료에서 이동한 사용법 가이드를 여기에 배치 (도착 직후 = 최적 시점)</li>
             <li>리뷰 유도 제거 → 리뷰유도 캠페인(+7일)으로 분리</li>
@@ -1002,6 +1259,12 @@
         <span class="impact high">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-4" onchange="toggleModify('campaign-4', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-4').click();"></span>
+            <label for="modify-campaign-4" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">배송완료 +3일</span>
         <span class="arrow">▼</span>
       </div>
@@ -1013,35 +1276,51 @@
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
             <div class="msg white">
-              안녕하세요. #{고객명}님<br>
-              유비드(UVID)에서 주문해주신<br>
-              #{상품명}은 잘 받아보셨나요?<br><br>
-              …(중략)…<br><br>
-              <span class="highlight">💡 자주 묻는 질문 TOP<br>
-              "민감 피부도 사용해도 될까요?"<br>
-              "백탁/끈적임은 어떤가요?"<br>
-              …(FAQ 4개)…</span><br><br>
-              <span class="highlight">🧾 포토 리뷰 남기기 이벤트<br>
-              …(리뷰 이벤트)…<br>
-              베스트 포토리뷰에 당첨되신 고객님께<br>
-              <b>( ) 을 무료배송으로 보내 드립니다.</b></span>
-              <div class="btn-group">
-                <div class="btn">채널추가하기</div>
-                <div class="btn">구매확정 바로가기</div>
-              </div>
+                안녕하세요. #{고객명}님<br>
+                유비드(UVID)에서 주문해주신<br>
+                #{상품명}은 잘 받아보셨나요?<br>
+                <br>
+                고객님께서 만족하셨을지 궁금합니다.<br>
+                자외선 속에서도 고객님의 피부가 당신답게 유지될 수 있도록<br>
+                유비드가 끝까지 함께하겠습니다.<br>
+                <br>
+                💡 자주 묻는 질문 TOP<br>
+                <br>
+                "민감 피부도 사용해도 될까요?"<br>
+                "백탁/끈적임은 어떤가요?"<br>
+                "얼마나 자주 덧발라야 하나요?"<br>
+                "세안은 어떻게 하면 좋을까요?"<br>
+                <br>
+                많이 문의하신 질문들을<br>
+                한눈에 보기 쉽게 정리했습니다.<br>
+                아래 버튼으로 바로 확인 가능합니다.<br>
+                <br>
+                🧾 포토 리뷰 남기기 이벤트<br>
+                <br>
+                직접 사용해 보신 경험을 남겨주세요 !<br>
+                고객님의 솔직한 후기가<br>
+                다른 분들의 선택에 큰 도움이 됩니다.<br>
+                <br>
+                감사의 마음으로 후기를 남겨주신 분들 중<br>
+                베스트 포토리뷰에 당첨되신 고객님께<br>
+                ( ) 을 무료배송으로 보내 드립니다.<br>
+                <br>
+                감사합니다.<br>
+                유비드 드림<br>
+                <div class="btn-group">
+                  <div class="btn">채널추가하기</div>
+                  <div class="btn">구매확정 바로가기</div>
+                </div>
+            
             <div class="before-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
-                <span class="url-btn-label">채널추가하기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
-              </div>
-              <div class="url-row">
                 <span class="url-btn-label">구매확정 바로가기</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+                <input type="text" class="url-input" value="https://orders.pay.naver.com/order/status/{상품주문번호}" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
+              </div>
             </div>
-          </div>
           <ul class="issues">
             <li>FAQ + 리뷰이벤트 + 구매확정 3가지 동시 전달</li>
             <li>베스트 포토리뷰 혜택이 미정 "( )"</li>
@@ -1075,6 +1354,23 @@
               </div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">구매확정 하기</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">자주 묻는 질문</span>
+                <span class="url-suggest">네이버 스마트스토어 FAQ 페이지</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">유비드 채널 추가</span>
+                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+              </div>
+              <div class="url-note">구매확정 CTA 1순위 배치</div>
+            </div>
+          
           <ul class="issues">
             <li>구매확정 1가지만 요청 → 전환율 집중</li>
             <li>"유비드에게 큰 힘" 진심 어필 → 고객 공감 유도</li>
@@ -1102,6 +1398,12 @@
         <span class="new-badge">NEW 제안</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-5" onchange="toggleModify('campaign-5', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-5').click();"></span>
+            <label for="modify-campaign-5" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">배송완료 +7일</span>
         <span class="arrow">▼</span>
       </div>
@@ -1169,6 +1471,12 @@
         <span class="impact high">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-6" onchange="toggleModify('campaign-6', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-6').click();"></span>
+            <label for="modify-campaign-6" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">배송완료 +30일</span>
         <span class="arrow">▼</span>
       </div>
@@ -1180,32 +1488,50 @@
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
             <div class="msg white">
-              #{고객명}님<br>
-              마지막 안부 인사드립니다 !<br>
-              <span class="highlight">유비드 썬제품</span>과 함께 하신 지<br>
-              어느덧 한 달이 되셨습니다 ! (짝짝)<br><br>
-              <span class="highlight">💧썬크림, 꾸준히 사용하고 계신가요?<br>
-              …(장문 사용법 리마인드)…<br><br>
-              💡 이쯤에서 다시 보는 올바른 사용법<br>
-              1. 외출 15~20분 전, 충분량을 바르기<br>
-              2. 2~3시간 간격으로 덧바르기<br>
-              3. 손이 닿는 부위는 꼼꼼히 추가 도포<br>
-              4. 저녁에는 꼼꼼히 클렌징하고 보습으로 마무리<br><br>
-              …(감사 2단락)…<br><br>
-              📌 한 달 사용 후기 남기기<br>
-              (혜택명/증정품) 을(를) 제공해 드립니다.</span>
-              <div class="btn-group">
-                <div class="btn">(버튼 없음 - 본문에만 기재)</div>
-              </div>
+                안녕하세요. #{고객명}님,<br>
+                주문하신 내역이<br>
+                정상적으로 취소 완료되었습니다.<br>
+                <br>
+                📦 주문 취소 정보<br>
+                <br>
+                ▪️주문번호 : #{주문번호}<br>
+                ▪️주문상품 : #{상품명}<br>
+                ▪️결제금액 : #{총결제금액}원<br>
+                <br>
+                💳 결제 수단에 따라 환불은<br>
+                영업일 기준 3~5일 내 처리됩니다.<br>
+                (카드사/결제사 사정에 따라<br>
+                추가 소요될 수도 있습니다.)<br>
+                <br>
+                💬 이번 거래 과정에서 불편을<br>
+                드렸다면 진심으로 사과드립니다.<br>
+                <br>
+                고객님의 불편 경험은<br>
+                저희에게 매우 소중한 피드백이며<br>
+                동일한 일이 반복되지 않도록<br>
+                내부 프로세스를 개선하겠습니다.<br>
+                <br>
+                🙏🏽 짧은 시간이었지만<br>
+                유비드를 믿고 선택해주셔서<br>
+                진심으로 감사드립니다.<br>
+                <br>
+                고객님의 신뢰를 잃지 않기 위해<br>
+                더 꼼꼼히 개선하고, 더 나은 모습으로<br>
+                다음 기회에 다시 찾아뵙겠습니다.<br>
+                <div class="btn-group">
+                  <div class="btn">채널추가하기</div>
+                  <div class="btn">주문내역 바로가기</div>
+                </div>
+            
             <div class="before-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
-                <span class="url-btn-label">(버튼 없음 - 본문에만 기재)</span>
-                <input type="text" class="url-input" placeholder="https://… 실제 URL 입력" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+                <span class="url-btn-label">주문내역 바로가기</span>
+                <input type="text" class="url-input" value="https://new-m.pay.naver.com/" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
+              </div>
             </div>
-          </div>
           <ul class="issues">
             <li>매우 장문 (사용법이 또 반복)</li>
             <li>"(혜택명/증정품)" 미정</li>
@@ -1242,6 +1568,23 @@
               </div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">리뷰 작성하기</span>
+                <span class="url-suggest">네이버 스마트스토어 리뷰 작성 페이지 (상품별)</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">자주 묻는 질문</span>
+                <span class="url-suggest">네이버 스마트스토어 FAQ 페이지</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">유비드 채널 추가</span>
+                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+              </div>
+              <div class="url-note">리뷰 작성 URL은 상품별 고유 링크. 포토리뷰 혜택 안내와 함께</div>
+            </div>
+          
           <ul class="issues">
             <li>"선케어 습관이 피부를 지킨다" — UVID 미션과 연결</li>
             <li>사용법 리마인드 2줄로 압축 (장문 반복 제거)</li>
@@ -1271,6 +1614,12 @@
         <span class="impact mid">MID</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-7" onchange="toggleModify('campaign-7', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-7').click();"></span>
+            <label for="modify-campaign-7" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1478,6 +1827,33 @@
   }
 
   // Prevent card toggle when interacting with inputs and editable areas
+  
+  // 수정 필요 토글
+  function toggleModify(campaignId, checkbox, event) {
+    event.stopPropagation();
+    const card = document.querySelector('[data-campaign="' + campaignId + '"]');
+    if (checkbox.checked) {
+      card.classList.add('needs-modify');
+    } else {
+      card.classList.remove('needs-modify');
+    }
+    updateModifyCount();
+  }
+
+  function updateModifyCount() {
+    const total = document.querySelectorAll('.campaign-card').length;
+    const needsModify = document.querySelectorAll('.campaign-card.needs-modify').length;
+    const bar = document.getElementById('modify-count-bar');
+    if (bar) {
+      if (needsModify > 0) {
+        bar.textContent = '⚠️ 수정 필요: ' + needsModify + '개 / 전체 ' + total + '개 캠페인';
+        bar.classList.add('visible');
+      } else {
+        bar.classList.remove('visible');
+      }
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar').forEach(el => {
       el.addEventListener('click', e => e.stopPropagation());

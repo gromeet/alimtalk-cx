@@ -4,81 +4,74 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>알림톡 CX 개선안 — 그로밋</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Noto Sans KR', sans-serif; background: #0f1117; }
-
-  .top-bar {
-    background: #0f1117;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    height: 52px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR',sans-serif; background:#f5f5f0; min-height:100vh; display:flex; flex-direction:column; }
+  .top-nav {
+    background:#1a1a1a; padding:12px 24px; display:flex; align-items:center; gap:16px; position:sticky; top:0; z-index:100;
   }
-
-  .logo {
-    font-size: 15px;
-    font-weight: 700;
-    color: #fff;
-    margin-right: 16px;
-    opacity: 0.9;
+  .top-nav .logo { color:white; font-weight:700; font-size:14px; }
+  .brand-btn {
+    padding:6px 16px; border-radius:20px; font-size:13px; font-weight:600;
+    border:none; cursor:pointer; text-decoration:none; transition:all 0.3s;
   }
-
-  .brand-tab {
-    padding: 6px 18px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.5);
-    background: transparent;
-    transition: all 0.2s;
+  .brand-btn.foremong { background:#4a7c28; color:white; }
+  .brand-btn.foremong:hover { background:#3d6820; }
+  .brand-btn.uvid { background:#4A6FA5; color:white; }
+  .brand-btn.uvid:hover { background:#3d5d8a; }
+  .brand-btn.meariset { background:#FF6B35; color:white; }
+  .brand-btn.meariset:hover { background:#e55a28; }
+  .hero {
+    text-align:center; padding:80px 24px 60px;
+    background:linear-gradient(135deg, #2d5016 0%, #4A6FA5 50%, #FF6B35 100%);
+    color:white;
   }
-  .brand-tab:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.3); }
-  .brand-tab.active-foremong { background: #4a7c28; border-color: #4a7c28; color: #fff; }
-  .brand-tab.active-uvid { background: #0284c7; border-color: #0284c7; color: #fff; }
-  .brand-tab.active-meariset { background: #FF6B35; border-color: #FF6B35; color: #fff; }
-
-  .frame-wrap {
-    width: 100%;
-    height: calc(100vh - 52px);
+  .hero h1 { font-size:36px; font-weight:700; margin-bottom:12px; }
+  .hero p { font-size:16px; opacity:0.9; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:24px; max-width:1000px; margin:40px auto; padding:0 24px; }
+  .card {
+    background:white; border-radius:16px; padding:32px; text-align:center;
+    box-shadow:0 2px 12px rgba(0,0,0,0.08); transition:transform 0.3s;
+    text-decoration:none; color:inherit;
   }
-  .frame-wrap iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
+  .card:hover { transform:translateY(-4px); }
+  .card .emoji { font-size:48px; margin-bottom:16px; }
+  .card h2 { font-size:20px; font-weight:700; margin-bottom:8px; }
+  .card p { font-size:14px; color:#666; line-height:1.6; }
+  .card .badge { display:inline-block; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:600; margin-top:12px; color:white; }
 </style>
 </head>
 <body>
-
-<div class="top-bar">
-  <span class="logo">🌿 알림톡 CX 개선안</span>
-  <button class="brand-tab active-foremong" onclick="switchBrand('foremong')">🌿 Foremong</button>
-  <button class="brand-tab" onclick="switchBrand('uvid')">☀️ UVID</button>
-  <button class="brand-tab" onclick="switchBrand('meariset')">📖 메아리셋</button>
-</div>
-
-<div class="frame-wrap">
-  <iframe id="brand-frame" src="foremong.html" title="알림톡 캠페인"></iframe>
-</div>
-
-<script>
-  const tabs = document.querySelectorAll('.brand-tab');
-  function switchBrand(brand) {
-    document.getElementById('brand-frame').src = brand + '.html';
-    tabs.forEach(t => t.className = 'brand-tab');
-    event.target.classList.add('active-' + brand);
-  }
-</script>
+  <div class="top-nav">
+    <span class="logo">🌿 알림톡 CX 개선안</span>
+    <a href="foremong.html" class="brand-btn foremong">🌿 Foremong</a>
+    <a href="uvid.html" class="brand-btn uvid">🌞 UVID</a>
+    <a href="meariset.html" class="brand-btn meariset">📓 메아리셋</a>
+  </div>
+  <div class="hero">
+    <h1>알림톡 CX 개선안</h1>
+    <p>3개 브랜드 알림톡 전/후 비교 대시보드 · 2026-03-13 업데이트</p>
+  </div>
+  <div class="cards">
+    <a href="foremong.html" class="card">
+      <div class="emoji">🌿</div>
+      <h2>포레몽</h2>
+      <p>온수매트 전문 브랜드<br>12개 캠페인 전/후 비교</p>
+      <span class="badge" style="background:#4a7c28;">8개 개별 + CS 그룹</span>
+    </a>
+    <a href="uvid.html" class="card">
+      <div class="emoji">🌞</div>
+      <h2>UVID</h2>
+      <p>선케어 뷰티 브랜드<br>11개 캠페인 전/후 비교</p>
+      <span class="badge" style="background:#4A6FA5;">7개 개별 + CS 그룹</span>
+    </a>
+    <a href="meariset.html" class="card">
+      <div class="emoji">📓</div>
+      <h2>메아리셋</h2>
+      <p>90일 기록 플래너<br>알림톡 + CRM 12주 자동화</p>
+      <span class="badge" style="background:#FF6B35;">5개 알림톡 + 13개 CRM</span>
+    </a>
+  </div>
 </body>
 </html>
