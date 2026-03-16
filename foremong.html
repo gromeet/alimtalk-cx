@@ -165,16 +165,13 @@
   /* Phone mockup */
   .phone {
     width: 280px;
-    min-width: 280px;
-    max-width: 280px;
     margin: 0 auto;
     background: #f7f7f2;
     border-radius: 24px;
-    border: 2px solid #ccc;
+    border: 2px solid #ddd;
     padding: 12px;
-    font-size: 14px;
-    line-height: 1.65;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    font-size: 12.5px;
+    line-height: 1.7;
   }
   .phone .kakao-header {
     text-align: center;
@@ -191,8 +188,6 @@
     margin-bottom: 8px;
     color: #1a1a1a;
     word-break: keep-all;
-    font-size: 14px;
-    line-height: 1.65;
   }
   .phone .msg.white {
     background: white;
@@ -755,7 +750,7 @@
 <div id="modify-count-bar" class="modify-count-bar"></div>
 <div class="header">
   <h1>포레몽 알림톡 CX 개선안</h1>
-  <p>12개 캠페인 전/후 비교 · 2026-03-10</p>
+  <p>12개 캠페인 전/후 비교 · 2026-03-14</p>
 </div>
 
 <div class="container">
@@ -854,8 +849,8 @@
   <div class="section-title">캠페인별 전 / 후 비교</div>
 
   <!-- 1. 결제완료 -->
-  <div data-campaign="campaign-1" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-1" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">1</div>
         <span class="name">결제완료</span>
@@ -964,6 +959,7 @@
               <b>"끝까지 책임감 있게 도와드리겠습니다."</b>
               <div class="btn-group">
                 <div class="btn primary">주문내역 확인하기</div>
+                <div class="btn">포레몽 스토리 보기</div>
                 <div class="btn">포레몽 채널 추가</div>
               </div>
             </div>
@@ -975,10 +971,14 @@
                 <span class="url-suggest">https://new-m.pay.naver.com/</span>
               </div>
               <div class="url-row">
-                <span class="url-btn-label">포레몽 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-btn-label">포레몽 스토리 보기</span>
+                <span class="url-suggest">https://youtu.be/N35lHIveA-4</span>
               </div>
-              <div class="url-note">기존 네이버페이 주문내역 유지 — 고객 혼란 최소화</div>
+              <div class="url-row">
+                <span class="url-btn-label">포레몽 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
+              </div>
+              <div class="url-note">결제 직후 기대감 — 브랜드 스토리 영상으로 "잘 샀다" 확신 강화</div>
             </div>
           
           <ul class="issues">
@@ -1000,8 +1000,8 @@
   </div>
 
   <!-- 2. 배송시작 -->
-  <div data-campaign="campaign-2" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-2" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">2</div>
         <span class="name">배송시작</span>
@@ -1119,13 +1119,13 @@
               </div>
               <div class="url-row">
                 <span class="url-btn-label">설치 가이드 영상</span>
-                <span class="url-suggest">https://youtu.be/n9LniIz1ruo (기존) → 30초 숏폼 신규 제작 권장</span>
+                <span class="url-suggest">https://youtu.be/n9LniIz1ruo</span>
               </div>
               <div class="url-row">
                 <span class="url-btn-label">포레몽 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
               </div>
-              <div class="url-note">배송조회는 네이버페이 유지. 설치 가이드는 유튜브 30초 숏폼 권장</div>
+              <div class="url-note">배송 대기 중 설치 가이드 사전 시청 유도 — 도착 전 준비</div>
             </div>
           
           <ul class="issues">
@@ -1146,8 +1146,8 @@
   </div>
 
   <!-- 3. 배송완료 -->
-  <div data-campaign="campaign-3" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-3" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">3</div>
         <span class="name">배송완료</span>
@@ -1211,7 +1211,7 @@
               <div class="url-box-title">🔗 현재 랜딩 URL</div>
               <div class="url-row">
                 <span class="url-btn-label">정품등록 하기</span>
-                <input type="text" class="url-input" value="https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform?usp=send_form" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+                <input type="text" class="url-input" value="https://register.foremong.com" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
               <div class="url-row">
                 <span class="url-btn-label">구매확정 하기</span>
@@ -1242,7 +1242,7 @@
               <span class="good">아래 버튼으로 간편하게 등록해 주세요.</span>
               <div class="btn-group">
                 <div class="btn primary">정품등록 하기</div>
-                <div class="btn">설치 가이드 영상</div>
+                <div class="btn">소음 해결 꿀팁</div>
                 <div class="btn">포레몽 채널 추가</div>
               </div>
             </div>
@@ -1251,21 +1251,21 @@
               <div class="url-box-title">💡 제안 랜딩 URL</div>
               <div class="url-row">
                 <span class="url-btn-label">정품등록 하기</span>
-                <span class="url-suggest">https://docs.google.com/forms/d/e/1FAIpQLSdLTlDnTS4iroGuXLmtf2d2K8IE9khTN9Rgk-nWb9zjHri1Sg/viewform</span>
+                <span class="url-suggest">https://register.foremong.com</span>
               </div>
               <div class="url-row">
-                <span class="url-btn-label">설치 가이드 영상</span>
-                <span class="url-suggest">https://youtu.be/p7mXhG1XI7g (기존) 또는 숏폼 신규</span>
+                <span class="url-btn-label">소음 해결 꿀팁</span>
+                <span class="url-suggest">https://youtu.be/p7mXhG1XI7g</span>
               </div>
               <div class="url-row">
                 <span class="url-btn-label">포레몽 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
               </div>
-              <div class="url-note">구글폼 정품등록 유지. '설치 가이드' 버튼은 유튜브 숏폼으로 연결 권장</div>
+              <div class="url-note">정품등록 골든타임 + 소음 해결(1.1만회) — 초기 사용 불안 해소</div>
             </div>
           
           <ul class="issues">
-            <li>정품등록 버튼 1번으로 복원 (구글폼 링크)</li>
+            <li>정품등록 버튼 1번으로 복원 (register.foremong.com)</li>
             <li>설치 가이드를 2번으로 유지 (도착 직후 필요)</li>
             <li>스토리보기 제거 → 실용적 구성으로 전환</li>
           </ul>
@@ -1282,8 +1282,8 @@
   </div>
 
   <!-- 4. 설치확인 (NEW) -->
-  <div data-campaign="campaign-4" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-4" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge" style="background:#e8a020;">N</div>
         <span class="name">설치확인</span>
@@ -1322,18 +1322,34 @@
               <b>설치는 잘 되셨나요?</b><br><br>
               혹시 설치 중 어려운 점이 있으셨다면<br>
               아래 가이드 영상을 참고해 주세요.<br><br>
-              처음 가동 시 보일러 내부 공기로<br>
-              소음이 발생할 수 있습니다.<br>
-              <b>에어 빼기 1회만 하시면 해결돼요!</b><br><br>
+              💧 매트 내부 물 관리를 하시면<br>
+              더 오래, 더 쾌적하게 사용할 수 있어요!<br>
+              <b>간단한 물빼기 방법을 확인해 보세요.</b><br><br>
               불편한 점이 있다면<br>
               언제든지 문의해 주세요.
               <div class="btn-group">
-                <div class="btn primary">설치 가이드 영상</div>
-                <div class="btn">소음 해결 가이드</div>
+                <div class="btn primary">물 빼기 방법 보기</div>
+                <div class="btn">고객센터 문의</div>
                 <div class="btn">포레몽 채널 추가</div>
               </div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">물 빼기 방법 보기</span>
+                <span class="url-suggest">https://youtu.be/PrmMdzZ6o2I</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">포레몽 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
+              </div>
+              <div class="url-note">물빼기(2.3만회) — 설치 직후 유지보수 팁 + CS 선제 대응</div>
+            </div>
           <ul class="issues">
             <li>설치 직후 CS 이슈 선제 대응</li>
             <li>에어 빼기 안내로 소음 CS 사전 차단</li>
@@ -1352,8 +1368,8 @@
   </div>
 
   <!-- 5. 구매확정 유도 -->
-  <div data-campaign="campaign-5" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-5" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">4</div>
         <span class="name">구매확정 유도</span>
@@ -1377,19 +1393,55 @@
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
             <div class="msg white">
-              #{고객명}님!<br>
-              주문하신 포레몽 온수매트<br>
-              만족스럽게 사용하고 계신가요?<br><br>
-              <span class="highlight">구매확정 + 포토리뷰 동시 요청<br>(행동이 분산됨)</span><br><br>
-              "구매확정해주시면 정산에 도움이 됩니다"<br><br>
-              📷 포토리뷰도 남겨주세요!
-              <div class="btn-group">
-                <div class="btn">채널 추가하기</div>
-                <div class="btn"><span class="highlight">포토리뷰 남기기 ← URL이 리뷰 페이지 아님!</span></div>
-                <div class="btn">주문내역 바로가기</div>
+                잘 지내시나요, #{고객명}님<br>
+                #{상품명} 따뜻하게<br>
+                잘 사용하고 계신가요?<br>
+                <br>
+                🌿 사용해 보니 어떠셨나요?<br>
+                <br>
+                포레몽 온수매트는 자연 순환식<br>
+                무소음 보일러 설계로 아주 조용하고<br>
+                NO 전자파로 안심 하실 수 있어요 !<br>
+                <br>
+                <br>
+                혹시라도 사용 중<br>
+                불편한 소음이 느껴지신다면?<br>
+                <br>
+                대부분은 설치 직 후 내부에 남아 있는<br>
+                에어(공기) 때문일 수 있습니다.<br>
+                아래 [소음 해결 가이드] 영상을 통해<br>
+                점검하시면 대부분 바로 해결됩니다.<br>
+                <br>
+                <br>
+                👂🏽 귀 기울이겠습니다.<br>
+                <br>
+                일주일간의 경험이 가장 생생 후기이자<br>
+                다음 고객의 선택에 큰 도움이 됩니다.<br>
+                포레몽은 고객님의 생생한 경험을 듣고<br>
+                더 나은 제품과 서비스를 만들어갑니다.<br>
+                <br>
+                소중한 "내돈내산" 사용 후기를<br>
+                남겨주신 고객님께는 공식몰을 통해<br>
+                감사의 마음을 드리고 있습니다.<br>
+                <div class="btn-group">
+                  <div class="btn">소음 해결 가이드</div>
+                  <div class="btn">내돈내산 이벤트</div>
+                  <div class="btn">채널 추가하기</div>
+                </div>
+            
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">소음 해결 가이드</span>
+                <input type="text" class="url-input" value="https://youtu.be/p7mXhG1XI7g?si=QhjF7T_P7wXud46o" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">내돈내산 이벤트</span>
+                <input type="text" class="url-input" value="https://docs.google.com/forms/d/e/1FAIpQLSfUlowCaXIpzRUEyUs8bzdjnSsyjy4Udxje_2q-S1vbo958QA/viewform" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
-          </div>
+              </div>
+            </div>
           <ul class="issues">
             <li>구매확정 + 리뷰가 한 메시지에 혼재</li>
             <li>"포토리뷰" 버튼 URL이 네이버페이 마이페이지 (리뷰 아님)</li>
@@ -1412,6 +1464,7 @@
               언제든 문의해 주세요.
               <div class="btn-group">
                 <div class="btn primary">구매확정 하기</div>
+                <div class="btn">자주 묻는 질문</div>
                 <div class="btn">포레몽 채널 추가</div>
               </div>
             </div>
@@ -1419,18 +1472,18 @@
             <div class="after-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">💡 제안 랜딩 URL</div>
               <div class="url-row">
-                <span class="url-btn-label">설치 가이드 영상</span>
-                <span class="url-suggest">https://youtu.be/p7mXhG1XI7g (기존 유튜브)</span>
+                <span class="url-btn-label">구매확정 하기</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
               </div>
               <div class="url-row">
-                <span class="url-btn-label">소음 해결 가이드</span>
-                <span class="url-suggest">https://youtube.com/watch?v=PrmMdzZ6o2I (기존 유튜브)</span>
+                <span class="url-btn-label">자주 묻는 질문</span>
+                <span class="url-suggest">https://brand.naver.com/foremong/notice/detail?id=2002339568</span>
               </div>
               <div class="url-row">
                 <span class="url-btn-label">포레몽 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
               </div>
-              <div class="url-note">신규 캠페인 — 30초 '설치 완료 체크리스트' 숏폼 제작 권장</div>
+              <div class="url-note">구매확정 전환 집중 + FAQ로 3일 사용 궁금증 해소</div>
             </div>
           
           <ul class="issues">
@@ -1451,8 +1504,8 @@
   </div>
 
   <!-- 6. 리뷰 유도 (+7일) -->
-  <div data-campaign="campaign-6" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-6" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">5</div>
         <span class="name">리뷰 유도 (배송+7일)</span>
@@ -1476,37 +1529,88 @@
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
             <div class="msg white">
-              잘 지내시나요, #{고객명}님<br>
-              #{상품명} 따뜻하게<br>
-              잘 사용하고 계신가요?<br><br>
-              🌿 사용해 보니 어떠셨나요?<br><br>
-              포레몽 온수매트는 자연 순환식<br>
-              무소음 보일러 설계로 아주 조용하고<br>
-              NO 전자파로 안심 하실 수 있어요 !<br><br>
-              혹시라도 사용 중<br>
-              불편한 소음이 느껴지신다면?<br><br>
-              대부분은 설치 직 후 내부에 남아 있는<br>
-              에어(공기) 때문일 수 있습니다.<br>
-              아래 [소음 해결 가이드] 영상을 통해<br>
-              점검하시면 대부분 바로 해결됩니다.<br><br>
-              👂🏽 귀 기울이겠습니다.<br><br>
-              일주일간의 경험이 가장 생생 후기이자<br>
-              다음 고객의 선택에 큰 도움이 됩니다.<br>
-              포레몽은 고객님의 생생한 경험을 듣고<br>
-              더 나은 제품과 서비스를 만들어갑니다.<br><br>
-              소중한 "내돈내산" 사용 후기를<br>
-              남겨주신 고객님께는 공식몰을 통해<br>
-              감사의 마음을 드리고 있습니다.
-              <div class="btn-group">
-                <div class="btn">소음 해결 가이드</div>
-                <div class="btn"><span class="highlight">내돈내산 이벤트 ← 링크 깨짐 가능성</span></div>
-                <div class="btn">채널 추가하기</div>
+                #{고객명}님<br>
+                마지막 안부 인사드립니다 !<br>
+                포레몽 온수매트와 함께 하신 지<br>
+                어느덧 한 달이 되셨습니다 ! (짝짝)<br>
+                따뜻하게 숙면하시고 계신가요?<br>
+                <br>
+                <br>
+                💧보관 전, 물은 어떻게 빼야 되나요?<br>
+                <br>
+                겨울이 끝나갈 무렵, 고객님들이<br>
+                가장 많이 하시는 질문이에요.<br>
+                온수매트를 오랫동안<br>
+                고장 없이 오래 사용하시려면<br>
+                보관 전, 물 제거 과정을 확인해 주세요.<br>
+                <br>
+                📽️ 아래 영상을 통해<br>
+                물을 안전하게 제거하는 방법을<br>
+                바로 확인하실 수 있습니다.<br>
+                <br>
+                <br>
+                💡 물 제거 전 체크리스트<br>
+                <br>
+                ① 모든 전원을 끄고<br>
+                본체가 충분히 식은 후 작업하세요.<br>
+                ② 보일러와 호스 분리 시,<br>
+                물을 받칠 용기를 준비하세요.<br>
+                ③ 물이 완전히 빠질 때까지<br>
+                보일러를 천천히 기울여 주세요.<br>
+                ④ 매트와 본체 내부의 잔여 물을<br>
+                미니 펌프로 완벽히 제거한 뒤<br>
+                통풍이 잘 되는 곳에서 건조하세요.<br>
+                <br>
+                이 과정을 지켜주시면, 다음 겨울에도<br>
+                포레몽 온수매트의 따뜻함을<br>
+                처음처럼 느끼실 수 있습니다 !<br>
+                <br>
+                <br>
+                🌿 한 달 동안 이 메세지를<br>
+                받고 함께해주셔서 감사했습니다 !<br>
+                <br>
+                매일의 잠자리 속 작은 온기로<br>
+                조금이나마 따뜻함을 전할 수 있었다면<br>
+                포레몽은 그것만으로 충분합니다.<br>
+                고객님의 '따뜻한 숙면'이<br>
+                포레몽에게는 가장 큰 보람입니다.<br>
+                내년에도 변함없이 함께 하겠습니다.<br>
+                <br>
+                <br>
+                📌 한 달 사용 후기 남기기<br>
+                <br>
+                한 달간 사용하시며 만족하신 점이나<br>
+                개선이 필요하다면 들려주세요 !<br>
+                고객님의 솔직한 의견은 포레몽의<br>
+                더 나은 제품을 만들어가는 힘이 됩니다.<br>
+                정성 어린 후기를 남겨주신 고객님께는<br>
+                작은 감사의 마음으로<br>
+                [형태 유지] [손상 최소화]에 필수인<br>
+                무형광 특대형 세탁망을 보내드립니다.<br>
+                온수매트 세탁은 물론 일상 세탁물에도<br>
+                유용하게 사용하실 수 있습니다^^<br>
+                <div class="btn-group">
+                  <div class="btn">물 제거 방법 보기</div>
+                  <div class="btn">한 달 후기 남기기</div>
+                  <div class="btn">채널 추가하기</div>
+                </div>
+            
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">물 제거 방법 보기</span>
+                <input type="text" class="url-input" value="https://www.youtube.com/watch?v=PrmMdzZ6o2I" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">한 달 후기 남기기</span>
+                <input type="text" class="url-input" value="https://new-m.pay.naver.com/" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
-          </div>
+              </div>
+            </div>
           <ul class="issues">
             <li>소음 해결 가이드 연결은 좋은 아이디어</li>
-            <li>내돈내산 구글폼 URL 잘림 확인 필요</li>
+            <li>내돈내산 구글폼 URL 정상 확인 완료 (포레몽 온수매트 내돈내산 EVENT)</li>
             <li>소음 해결이 설치확인(+1~2일)으로 이동 가능</li>
           </ul>
         </div>
@@ -1537,22 +1641,22 @@
               <div class="url-box-title">💡 제안 랜딩 URL</div>
               <div class="url-row">
                 <span class="url-btn-label">리뷰 남기기</span>
-                <span class="url-suggest">네이버 스마트스토어 리뷰 작성 페이지 (상품별 리뷰 URL)</span>
+                <span class="url-suggest" style="color:#e88a00;">⚠️ 네이버 스마트스토어 상품별 리뷰 URL 확인 필요</span>
               </div>
               <div class="url-row">
                 <span class="url-btn-label">내돈내산 이벤트</span>
-                <span class="url-suggest">이벤트 랜딩페이지 신규 제작 필요 (네이버 카페 or 자사몰)</span>
+                <span class="url-suggest">https://docs.google.com/forms/d/e/1FAIpQLSfUlowCaXIpzRUEyUs8bzdjnSsyjy4Udxje_2q-S1vbo958QA/viewform</span>
               </div>
               <div class="url-row">
                 <span class="url-btn-label">포레몽 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
               </div>
-              <div class="url-note">리뷰 작성 URL은 상품별 고유 링크 필요. '내돈내산 이벤트'는 네이버 카페/인스타 이벤트 페이지 연결</div>
+              <div class="url-note">내돈내산 구글폼 확인 완료. 리뷰 URL은 SKU별 개별 확인 필요 (네이버 스토어 상품 리뷰 직접 링크)</div>
             </div>
           
           <ul class="issues">
             <li>리뷰에만 집중 (소음 안내는 설치확인으로 이동)</li>
-            <li>내돈내산 구글폼 URL 정상 여부 확인 후 적용</li>
+            <li>내돈내산 구글폼 URL 정상 확인됨 — 적용 가능</li>
             <li>리뷰 CTA 1번 버튼 배치</li>
           </ul>
         </div>
@@ -1568,8 +1672,8 @@
   </div>
 
   <!-- 7. 한달 리뷰 (+30일) -->
-  <div data-campaign="campaign-7" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-7" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">6</div>
         <span class="name">한달 리뷰 (배송+30일)</span>
@@ -1593,57 +1697,57 @@
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
             <div class="msg white">
-              #{고객명}님<br>
-              마지막 안부 인사드립니다 !<br>
-              포레몽 온수매트와 함께 하신 지<br>
-              어느덧 한 달이 되셨습니다 ! 🎉<br>
-              따뜻하게 숙면하시고 계신가요?<br><br>
-              💧보관 전, 물은 어떻게 빼야 되나요?<br><br>
-              겨울이 끝나갈 무렵, 고객님들이<br>
-              가장 많이 하시는 질문이에요.<br>
-              온수매트를 오랫동안<br>
-              고장 없이 오래 사용하시려면<br>
-              보관 전, 물 제거 과정을 확인해 주세요.<br><br>
-              📽️ 아래 영상을 통해<br>
-              물을 안전하게 제거하는 방법을<br>
-              바로 확인하실 수 있습니다.<br><br>
-              💡 물 제거 전 체크리스트<br><br>
-              ① 모든 전원을 끄고<br>
-              　본체가 충분히 식은 후 작업하세요.<br>
-              ② 보일러와 호스 분리 시,<br>
-              　물을 받칠 용기를 준비하세요.<br>
-              ③ 물이 완전히 빠질 때까지<br>
-              　보일러를 천천히 기울여 주세요.<br>
-              ④ 매트와 본체 내부의 잔여 물을<br>
-              　미니 펌프로 완벽히 제거한 뒤<br>
-              　통풍이 잘 되는 곳에서 건조하세요.<br><br>
-              이 과정을 지켜주시면, 다음 겨울에도<br>
-              포레몽 온수매트의 따뜻함을<br>
-              처음처럼 느끼실 수 있습니다 !<br><br>
-              🌿 한 달 동안 이 메세지를<br>
-              받고 함께해주셔서 감사했습니다 💚<br><br>
-              매일의 잠자리 속 작은 온기로<br>
-              조금이나마 따뜻함을 전할 수 있었다면<br>
-              포레몽은 그것만으로 충분합니다.<br>
-              고객님의 '따뜻한 숙면'이<br>
-              포레몽에게는 가장 큰 보람입니다.<br>
-              내년에도 변함없이 함께 하겠습니다.<br><br>
-              📌 한 달 사용 후기 남기기<br><br>
-              한 달간 사용하시며 만족하신 점이나<br>
-              개선이 필요하다면 들려주세요 !<br>
-              고객님의 솔직한 의견은 포레몽의<br>
-              더 나은 제품을 만들어가는 힘이 됩니다.<br><br>
-              정성 어린 후기를 남겨주신 고객님께는<br>
-              무형광 특대형 세탁망을 보내드립니다.<br>
-              온수매트 세탁은 물론 일상 세탁물에도<br>
-              유용하게 사용하실 수 있습니다^^
-              <div class="btn-group">
-                <div class="btn">물제거 가이드 영상</div>
-                <div class="btn">한달 사용 후기 남기기</div>
-                <div class="btn">채널 추가하기</div>
+                안녕하세요. #{고객명}님<br>
+                주문 취소 요청이<br>
+                정상적으로 접수되었습니다.<br>
+                <br>
+                <br>
+                📦 주문 취소 정보<br>
+                ▪️주문번호 : #{주문번호}<br>
+                ▪️상품명 : #{상품명}<br>
+                ▪️결제금액 : #{총결제금액}원<br>
+                <br>
+                <br>
+                🚨 도착보장(풀필먼트) 주문 안내<br>
+                해당 주문은 실시간 출고 시스템으로<br>
+                요청 즉시 취소가 어려울 수 있습니다.<br>
+                출고가 이미 진행된 경우,<br>
+                상품 수령 후 반품으로 안내드릴 수 있는 점<br>
+                너그러히 양해 부탁드립니다.<br>
+                <br>
+                <br>
+                💳 환불 안내<br>
+                취소 승인 시, 결제 수단에 따라<br>
+                영업일 기준 3~5일 내 환불이 처리됩니다.<br>
+                진행 상황은 네이버페이<br>
+                [ 마이페이지 > 결제내역 ] 에서<br>
+                확인 가능합니다.<br>
+                <br>
+                <br>
+                💬 저희 포레몽은 고객님의 불편을<br>
+                최소화하기 위해 최선을 다하겠습니다.<br>
+                주문 취소가 정상적으로 반영되지 않거나<br>
+                별도 문의가 필요하신 경우에는<br>
+                아래 버튼을 이용 부탁드립니다.<br>
+                <div class="btn-group">
+                  <div class="btn">실시간 문의하기</div>
+                  <div class="btn">의견 남기기</div>
+                  <div class="btn">포레몽 채널 추가</div>
+                </div>
+            
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">실시간 문의하기</span>
+                <input type="text" class="url-input" value="http://pf.kakao.com/_AUhMK" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">의견 남기기</span>
+                <input type="text" class="url-input" value="https://forms.gle/99ADqX3eVZRW65C56" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
-          </div>
+              </div>
+            </div>
           <ul class="issues">
             <li>물 제거 + 리뷰 + 감사 3가지가 한 메시지에 혼재</li>
             <li>"겨울이 끝나갈 무렵" 시즌 고정 표현</li>
@@ -1660,14 +1764,14 @@
               포레몽 온수매트 사용하신 지<br>
               어느덧 <b>한 달</b>이 되었습니다.<br><br>
               <span class="good">한 달 동안 따뜻하게<br>보내셨길 바랍니다.</span><br><br>
-              💧 <b>시즌 관리 팁</b><br>
-              장기 사용 시 매트 내부 물 교체를<br>
-              권장합니다. 가이드 영상을 참고해 주세요.<br><br>
+              🔧 <b>유지보수 팁</b><br>
+              보일러 커넥터 결합이 느슨해지면<br>
+              간단히 교환할 수 있어요. 영상을 참고해 주세요.<br><br>
               한 달 사용 후기를 남겨주시면<br>
               공식몰에서 <b>감사 혜택</b>을 드립니다.
               <div class="btn-group">
                 <div class="btn primary">한달 사용 후기 남기기</div>
-                <div class="btn">물 교체 가이드</div>
+                <div class="btn">커넥터 교환 방법</div>
                 <div class="btn">포레몽 채널 추가</div>
               </div>
             </div>
@@ -1676,17 +1780,17 @@
               <div class="url-box-title">💡 제안 랜딩 URL</div>
               <div class="url-row">
                 <span class="url-btn-label">한달 사용 후기 남기기</span>
-                <span class="url-suggest">네이버 스마트스토어 리뷰 작성 페이지</span>
+                <span class="url-suggest" style="color:#e88a00;">⚠️ 네이버 스마트스토어 상품별 리뷰 URL 확인 필요</span>
               </div>
               <div class="url-row">
-                <span class="url-btn-label">물 교체 가이드</span>
-                <span class="url-suggest">https://youtu.be/ (물 교체 영상 신규 제작 or 기존 유튜브)</span>
+                <span class="url-btn-label">커넥터 교환 방법</span>
+                <span class="url-suggest">https://youtu.be/xHlknAGeSlA</span>
               </div>
               <div class="url-row">
                 <span class="url-btn-label">포레몽 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
               </div>
-              <div class="url-note">환불리콜 시점의 후기 요청 — 만족 고객 확인 후 리뷰로 전환</div>
+              <div class="url-note">한달 시점 유지보수 팁 — 커넥터 교환(5.9천회)으로 장기 사용 지원</div>
             </div>
           
           <ul class="issues">
@@ -1707,277 +1811,295 @@
   </div>
 
   <!-- 8~12: 취소/교환/반품 (그룹) -->
-  <div data-campaign="campaign-cs8" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-8" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#c44;">8</div>
-        <span class="name">취소요청</span>
+        <div class="num-badge" style="background:#c44;">7-12</div>
+        <span class="name">취소 / 교환 / 반품 (6개 캠페인)</span>
         <span class="impact mid">MID</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
           <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs8" onchange="toggleModify('campaign-cs8', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs8').click();"></span>
-            <label for="modify-campaign-cs8" onclick="event.stopPropagation()">수정필요</label>
+            <input type="checkbox" id="modify-campaign-8" onchange="toggleModify('campaign-8', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-8').click();"></span>
+            <label for="modify-campaign-8" onclick="event.stopPropagation()">수정필요</label>
           </div>
-        <span class="timing">취소 요청 시 즉시</span>
+
+        <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
     </div>
     <div class="campaign-body">
       <div class="comparison">
         <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 주문 취소 요청이 접수되었습니다.<br><br>📦 주문 정보<br>주문번호: #{주문번호}<br>상품명: #{상품명}<br>결제금액: #{총결제금액}원<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">의견남기기</div><div class="btn">문의하기</div><div class="btn">채널추가</div></div></div>
+          <div class="col-label">❌ BEFORE (공통 패턴)</div>
+          <div style="padding:20px;">
+            <h4 style="font-size:14px; margin-bottom:12px;">현재 구조</h4>
+            <p style="font-size:13px; color:#555; margin-bottom:16px;">
+              6개 캠페인 모두 동일한 톤으로 통합 운영 중.<br>
+              취소 사유별 맞춤 문구가 기획되어 있으나 미적용.
+            </p>
+            <div style="background:#fff5f5; padding:12px; border-radius:8px; font-size:12px; margin-bottom:12px;">
+              <b>취소요청</b> — 사유별 4가지 분기 설계됨 (단순변심/배송지연/주문실수/서비스불만)<br>
+              그러나 실제 운영은 통합 1개 버전
+            </div>
+            <div style="background:#fff5f5; padding:12px; border-radius:8px; font-size:12px; margin-bottom:12px;">
+              <b>취소완료</b> — "의견 남기기" 구글폼 연결 (OK)<br>
+              환불 안내 잘 되어 있음
+            </div>
+            <div style="background:#fff8f0; padding:12px; border-radius:8px; font-size:12px; margin-bottom:12px;">
+              <b>교환 요청/완료</b> — 기본 안내 + 문의 채널 안내
+            </div>
+            <div style="background:#f5f0ff; padding:12px; border-radius:8px; font-size:12px;">
+              <b>반품 요청/완료</b> — 기본 안내 + 문의 채널 안내
+            </div>
           </div>
+          <ul class="issues" style="padding:0 20px 20px;">
+            <li>취소 사유별 맞춤 대응 미적용</li>
+            <li>교환/반품 메시지에 재구매 유도 장치 없음</li>
+            <li>이탈 고객 윈백 기회 미활용</li>
+            <li>버튼 CTA 우선순위 불일치</li>
+          </ul>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 취소 요청을 받았습니다.<br><br>📦 #{상품명}<br><br>혹시 저희가 도울 수 있는 부분이 있을까요?<br>원하시는 사이즈나 모델이 다르셨다면<br>바로 교환 안내드릴 수 있어요.<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">교환으로 변경하기</div><div class="btn">그대로 취소하기</div><div class="btn">포레몽 채널 추가</div></div></div>
+          <div class="col-label">✅ AFTER (6개 개별 메시지)</div>
+          <div style="padding:20px;">
+
+            <!-- 취소요청 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#c44;">① 취소요청</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                온수매트 전문 브랜드 <b>포레몽</b>입니다.<br><br>
+                취소 요청이 접수되었습니다.<br><br>
+                <span class="good">혹시 저희가 도울 수 있는 부분이 있을까요?</span><br><br>
+                사이즈나 모델 변경이 필요하시다면<br>
+                취소 대신 교환도 가능합니다.<br><br>
+                취소를 원하시면<br>
+                아래에서 진행 상태를 확인해 주세요.
+                <div class="btn-group">
+                  <div class="btn primary">취소 진행상태 확인</div>
+                  <div class="btn">고객센터 문의</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 취소완료 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#c44;">② 취소완료</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                포레몽입니다.<br><br>
+                취소가 정상적으로 완료되었습니다.<br><br>
+                💰 <b>환불 안내</b><br>
+                ▪️결제수단 : #{결제수단}<br>
+                ▪️환불 예상 : 카드 2~5영업일 / 계좌 1~3영업일<br><br>
+                짧은 인연이었지만<br>
+                <span class="good">다음 시즌에 다시 찾아주시면<br>
+                감사의 마음을 드리겠습니다.</span><br><br>
+                더 나은 포레몽이 되도록<br>
+                소중한 의견을 남겨주세요.
+                <div class="btn-group">
+                  <div class="btn primary">의견 남기기</div>
+                  <div class="btn">고객센터 문의</div>
+                  <div class="btn">포레몽 채널 추가</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 교환요청 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#e88a00;">③ 교환요청</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                포레몽입니다.<br><br>
+                교환 요청이 접수되었습니다.<br><br>
+                📦 <b>교환 진행 안내</b><br>
+                ▪️수거 → 입고 확인 → 교환 상품 발송<br>
+                ▪️예상 소요 : 영업일 기준 3~5일<br><br>
+                진행 상태는 아래에서<br>
+                확인하실 수 있습니다.<br><br>
+                궁금한 점이 있으시면<br>
+                언제든 문의해 주세요.
+                <div class="btn-group">
+                  <div class="btn primary">교환 진행상태 확인</div>
+                  <div class="btn">고객센터 문의</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 교환완료 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#e88a00;">④ 교환완료</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                포레몽입니다.<br><br>
+                교환 상품이 발송되었습니다!<br><br>
+                📦 <b>교환 배송 정보</b><br>
+                ▪️상품명 : #{상품명}<br>
+                ▪️송장번호 : #{송장번호}<br><br>
+                교환 제품 수령 후<br>
+                <span class="good">만족스러우신지 꼭 알려주세요.</span><br><br>
+                불편을 드린 점 사과드리며,<br>
+                더 좋은 경험을 드리겠습니다.
+                <div class="btn-group">
+                  <div class="btn primary">배송조회 바로가기</div>
+                  <div class="btn">고객센터 문의</div>
+                  <div class="btn">포레몽 채널 추가</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 반품요청 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#7b61ff;">⑤ 반품요청</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                포레몽입니다.<br><br>
+                반품 요청이 접수되었습니다.<br><br>
+                📦 <b>반품 진행 안내</b><br>
+                ▪️수거 → 입고 확인 → 환불 처리<br>
+                ▪️예상 소요 : 입고 확인 후 1~3영업일<br><br>
+                반품 시 원래 포장재를 이용해 주시면<br>
+                안전한 수거에 도움이 됩니다.<br><br>
+                진행 상태는 아래에서 확인 가능합니다.
+                <div class="btn-group">
+                  <div class="btn primary">반품 진행상태 확인</div>
+                  <div class="btn">고객센터 문의</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 반품완료 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#7b61ff;">⑥ 반품완료</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                포레몽입니다.<br><br>
+                반품이 정상적으로 완료되었습니다.<br><br>
+                💰 <b>환불 안내</b><br>
+                ▪️결제수단 : #{결제수단}<br>
+                ▪️환불 예상 : 카드 2~5영업일 / 계좌 1~3영업일<br><br>
+                짧은 인연이었지만<br>
+                <span class="good">다음에 다시 찾아주시면<br>
+                감사의 마음을 드리겠습니다.</span><br><br>
+                불편하셨던 점을 알려주시면<br>
+                더 나은 포레몽이 되겠습니다.
+                <div class="btn-group">
+                  <div class="btn primary">의견 남기기</div>
+                  <div class="btn">고객센터 문의</div>
+                  <div class="btn">포레몽 채널 추가</div>
+                </div>
+              </div>
+            </div>
+
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 CS 6개 캠페인 랜딩 URL</div>
+
+              <div style="font-size:12px; font-weight:bold; color:#c44; margin:8px 0 4px;">① 취소요청</div>
+              <div class="url-row">
+                <span class="url-btn-label">취소 진행상태 확인</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-note">기존 버튼: 실시간 문의하기 · 의견 남기기(구글폼) · 채널추가(WL) | <a href="https://www.almani-center.com/console/alimtalk/template/detail/309" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#c44; margin:12px 0 4px;">② 취소완료</div>
+              <div class="url-row">
+                <span class="url-btn-label">의견 남기기</span>
+                <span class="url-suggest">https://forms.gle/99ADqX3eVZRW65C56</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">포레몽 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
+              </div>
+              <div class="url-note">기존: 결제내역 바로가기(https://new-m.pay.naver.com/) 포함 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/310" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#e88a00; margin:12px 0 4px;">③ 교환요청</div>
+              <div class="url-row">
+                <span class="url-btn-label">교환 진행상태 확인</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-note">기존: 의견 남기기(구글폼) 포함 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/321" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#e88a00; margin:12px 0 4px;">④ 교환완료</div>
+              <div class="url-row">
+                <span class="url-btn-label">배송조회 바로가기</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">포레몽 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
+              </div>
+              <div class="url-note">참고: 자주묻는 Q&A → https://brand.naver.com/foremong/notice/detail?id=2002339568 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/331" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#7b61ff; margin:12px 0 4px;">⑤ 반품요청</div>
+              <div class="url-row">
+                <span class="url-btn-label">반품 진행상태 확인</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-note">기존: 의견 남기기(구글폼) 포함 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/330" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#7b61ff; margin:12px 0 4px;">⑥ 반품완료</div>
+              <div class="url-row">
+                <span class="url-btn-label">의견 남기기</span>
+                <span class="url-suggest">https://forms.gle/99ADqX3eVZRW65C56</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">포레몽 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
+              </div>
+              <div class="url-note"><a href="https://www.almani-center.com/console/alimtalk/template/detail/332" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+            </div>
+          <ul class="issues" style="padding:0 20px 20px;">
+            <li>취소요청: 교환 대안 제안 → 이탈 방지</li>
+            <li>취소/반품완료: 환불 기간 구체화 + 윈백 메시지</li>
+            <li>교환완료: 재만족 확인 터치 → 리뷰 전환 기회</li>
+            <li>전 캠페인 버튼 CTA 통일 (핵심행동 → CS문의 → 채널추가)</li>
+            <li>원래 포장재 안내 → 반품 CS 감소</li>
+          </ul>
         </div>
       </div>
-    
+
       <div class="decision-bar">
         <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs8', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs8', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs8', 'skip')">⏭️ 보류</button>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-8', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-8', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-8', 'skip')">⏭️ 보류</button>
       </div>
     </div>
   </div>
-
-<div data-campaign="campaign-cs9" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#c44;">9</div>
-        <span class="name">취소완료</span>
-        <span class="impact mid">MID</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs9" onchange="toggleModify('campaign-cs9', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs9').click();"></span>
-            <label for="modify-campaign-cs9" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">취소 완료 후 즉시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 취소 처리가 완료되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 취소가 완료되었습니다.<br><br>이번에 불편하셨던 점이 있으시다면<br>한 말씀 남겨주세요.<br>다음엔 더 나은 경험으로 찾아뵐게요.<br><br>💚 다음에 포레몽을 다시 찾아주시면<br>특별 혜택을 드리겠습니다.<div class="btn-group"><div class="btn">한마디 남기기</div><div class="btn">포레몽 채널 추가</div></div></div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs9', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs9', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs9', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
-
-<div data-campaign="campaign-cs10" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#c44;">10</div>
-        <span class="name">교환요청</span>
-        <span class="impact mid">LOW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs10" onchange="toggleModify('campaign-cs10', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs10').click();"></span>
-            <label for="modify-campaign-cs10" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">교환 요청 시 즉시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">안녕하세요. #{고객명}님 😊<br>교환 요청이 정상 접수되었습니다.<br><br>▪️ 주문번호 : #{주문번호}<br>▪️ 상품명 : #{상품명}<br><br>회수 후 영업일 기준 3~5일 내 새 상품 발송됩니다.<div class="btn-group"><div class="btn">실시간 문의하기</div><div class="btn">의견 남기기</div><div class="btn">채널 추가하기</div></div></div>
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 교환 요청 접수됐어요.<br><br>✅ #{상품명}<br><br>수거 → 검수 → 새 상품 발송까지<br>영업일 기준 3~5일 안에 완료됩니다.<br><br>진행 상황은 채널톡으로 알려드릴게요.<div class="btn-group"><div class="btn">진행 상황 문의하기</div><div class="btn">포레몽 채널 추가</div></div></div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs10', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs10', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs10', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
-
-<div data-campaign="campaign-cs11" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#c44;">11</div>
-        <span class="name">교환완료</span>
-        <span class="impact mid">LOW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs11" onchange="toggleModify('campaign-cs11', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs11').click();"></span>
-            <label for="modify-campaign-cs11" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">교환 상품 발송 시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 교환 처리가 완료되었습니다.<br><br>▪️ 상품명 : #{상품명}<br><br>새 상품이 발송되었습니다.<br>불편을 드려 죄송합니다.<div class="btn-group"><div class="btn">채널 추가하기</div></div></div>
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 교환 상품이 발송됐어요! 📦<br><br>✅ #{상품명}<br><br>이번엔 만족스러운 경험이 되길 바랍니다.<br>설치나 사용 중 궁금한 점이 있으시면<br>언제든지 연락 주세요.<div class="btn-group"><div class="btn">설치 가이드 보기</div><div class="btn">포레몽 채널 추가</div></div></div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs11', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs11', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs11', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
-
-<div data-campaign="campaign-cs12" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#c44;">12</div>
-        <span class="name">반품요청</span>
-        <span class="impact mid">MID</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs12" onchange="toggleModify('campaign-cs12', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs12').click();"></span>
-            <label for="modify-campaign-cs12" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">반품 요청 시 즉시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">안녕하세요. #{고객명}님,<br>반품이 정상 접수되었습니다.<br><br>📦 주문번호 : #{주문번호}<br>🛍️ 상품명 : #{상품명}<br><br>회수 확인 후 영업일 기준 3~5일 내 환불됩니다.<div class="btn-group"><div class="btn">실시간 문의하기</div><div class="btn">불만족 접수하기</div><div class="btn">채널 추가하기</div></div></div>
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 반품 요청을 받았습니다.<br><br>불편하셨을 텐데 정말 죄송합니다.<br><br>📦 #{상품명}<br>회수 → 검수 → 환불까지 빠르게 처리할게요.<br>영업일 기준 3~5일 내 완료됩니다.<br><br>한 말씀 남겨주시면 꼭 개선하겠습니다.<div class="btn-group"><div class="btn">불편 사항 알리기</div><div class="btn">포레몽 채널 추가</div></div></div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs12', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs12', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs12', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
-
-<div data-campaign="campaign-cs13" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#c44;">13</div>
-        <span class="name">반품완료</span>
-        <span class="impact mid">LOW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs13" onchange="toggleModify('campaign-cs13', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs13').click();"></span>
-            <label for="modify-campaign-cs13" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">반품 환불 완료 시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 반품 처리가 완료되었습니다.<br><br>▪️ 상품명 : #{상품명}<br><br>환불이 결제 수단에 따라 처리됩니다.<br>감사합니다.<div class="btn-group"><div class="btn">채널 추가하기</div></div></div>
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 환불 처리가 완료됐습니다.<br><br>✅ #{상품명}<br><br>이번에 아쉬운 경험을 드려 죄송합니다.<br>더 나은 포레몽이 되겠습니다.<br><br>💚 다음에 다시 찾아주시면<br>더 좋은 경험으로 보답할게요.<div class="btn-group"><div class="btn">한마디 남기기</div><div class="btn">포레몽 채널 추가</div></div></div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs13', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs13', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs13', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
-
-
 
   <!-- 성과 추적 -->
   <div class="section-title">성과 추적 체계 (신규 도입)</div>
@@ -2008,7 +2130,7 @@
   </div>
 
   <div class="footer">
-    포레몽 알림톡 CX 개선안 · 2026-03-10 · 그로밋팀
+    포레몽 알림톡 CX 개선안 · 2026-03-14 · 그로밋팀
   </div>
 </div>
 
@@ -2114,7 +2236,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar, .campaign-body, .after-url-box, .comparison').forEach(el => {
+    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar').forEach(el => {
       el.addEventListener('click', e => e.stopPropagation());
     });
   });
