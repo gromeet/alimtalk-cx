@@ -1622,19 +1622,20 @@
 
 
   <!-- 8-13: 취소/교환/반품 (6개 개별 캠페인) -->
-  <div data-campaign="campaign-8" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div data-campaign="campaign-8" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#c44;">7</div>
+        <div class="num-badge">8</div>
         <span class="name">취소요청</span>
-        <span class="impact mid">MID</span>
+        <span class="impact mid">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <div class="modify-toggle" onclick="event.stopPropagation()">
-          <input type="checkbox" id="modify-campaign-8" onchange="toggleModify('campaign-8', this, event)">
-          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-8').click();"></span>
-          <label for="modify-campaign-8" onclick="event.stopPropagation()">수정필요</label>
-        </div>
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-8" onchange="toggleModify('campaign-8', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-8').click();"></span>
+            <label for="modify-campaign-8" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1643,9 +1644,9 @@
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">
                 안녕하세요. #{고객명}님<br>
                 주문 취소 요청이<br>
                 정상적으로 접수되었습니다.<br><br>
@@ -1665,17 +1666,20 @@
                   <div class="btn">채널추가하기</div>
                   <div class="btn">주문내역 바로가기</div>
                 </div>
-              </div>
             </div>
-
-            
+            </div>
+          <ul class="issues">
+            <li></li>
+          </ul>
         </div>
-        <div class="arrow-col">→</div>
+        <div class="arrow-col">
+          <div class="arrow-row"></div>
+        </div>
         <div class="after">
           <div class="col-label">✅ AFTER</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white" contenteditable="true">
                 #{고객명}님, 안녕하세요.<br>
                 선케어 전문 브랜드 <b>유비드(UVID)</b>입니다.<br><br>
                 취소 요청이 접수되었습니다.<br><br>
@@ -1684,8 +1688,11 @@
                 취소를 원하시면<br>
                 아래에서 진행 상태를 확인해 주세요.
                 <div class="btn-group">
-                  <div class="btn primary">주문내역 확인</div>
+                  <div class="btn">주문내역 확인</div>
                   <div class="btn">1:1 문의하기</div>
+                </div>
+            </div>
+            </div>
           <div class="after-url-box" onclick="event.stopPropagation()">
             <div class="url-box-title">💡 취소요청 랜딩 URL</div>
             <div class="url-row">
@@ -1696,7 +1703,7 @@
                 <span class="url-btn-label">1:1 문의하기</span>
                 <span class="url-suggest">http://pf.kakao.com/_xcdWxon/chat</span>
               </div>
-            <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | <a href="https://www.notion.so/2efda673dd5880379876ff0f6d0499db" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+            <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | </div>
           </div>
         </div>
       </div>
@@ -1709,19 +1716,21 @@
     </div>
   </div>
 
+
   <div data-campaign="campaign-9" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#c44;">8</div>
+        <div class="num-badge">9</div>
         <span class="name">취소완료</span>
-        <span class="impact mid">MID</span>
+        <span class="impact mid">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <div class="modify-toggle" onclick="event.stopPropagation()">
-          <input type="checkbox" id="modify-campaign-9" onchange="toggleModify('campaign-9', this, event)">
-          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-9').click();"></span>
-          <label for="modify-campaign-9" onclick="event.stopPropagation()">수정필요</label>
-        </div>
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-9" onchange="toggleModify('campaign-9', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-9').click();"></span>
+            <label for="modify-campaign-9" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1730,9 +1739,9 @@
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">
                 안녕하세요. #{고객명}님,<br>
                 주문하신 내역이<br>
                 정상적으로 취소 완료되었습니다.<br><br>
@@ -1760,17 +1769,20 @@
                   <div class="btn">채널추가하기</div>
                   <div class="btn">주문내역 바로가기</div>
                 </div>
-              </div>
             </div>
-
-            
+            </div>
+          <ul class="issues">
+            <li></li>
+          </ul>
         </div>
-        <div class="arrow-col">→</div>
+        <div class="arrow-col">
+          <div class="arrow-row"></div>
+        </div>
         <div class="after">
           <div class="col-label">✅ AFTER</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white" contenteditable="true">
                 #{고객명}님, 안녕하세요.<br>
                 유비드입니다.<br><br>
                 취소가 정상적으로 완료되었습니다.<br><br>
@@ -1783,9 +1795,12 @@
                 소중한 의견을 남겨주시면<br>
                 더 나은 유비드가 되겠습니다.
                 <div class="btn-group">
-                  <div class="btn primary">의견 남기기</div>
+                  <div class="btn">의견 남기기</div>
                   <div class="btn">1:1 문의하기</div>
                   <div class="btn">유비드 채널 추가</div>
+                </div>
+            </div>
+            </div>
           <div class="after-url-box" onclick="event.stopPropagation()">
             <div class="url-box-title">💡 취소완료 랜딩 URL</div>
             <div class="url-row">
@@ -1800,7 +1815,7 @@
                 <span class="url-btn-label">유비드 채널 추가</span>
                 <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
               </div>
-            <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | <a href="https://www.notion.so/2efda673dd5880a1bee4e9bca119aac8" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+            <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | </div>
           </div>
         </div>
       </div>
@@ -1813,19 +1828,21 @@
     </div>
   </div>
 
+
   <div data-campaign="campaign-10" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#e88a00;">9</div>
+        <div class="num-badge">10</div>
         <span class="name">교환요청</span>
-        <span class="impact mid">MID</span>
+        <span class="impact mid">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <div class="modify-toggle" onclick="event.stopPropagation()">
-          <input type="checkbox" id="modify-campaign-10" onchange="toggleModify('campaign-10', this, event)">
-          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-10').click();"></span>
-          <label for="modify-campaign-10" onclick="event.stopPropagation()">수정필요</label>
-        </div>
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-10" onchange="toggleModify('campaign-10', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-10').click();"></span>
+            <label for="modify-campaign-10" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1834,9 +1851,9 @@
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">
                 안녕하세요. #{고객명}님<br>
                 요청하신 교환이<br>
                 정상적으로 접수되었습니다.<br><br>
@@ -1866,17 +1883,20 @@
                   <div class="btn">채널추가하기</div>
                   <div class="btn">주문내역 바로가기</div>
                 </div>
-              </div>
             </div>
-
-            
+            </div>
+          <ul class="issues">
+            <li></li>
+          </ul>
         </div>
-        <div class="arrow-col">→</div>
+        <div class="arrow-col">
+          <div class="arrow-row"></div>
+        </div>
         <div class="after">
           <div class="col-label">✅ AFTER</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white" contenteditable="true">
                 #{고객명}님, 안녕하세요.<br>
                 유비드입니다.<br><br>
                 교환 요청이 접수되었습니다.<br><br>
@@ -1887,8 +1907,11 @@
                 진행 상태는 아래에서<br>
                 확인하실 수 있습니다.
                 <div class="btn-group">
-                  <div class="btn primary">주문내역 확인</div>
+                  <div class="btn">주문내역 확인</div>
                   <div class="btn">1:1 문의하기</div>
+                </div>
+            </div>
+            </div>
           <div class="after-url-box" onclick="event.stopPropagation()">
             <div class="url-box-title">💡 교환요청 랜딩 URL</div>
             <div class="url-row">
@@ -1899,7 +1922,7 @@
                 <span class="url-btn-label">1:1 문의하기</span>
                 <span class="url-suggest">http://pf.kakao.com/_xcdWxon/chat</span>
               </div>
-            <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | <a href="https://www.notion.so/2efda673dd588029a4fdcc23ecd5611c" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+            <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | </div>
           </div>
         </div>
       </div>
@@ -1912,19 +1935,21 @@
     </div>
   </div>
 
+
   <div data-campaign="campaign-11" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#e88a00;">10</div>
+        <div class="num-badge">11</div>
         <span class="name">교환완료</span>
-        <span class="impact mid">MID</span>
+        <span class="impact mid">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <div class="modify-toggle" onclick="event.stopPropagation()">
-          <input type="checkbox" id="modify-campaign-11" onchange="toggleModify('campaign-11', this, event)">
-          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-11').click();"></span>
-          <label for="modify-campaign-11" onclick="event.stopPropagation()">수정필요</label>
-        </div>
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-11" onchange="toggleModify('campaign-11', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-11').click();"></span>
+            <label for="modify-campaign-11" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1933,9 +1958,9 @@
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">
                 안녕하세요. #{고객명}님<br><br>
                 요청하신 상품의 교환 처리가 완료되어<br>
                 새 상품이 안전하게 출고되었습니다.<br><br>
@@ -1966,17 +1991,20 @@
                   <div class="btn">채널추가하기</div>
                   <div class="btn">주문내역 바로가기</div>
                 </div>
-              </div>
             </div>
-
-            
+            </div>
+          <ul class="issues">
+            <li></li>
+          </ul>
         </div>
-        <div class="arrow-col">→</div>
+        <div class="arrow-col">
+          <div class="arrow-row"></div>
+        </div>
         <div class="after">
           <div class="col-label">✅ AFTER</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white" contenteditable="true">
                 #{고객명}님, 안녕하세요.<br>
                 유비드입니다.<br><br>
                 교환 상품이 발송되었습니다!<br><br>
@@ -1987,9 +2015,12 @@
                 만족스러우신지 꼭 알려주세요.</span><br><br>
                 끝까지 도와드리겠습니다.
                 <div class="btn-group">
-                  <div class="btn primary">배송조회 바로가기</div>
+                  <div class="btn">배송조회 바로가기</div>
                   <div class="btn">1:1 문의하기</div>
                   <div class="btn">유비드 채널 추가</div>
+                </div>
+            </div>
+            </div>
           <div class="after-url-box" onclick="event.stopPropagation()">
             <div class="url-box-title">💡 교환완료 랜딩 URL</div>
             <div class="url-row">
@@ -2004,7 +2035,7 @@
                 <span class="url-btn-label">유비드 채널 추가</span>
                 <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
               </div>
-            <div class="url-note">기존 템플릿에 FAQ TOP 30 링크 미삽입 상태 | <a href="https://www.notion.so/2efda673dd58804cbb3ec5da55a4a1a1" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+            <div class="url-note">기존 템플릿에 FAQ TOP 30 링크 미삽입 상태 | </div>
           </div>
         </div>
       </div>
@@ -2017,19 +2048,21 @@
     </div>
   </div>
 
+
   <div data-campaign="campaign-12" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#7b61ff;">11</div>
+        <div class="num-badge">12</div>
         <span class="name">반품요청</span>
-        <span class="impact mid">MID</span>
+        <span class="impact mid">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <div class="modify-toggle" onclick="event.stopPropagation()">
-          <input type="checkbox" id="modify-campaign-12" onchange="toggleModify('campaign-12', this, event)">
-          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-12').click();"></span>
-          <label for="modify-campaign-12" onclick="event.stopPropagation()">수정필요</label>
-        </div>
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-12" onchange="toggleModify('campaign-12', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-12').click();"></span>
+            <label for="modify-campaign-12" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -2038,9 +2071,9 @@
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">
                 안녕하세요. #{고객명}님<br>
                 요청하신 반품이<br>
                 정상적으로 접수되었습니다.<br><br>
@@ -2075,17 +2108,20 @@
                   <div class="btn">채널추가하기</div>
                   <div class="btn">주문내역 바로가기</div>
                 </div>
-              </div>
             </div>
-
-            
+            </div>
+          <ul class="issues">
+            <li></li>
+          </ul>
         </div>
-        <div class="arrow-col">→</div>
+        <div class="arrow-col">
+          <div class="arrow-row"></div>
+        </div>
         <div class="after">
           <div class="col-label">✅ AFTER</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white" contenteditable="true">
                 #{고객명}님, 안녕하세요.<br>
                 유비드입니다.<br><br>
                 반품 요청이 접수되었습니다.<br><br>
@@ -2095,8 +2131,11 @@
                 ▪️③ 환불 처리 (3~7영업일)<br><br>
                 진행 상태는 아래에서 확인 가능합니다.
                 <div class="btn-group">
-                  <div class="btn primary">주문내역 확인</div>
+                  <div class="btn">주문내역 확인</div>
                   <div class="btn">1:1 문의하기</div>
+                </div>
+            </div>
+            </div>
           <div class="after-url-box" onclick="event.stopPropagation()">
             <div class="url-box-title">💡 반품요청 랜딩 URL</div>
             <div class="url-row">
@@ -2107,7 +2146,7 @@
                 <span class="url-btn-label">1:1 문의하기</span>
                 <span class="url-suggest">http://pf.kakao.com/_xcdWxon/chat</span>
               </div>
-            <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | <a href="https://www.notion.so/2efda673dd5880289770ce8a2fdec8b0" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+            <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | </div>
           </div>
         </div>
       </div>
@@ -2120,19 +2159,21 @@
     </div>
   </div>
 
+
   <div data-campaign="campaign-13" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#7b61ff;">12</div>
+        <div class="num-badge">13</div>
         <span class="name">반품완료</span>
-        <span class="impact mid">MID</span>
+        <span class="impact mid">HIGH</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <div class="modify-toggle" onclick="event.stopPropagation()">
-          <input type="checkbox" id="modify-campaign-13" onchange="toggleModify('campaign-13', this, event)">
-          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-13').click();"></span>
-          <label for="modify-campaign-13" onclick="event.stopPropagation()">수정필요</label>
-        </div>
+          <div class="modify-toggle" onclick="event.stopPropagation()">
+            <input type="checkbox" id="modify-campaign-13" onchange="toggleModify('campaign-13', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-13').click();"></span>
+            <label for="modify-campaign-13" onclick="event.stopPropagation()">수정필요</label>
+          </div>
+
         <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -2141,9 +2182,9 @@
       <div class="comparison">
         <div class="before">
           <div class="col-label">❌ BEFORE</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white">
                 안녕하세요. #{고객명}님<br>
                 요청하신 반품이<br>
                 정상적으로 완료되었습니다.<br><br>
@@ -2176,16 +2217,20 @@
                   <div class="btn">채널추가하기</div>
                   <div class="btn">주문내역 바로가기</div>
                 </div>
-              </div>
             </div>
-
+            </div>
+          <ul class="issues">
+            <li></li>
+          </ul>
         </div>
-        <div class="arrow-col">→</div>
+        <div class="arrow-col">
+          <div class="arrow-row"></div>
+        </div>
         <div class="after">
           <div class="col-label">✅ AFTER</div>
-          <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
+          <div class="phone">
+            <div class="kakao-header">카카오 알림톡</div>
+            <div class="msg white" contenteditable="true">
                 #{고객명}님, 안녕하세요.<br>
                 유비드입니다.<br><br>
                 반품이 정상적으로 완료되었습니다.<br><br>
@@ -2198,9 +2243,12 @@
                 불편하셨던 점을 알려주시면<br>
                 더 나은 유비드가 되겠습니다.
                 <div class="btn-group">
-                  <div class="btn primary">의견 남기기</div>
+                  <div class="btn">의견 남기기</div>
                   <div class="btn">1:1 문의하기</div>
                   <div class="btn">유비드 채널 추가</div>
+                </div>
+            </div>
+            </div>
           <div class="after-url-box" onclick="event.stopPropagation()">
             <div class="url-box-title">💡 반품완료 랜딩 URL</div>
             <div class="url-row">
@@ -2215,7 +2263,7 @@
                 <span class="url-btn-label">유비드 채널 추가</span>
                 <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
               </div>
-            <div class="url-note"><a href="https://www.notion.so/2efda673dd5880d8bb4bedd017c01e63" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+            <div class="url-note"></div>
           </div>
         </div>
       </div>
@@ -2229,7 +2277,7 @@
   </div>
 
 
-  <!-- 성과 추적 -->
+<!-- 성과 추적 -->
   <div class="section-title">성과 추적 체계 (신규 도입)</div>
   <div style="background:white; border-radius:16px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:24px;">
     <table style="width:100%; border-collapse:collapse; font-size:13px;">
