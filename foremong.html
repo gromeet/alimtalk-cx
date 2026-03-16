@@ -1810,21 +1810,21 @@
     </div>
   </div>
 
-  <!-- 8~12: 취소/교환/반품 (그룹) -->
+  <!-- 8~12: 취소/교환/반품 (6개 개별 캠페인) -->
+  <!-- 8-13: 취소/교환/반품 (6개 개별 캠페인) -->
   <div data-campaign="campaign-8" class="campaign-card" onclick="this.classList.toggle('open')">
     <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#c44;">7-12</div>
-        <span class="name">취소 / 교환 / 반품 (6개 캠페인)</span>
+        <div class="num-badge" style="background:#c44;">7</div>
+        <span class="name">취소요청</span>
         <span class="impact mid">MID</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-8" onchange="toggleModify('campaign-8', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-8').click();"></span>
-            <label for="modify-campaign-8" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-
+        <div class="modify-toggle" onclick="event.stopPropagation()">
+          <input type="checkbox" id="modify-campaign-8" onchange="toggleModify('campaign-8', this, event)">
+          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-8').click();"></span>
+          <label for="modify-campaign-8" onclick="event.stopPropagation()">수정필요</label>
+        </div>
         <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
@@ -1832,12 +1832,8 @@
     <div class="campaign-body">
       <div class="comparison">
         <div class="before">
-          <div class="col-label">❌ BEFORE (6개 개별 메시지)</div>
-          <div style="padding:20px;">
-
-            <!-- ① 취소요청 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#c44;">① 취소요청</h4>
-            <div class="phone" style="margin-bottom:16px;">
+          <div class="col-label">❌ BEFORE</div>
+          <div class="phone" >
               <div class="kakao-header">카카오 알림톡</div>
               <div class="msg white">
                 안녕하세요. #{고객명}님<br>
@@ -1868,13 +1864,69 @@
                   <div class="btn">채널 추가하기</div>
                   <div class="btn">실시간 문의하기</div>
                   <div class="btn">의견 남기기</div>
-                </div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER</div>
+          <div class="phone" >
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                온수매트 전문 브랜드 <b>포레몽</b>입니다.<br><br>
+                취소 요청이 접수되었습니다.<br><br>
+                <span class="good">혹시 저희가 도울 수 있는 부분이 있을까요?</span><br><br>
+                사이즈나 모델 변경이 필요하시다면<br>
+                취소 대신 교환도 가능합니다.<br><br>
+                취소를 원하시면<br>
+                아래에서 진행 상태를 확인해 주세요.
+                <div class="btn-group">
+                  <div class="btn primary">취소 진행상태 확인</div>
+                  <div class="btn">고객센터 문의</div>
+          <div class="after-url-box" onclick="event.stopPropagation()">
+            <div class="url-box-title">💡 취소요청 랜딩 URL</div>
+            <div class="url-row">
+                <span class="url-btn-label">취소 진행상태 확인</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
               </div>
-            </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+            <div class="url-note">기존 버튼: 실시간 문의하기 · 의견 남기기(구글폼) · 채널추가(WL) | <a href="https://www.almani-center.com/console/alimtalk/template/detail/309" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-8', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-8', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-8', 'skip')">⏭️ 보류</button>
+      </div>
+    </div>
+  </div>
 
-            <!-- ② 취소완료 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#c44;">② 취소완료</h4>
-            <div class="phone" style="margin-bottom:16px;">
+  <div data-campaign="campaign-9" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#c44;">8</div>
+        <span class="name">취소완료</span>
+        <span class="impact mid">MID</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="modify-toggle" onclick="event.stopPropagation()">
+          <input type="checkbox" id="modify-campaign-9" onchange="toggleModify('campaign-9', this, event)">
+          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-9').click();"></span>
+          <label for="modify-campaign-9" onclick="event.stopPropagation()">수정필요</label>
+        </div>
+        <span class="timing">이벤트 발생 시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE</div>
+          <div class="phone" >
               <div class="kakao-header">카카오 알림톡</div>
               <div class="msg white">
                 안녕하세요. #{고객명}님,<br>
@@ -1905,13 +1957,77 @@
                   <div class="btn">채널 추가하기</div>
                   <div class="btn">의견 남기기</div>
                   <div class="btn">결제내역 바로가기</div>
-                </div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER</div>
+          <div class="phone" >
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                포레몽입니다.<br><br>
+                취소가 정상적으로 완료되었습니다.<br><br>
+                💰 <b>환불 안내</b><br>
+                ▪️결제수단 : #{결제수단}<br>
+                ▪️환불 예상 : 카드 2~5영업일 / 계좌 1~3영업일<br><br>
+                짧은 인연이었지만<br>
+                <span class="good">다음 시즌에 다시 찾아주시면<br>
+                감사의 마음을 드리겠습니다.</span><br><br>
+                더 나은 포레몽이 되도록<br>
+                소중한 의견을 남겨주세요.
+                <div class="btn-group">
+                  <div class="btn primary">의견 남기기</div>
+                  <div class="btn">고객센터 문의</div>
+                  <div class="btn">포레몽 채널 추가</div>
+          <div class="after-url-box" onclick="event.stopPropagation()">
+            <div class="url-box-title">💡 취소완료 랜딩 URL</div>
+            <div class="url-row">
+                <span class="url-btn-label">의견 남기기</span>
+                <span class="url-suggest">https://forms.gle/99ADqX3eVZRW65C56</span>
               </div>
-            </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">포레몽 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
+              </div>
+            <div class="url-note">기존: 결제내역 바로가기(https://new-m.pay.naver.com/) 포함 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/310" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-9', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-9', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-9', 'skip')">⏭️ 보류</button>
+      </div>
+    </div>
+  </div>
 
-            <!-- ③ 교환요청 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#e88a00;">③ 교환요청</h4>
-            <div class="phone" style="margin-bottom:16px;">
+  <div data-campaign="campaign-10" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#e88a00;">9</div>
+        <span class="name">교환요청</span>
+        <span class="impact mid">MID</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="modify-toggle" onclick="event.stopPropagation()">
+          <input type="checkbox" id="modify-campaign-10" onchange="toggleModify('campaign-10', this, event)">
+          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-10').click();"></span>
+          <label for="modify-campaign-10" onclick="event.stopPropagation()">수정필요</label>
+        </div>
+        <span class="timing">이벤트 발생 시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE</div>
+          <div class="phone" >
               <div class="kakao-header">카카오 알림톡</div>
               <div class="msg white">
                 안녕하세요. #{고객명}님<br>
@@ -1945,13 +2061,71 @@
                 <div class="btn-group">
                   <div class="btn">실시간 문의하기</div>
                   <div class="btn">의견 남기기</div>
-                </div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER</div>
+          <div class="phone" >
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                포레몽입니다.<br><br>
+                교환 요청이 접수되었습니다.<br><br>
+                📦 <b>교환 진행 안내</b><br>
+                ▪️수거 → 입고 확인 → 교환 상품 발송<br>
+                ▪️예상 소요 : 영업일 기준 3~5일<br><br>
+                진행 상태는 아래에서<br>
+                확인하실 수 있습니다.<br><br>
+                궁금한 점이 있으시면<br>
+                언제든 문의해 주세요.
+                <div class="btn-group">
+                  <div class="btn primary">교환 진행상태 확인</div>
+                  <div class="btn">고객센터 문의</div>
+          <div class="after-url-box" onclick="event.stopPropagation()">
+            <div class="url-box-title">💡 교환요청 랜딩 URL</div>
+            <div class="url-row">
+                <span class="url-btn-label">교환 진행상태 확인</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
               </div>
-            </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+            <div class="url-note">기존: 의견 남기기(구글폼) 포함 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/321" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-10', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-10', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-10', 'skip')">⏭️ 보류</button>
+      </div>
+    </div>
+  </div>
 
-            <!-- ④ 교환완료 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#e88a00;">④ 교환완료</h4>
-            <div class="phone" style="margin-bottom:16px;">
+  <div data-campaign="campaign-11" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#e88a00;">10</div>
+        <span class="name">교환완료</span>
+        <span class="impact mid">MID</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="modify-toggle" onclick="event.stopPropagation()">
+          <input type="checkbox" id="modify-campaign-11" onchange="toggleModify('campaign-11', this, event)">
+          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-11').click();"></span>
+          <label for="modify-campaign-11" onclick="event.stopPropagation()">수정필요</label>
+        </div>
+        <span class="timing">이벤트 발생 시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE</div>
+          <div class="phone" >
               <div class="kakao-header">카카오 알림톡</div>
               <div class="msg white">
                 안녕하세요. #{고객명}님<br>
@@ -1994,13 +2168,76 @@
                   <div class="btn">자주묻는질문 TOP 30</div>
                   <div class="btn">실시간 문의하기</div>
                   <div class="btn">채널 추가하기</div>
-                </div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER</div>
+          <div class="phone" >
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                포레몽입니다.<br><br>
+                교환 상품이 발송되었습니다!<br><br>
+                📦 <b>교환 배송 정보</b><br>
+                ▪️상품명 : #{상품명}<br>
+                ▪️송장번호 : #{송장번호}<br><br>
+                교환 제품 수령 후<br>
+                <span class="good">만족스러우신지 꼭 알려주세요.</span><br><br>
+                불편을 드린 점 사과드리며,<br>
+                더 좋은 경험을 드리겠습니다.
+                <div class="btn-group">
+                  <div class="btn primary">배송조회 바로가기</div>
+                  <div class="btn">고객센터 문의</div>
+                  <div class="btn">포레몽 채널 추가</div>
+          <div class="after-url-box" onclick="event.stopPropagation()">
+            <div class="url-box-title">💡 교환완료 랜딩 URL</div>
+            <div class="url-row">
+                <span class="url-btn-label">배송조회 바로가기</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
               </div>
-            </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">포레몽 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
+              </div>
+            <div class="url-note">참고: 자주묻는 Q&A → https://brand.naver.com/foremong/notice/detail?id=2002339568 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/331" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-11', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-11', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-11', 'skip')">⏭️ 보류</button>
+      </div>
+    </div>
+  </div>
 
-            <!-- ⑤ 반품요청 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#7b61ff;">⑤ 반품요청</h4>
-            <div class="phone" style="margin-bottom:16px;">
+  <div data-campaign="campaign-12" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#7b61ff;">11</div>
+        <span class="name">반품요청</span>
+        <span class="impact mid">MID</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="modify-toggle" onclick="event.stopPropagation()">
+          <input type="checkbox" id="modify-campaign-12" onchange="toggleModify('campaign-12', this, event)">
+          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-12').click();"></span>
+          <label for="modify-campaign-12" onclick="event.stopPropagation()">수정필요</label>
+        </div>
+        <span class="timing">이벤트 발생 시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE</div>
+          <div class="phone" >
               <div class="kakao-header">카카오 알림톡</div>
               <div class="msg white">
                 안녕하세요. #{고객명}님<br>
@@ -2037,13 +2274,70 @@
                   <div class="btn">실시간 문의하기</div>
                   <div class="btn">의견 남기기</div>
                   <div class="btn">채널 추가하기</div>
-                </div>
+        </div>
+        <div class="arrow-col">→</div>
+        <div class="after">
+          <div class="col-label">✅ AFTER</div>
+          <div class="phone" >
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                포레몽입니다.<br><br>
+                반품 요청이 접수되었습니다.<br><br>
+                📦 <b>반품 진행 안내</b><br>
+                ▪️수거 → 입고 확인 → 환불 처리<br>
+                ▪️예상 소요 : 입고 확인 후 1~3영업일<br><br>
+                반품 시 원래 포장재를 이용해 주시면<br>
+                안전한 수거에 도움이 됩니다.<br><br>
+                진행 상태는 아래에서 확인 가능합니다.
+                <div class="btn-group">
+                  <div class="btn primary">반품 진행상태 확인</div>
+                  <div class="btn">고객센터 문의</div>
+          <div class="after-url-box" onclick="event.stopPropagation()">
+            <div class="url-box-title">💡 반품요청 랜딩 URL</div>
+            <div class="url-row">
+                <span class="url-btn-label">반품 진행상태 확인</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
               </div>
-            </div>
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+            <div class="url-note">기존: 의견 남기기(구글폼) 포함 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/330" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="decision-bar">
+        <span class="status-label">결정</span>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-12', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-12', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-12', 'skip')">⏭️ 보류</button>
+      </div>
+    </div>
+  </div>
 
-            <!-- ⑥ 반품완료 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#7b61ff;">⑥ 반품완료</h4>
-            <div class="phone" style="margin-bottom:16px;">
+  <div data-campaign="campaign-13" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
+      <div class="left">
+        <div class="num-badge" style="background:#7b61ff;">12</div>
+        <span class="name">반품완료</span>
+        <span class="impact mid">MID</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="modify-toggle" onclick="event.stopPropagation()">
+          <input type="checkbox" id="modify-campaign-13" onchange="toggleModify('campaign-13', this, event)">
+          <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-13').click();"></span>
+          <label for="modify-campaign-13" onclick="event.stopPropagation()">수정필요</label>
+        </div>
+        <span class="timing">이벤트 발생 시</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="campaign-body">
+      <div class="comparison">
+        <div class="before">
+          <div class="col-label">❌ BEFORE</div>
+          <div class="phone" >
               <div class="kakao-header">카카오 알림톡</div>
               <div class="msg white">
                 안녕하세요. #{고객명}님<br>
@@ -2077,130 +2371,11 @@
                 <div class="btn-group">
                   <div class="btn">의견 남기기</div>
                   <div class="btn">실시간 문의하기</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
-          <div class="col-label">✅ AFTER (6개 개별 메시지)</div>
-          <div style="padding:20px;">
-
-            <!-- 취소요청 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#c44;">① 취소요청</h4>
-            <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
-                #{고객명}님, 안녕하세요.<br>
-                온수매트 전문 브랜드 <b>포레몽</b>입니다.<br><br>
-                취소 요청이 접수되었습니다.<br><br>
-                <span class="good">혹시 저희가 도울 수 있는 부분이 있을까요?</span><br><br>
-                사이즈나 모델 변경이 필요하시다면<br>
-                취소 대신 교환도 가능합니다.<br><br>
-                취소를 원하시면<br>
-                아래에서 진행 상태를 확인해 주세요.
-                <div class="btn-group">
-                  <div class="btn primary">취소 진행상태 확인</div>
-                  <div class="btn">고객센터 문의</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 취소완료 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#c44;">② 취소완료</h4>
-            <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
-                #{고객명}님, 안녕하세요.<br>
-                포레몽입니다.<br><br>
-                취소가 정상적으로 완료되었습니다.<br><br>
-                💰 <b>환불 안내</b><br>
-                ▪️결제수단 : #{결제수단}<br>
-                ▪️환불 예상 : 카드 2~5영업일 / 계좌 1~3영업일<br><br>
-                짧은 인연이었지만<br>
-                <span class="good">다음 시즌에 다시 찾아주시면<br>
-                감사의 마음을 드리겠습니다.</span><br><br>
-                더 나은 포레몽이 되도록<br>
-                소중한 의견을 남겨주세요.
-                <div class="btn-group">
-                  <div class="btn primary">의견 남기기</div>
-                  <div class="btn">고객센터 문의</div>
-                  <div class="btn">포레몽 채널 추가</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 교환요청 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#e88a00;">③ 교환요청</h4>
-            <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
-                #{고객명}님, 안녕하세요.<br>
-                포레몽입니다.<br><br>
-                교환 요청이 접수되었습니다.<br><br>
-                📦 <b>교환 진행 안내</b><br>
-                ▪️수거 → 입고 확인 → 교환 상품 발송<br>
-                ▪️예상 소요 : 영업일 기준 3~5일<br><br>
-                진행 상태는 아래에서<br>
-                확인하실 수 있습니다.<br><br>
-                궁금한 점이 있으시면<br>
-                언제든 문의해 주세요.
-                <div class="btn-group">
-                  <div class="btn primary">교환 진행상태 확인</div>
-                  <div class="btn">고객센터 문의</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 교환완료 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#e88a00;">④ 교환완료</h4>
-            <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
-                #{고객명}님, 안녕하세요.<br>
-                포레몽입니다.<br><br>
-                교환 상품이 발송되었습니다!<br><br>
-                📦 <b>교환 배송 정보</b><br>
-                ▪️상품명 : #{상품명}<br>
-                ▪️송장번호 : #{송장번호}<br><br>
-                교환 제품 수령 후<br>
-                <span class="good">만족스러우신지 꼭 알려주세요.</span><br><br>
-                불편을 드린 점 사과드리며,<br>
-                더 좋은 경험을 드리겠습니다.
-                <div class="btn-group">
-                  <div class="btn primary">배송조회 바로가기</div>
-                  <div class="btn">고객센터 문의</div>
-                  <div class="btn">포레몽 채널 추가</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 반품요청 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#7b61ff;">⑤ 반품요청</h4>
-            <div class="phone" style="margin-bottom:16px;">
-              <div class="kakao-header">카카오 알림톡</div>
-              <div class="msg white" contenteditable="true">
-                #{고객명}님, 안녕하세요.<br>
-                포레몽입니다.<br><br>
-                반품 요청이 접수되었습니다.<br><br>
-                📦 <b>반품 진행 안내</b><br>
-                ▪️수거 → 입고 확인 → 환불 처리<br>
-                ▪️예상 소요 : 입고 확인 후 1~3영업일<br><br>
-                반품 시 원래 포장재를 이용해 주시면<br>
-                안전한 수거에 도움이 됩니다.<br><br>
-                진행 상태는 아래에서 확인 가능합니다.
-                <div class="btn-group">
-                  <div class="btn primary">반품 진행상태 확인</div>
-                  <div class="btn">고객센터 문의</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 반품완료 -->
-            <h4 style="font-size:13px; margin-bottom:8px; color:#7b61ff;">⑥ 반품완료</h4>
-            <div class="phone" style="margin-bottom:16px;">
+          <div class="col-label">✅ AFTER</div>
+          <div class="phone" >
               <div class="kakao-header">카카오 알림톡</div>
               <div class="msg white" contenteditable="true">
                 #{고객명}님, 안녕하세요.<br>
@@ -2218,111 +2393,32 @@
                   <div class="btn primary">의견 남기기</div>
                   <div class="btn">고객센터 문의</div>
                   <div class="btn">포레몽 채널 추가</div>
-                </div>
+          <div class="after-url-box" onclick="event.stopPropagation()">
+            <div class="url-box-title">💡 반품완료 랜딩 URL</div>
+            <div class="url-row">
+                <span class="url-btn-label">의견 남기기</span>
+                <span class="url-suggest">https://forms.gle/99ADqX3eVZRW65C56</span>
               </div>
-            </div>
-
+              <div class="url-row">
+                <span class="url-btn-label">고객센터 문의</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">포레몽 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
+              </div>
+            <div class="url-note"><a href="https://www.almani-center.com/console/alimtalk/template/detail/332" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
           </div>
-            <div class="after-url-box" onclick="event.stopPropagation()">
-              <div class="url-box-title">💡 CS 6개 캠페인 랜딩 URL</div>
-
-              <div style="font-size:12px; font-weight:bold; color:#c44; margin:8px 0 4px;">① 취소요청</div>
-              <div class="url-row">
-                <span class="url-btn-label">취소 진행상태 확인</span>
-                <span class="url-suggest">https://new-m.pay.naver.com/</span>
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">고객센터 문의</span>
-                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
-              </div>
-              <div class="url-note">기존 버튼: 실시간 문의하기 · 의견 남기기(구글폼) · 채널추가(WL) | <a href="https://www.almani-center.com/console/alimtalk/template/detail/309" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
-
-              <div style="font-size:12px; font-weight:bold; color:#c44; margin:12px 0 4px;">② 취소완료</div>
-              <div class="url-row">
-                <span class="url-btn-label">의견 남기기</span>
-                <span class="url-suggest">https://forms.gle/99ADqX3eVZRW65C56</span>
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">고객센터 문의</span>
-                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">포레몽 채널 추가</span>
-                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
-              </div>
-              <div class="url-note">기존: 결제내역 바로가기(https://new-m.pay.naver.com/) 포함 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/310" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
-
-              <div style="font-size:12px; font-weight:bold; color:#e88a00; margin:12px 0 4px;">③ 교환요청</div>
-              <div class="url-row">
-                <span class="url-btn-label">교환 진행상태 확인</span>
-                <span class="url-suggest">https://new-m.pay.naver.com/</span>
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">고객센터 문의</span>
-                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
-              </div>
-              <div class="url-note">기존: 의견 남기기(구글폼) 포함 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/321" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
-
-              <div style="font-size:12px; font-weight:bold; color:#e88a00; margin:12px 0 4px;">④ 교환완료</div>
-              <div class="url-row">
-                <span class="url-btn-label">배송조회 바로가기</span>
-                <span class="url-suggest">https://new-m.pay.naver.com/</span>
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">고객센터 문의</span>
-                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">포레몽 채널 추가</span>
-                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
-              </div>
-              <div class="url-note">참고: 자주묻는 Q&A → https://brand.naver.com/foremong/notice/detail?id=2002339568 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/331" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
-
-              <div style="font-size:12px; font-weight:bold; color:#7b61ff; margin:12px 0 4px;">⑤ 반품요청</div>
-              <div class="url-row">
-                <span class="url-btn-label">반품 진행상태 확인</span>
-                <span class="url-suggest">https://new-m.pay.naver.com/</span>
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">고객센터 문의</span>
-                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
-              </div>
-              <div class="url-note">기존: 의견 남기기(구글폼) 포함 | <a href="https://www.almani-center.com/console/alimtalk/template/detail/330" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
-
-              <div style="font-size:12px; font-weight:bold; color:#7b61ff; margin:12px 0 4px;">⑥ 반품완료</div>
-              <div class="url-row">
-                <span class="url-btn-label">의견 남기기</span>
-                <span class="url-suggest">https://forms.gle/99ADqX3eVZRW65C56</span>
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">고객센터 문의</span>
-                <span class="url-suggest">http://pf.kakao.com/_AUhMK</span>
-              </div>
-              <div class="url-row">
-                <span class="url-btn-label">포레몽 채널 추가</span>
-                <span class="url-suggest">http://pf.kakao.com/_AUhMK/friend</span>
-              </div>
-              <div class="url-note"><a href="https://www.almani-center.com/console/alimtalk/template/detail/332" target="_blank" style="color:#1a73e8;">알마니 템플릿</a></div>
-            </div>
-          <ul class="issues" style="padding:0 20px 20px;">
-            <li>취소요청: 교환 대안 제안 → 이탈 방지</li>
-            <li>취소/반품완료: 환불 기간 구체화 + 윈백 메시지</li>
-            <li>교환완료: 재만족 확인 터치 → 리뷰 전환 기회</li>
-            <li>전 캠페인 버튼 CTA 통일 (핵심행동 → CS문의 → 채널추가)</li>
-            <li>원래 포장재 안내 → 반품 CS 감소</li>
-          </ul>
         </div>
       </div>
-
       <div class="decision-bar">
         <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-8', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-8', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-8', 'skip')">⏭️ 보류</button>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-13', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-13', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-13', 'skip')">⏭️ 보류</button>
       </div>
     </div>
   </div>
-
   <!-- 성과 추적 -->
   <div class="section-title">성과 추적 체계 (신규 도입)</div>
   <div style="background:white; border-radius:16px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:24px;">
