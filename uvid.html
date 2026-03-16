@@ -160,16 +160,13 @@
 
   .phone {
     width: 280px;
-    min-width: 280px;
-    max-width: 280px;
     margin: 0 auto;
     background: #f7f7f2;
     border-radius: 24px;
-    border: 2px solid #ccc;
+    border: 2px solid #ddd;
     padding: 12px;
-    font-size: 14px;
-    line-height: 1.65;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    font-size: 12.5px;
+    line-height: 1.7;
   }
   .phone .kakao-header {
     text-align: center;
@@ -748,7 +745,7 @@
 <div id="modify-count-bar" class="modify-count-bar"></div>
 <div class="header">
   <h1>UVID 알림톡 CX 개선안</h1>
-  <p>11개 캠페인 전/후 비교 · UV Ends. ID Remains. · 2026-03-10</p>
+  <p>11개 캠페인 전/후 비교 · UV Ends. ID Remains. · 2026-03-14</p>
 </div>
 
 <div class="container">
@@ -844,8 +841,8 @@
   <div class="section-title">캠페인별 전 / 후 비교</div>
 
   <!-- 1. 결제완료 -->
-  <div data-campaign="campaign-1" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-1" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">1</div>
         <span class="name">결제완료</span>
@@ -958,7 +955,7 @@
               </div>
               <div class="url-row">
                 <span class="url-btn-label">유비드 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
               </div>
               <div class="url-note">네이버페이 주문내역 유지</div>
             </div>
@@ -982,8 +979,8 @@
   </div>
 
   <!-- 2. 배송시작 -->
-  <div data-campaign="campaign-2" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-2" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">2</div>
         <span class="name">배송시작</span>
@@ -1092,7 +1089,7 @@
               </div>
               <div class="url-row">
                 <span class="url-btn-label">유비드 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
               </div>
               <div class="url-note">배송조회 네이버페이 유지</div>
             </div>
@@ -1116,8 +1113,8 @@
   </div>
 
   <!-- 3. 배송완료 -->
-  <div data-campaign="campaign-3" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-3" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">3</div>
         <span class="name">배송완료</span>
@@ -1226,13 +1223,13 @@
               </div>
               <div class="url-row">
                 <span class="url-btn-label">자주 묻는 질문</span>
-                <span class="url-suggest">네이버 스마트스토어 FAQ 페이지 or 자사몰 FAQ</span>
+                <span class="url-suggest">⚠️ FAQ 페이지 URL 확인 필요 (스마트스토어 or 자사몰)</span>
               </div>
               <div class="url-row">
                 <span class="url-btn-label">유비드 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
               </div>
-              <div class="url-note">구매확정 → 네이버페이 / FAQ → 네이버 스마트스토어 FAQ 페이지</div>
+              <div class="url-note">구매확정 → 네이버페이 / FAQ → URL 확보 후 반영</div>
             </div>
           
           <ul class="issues">
@@ -1254,8 +1251,8 @@
   </div>
 
   <!-- 4. 구매확정 -->
-  <div data-campaign="campaign-4" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-4" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">4</div>
         <span class="name">구매확정</span>
@@ -1365,13 +1362,13 @@
               </div>
               <div class="url-row">
                 <span class="url-btn-label">자주 묻는 질문</span>
-                <span class="url-suggest">네이버 스마트스토어 FAQ 페이지</span>
+                <span class="url-suggest">⚠️ FAQ 페이지 URL 확인 필요</span>
               </div>
               <div class="url-row">
                 <span class="url-btn-label">유비드 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
               </div>
-              <div class="url-note">구매확정 CTA 1순위 배치</div>
+              <div class="url-note">구매확정 CTA 1순위 배치 / FAQ URL 확보 후 반영</div>
             </div>
           
           <ul class="issues">
@@ -1393,8 +1390,8 @@
   </div>
 
   <!-- 5. 리뷰유도 (NEW) -->
-  <div data-campaign="campaign-5" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-5" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge" style="background:#e8a020;">N</div>
         <span class="name">리뷰유도</span>
@@ -1447,6 +1444,22 @@
               </div>
             </div>
           </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 제안 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">리뷰 작성하기</span>
+                <span class="url-suggest">⚠️ 네이버 스마트스토어 리뷰 URL (SKU별 확인 필요)</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">자주 묻는 질문</span>
+                <span class="url-suggest">⚠️ FAQ 페이지 URL 확인 필요</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">유비드 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
+              </div>
+              <div class="url-note">리뷰 URL은 상품별 고유 링크 필요 / FAQ URL 확보 후 반영</div>
+            </div>
           <ul class="issues">
             <li>사용 1주일 = 생생한 리뷰 최적 시점</li>
             <li>구매확정/배송완료에서 분리된 리뷰 전담 캠페인</li>
@@ -1466,8 +1479,8 @@
   </div>
 
   <!-- 6. 한달 사용 후기 -->
-  <div data-campaign="campaign-6" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <div data-campaign="campaign-6" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
         <div class="num-badge">6</div>
         <span class="name">한달 사용 후기</span>
@@ -1491,25 +1504,50 @@
           <div class="phone">
             <div class="kakao-header">카카오 알림톡</div>
             <div class="msg white">
-              #{고객명}님<br>
-              마지막 안부 인사드립니다 !<br>
-              <span class="highlight">유비드 썬제품</span>과 함께 하신 지<br>
-              어느덧 한 달이 되셨습니다 ! (짝짝)<br><br>
-              <span class="highlight">💧썬크림, 꾸준히 사용하고 계신가요?<br>
-              …(장문 사용법 리마인드)…<br><br>
-              💡 이쯤에서 다시 보는 올바른 사용법<br>
-              1. 외출 15~20분 전, 충분량을 바르기<br>
-              2. 2~3시간 간격으로 덧바르기<br>
-              3. 손이 닿는 부위는 꼼꼼히 추가 도포<br>
-              4. 저녁에는 꼼꼼히 클렌징하고 보습으로 마무리<br><br>
-              …(감사 2단락)…<br><br>
-              📌 한 달 사용 후기 남기기<br>
-              (혜택명/증정품) 을(를) 제공해 드립니다.</span>
-              <div class="btn-group">
-                <div class="btn">(버튼 없음 - 본문에만 기재)</div>
+                안녕하세요. #{고객명}님,<br>
+                주문하신 내역이<br>
+                정상적으로 취소 완료되었습니다.<br>
+                <br>
+                📦 주문 취소 정보<br>
+                <br>
+                ▪️주문번호 : #{주문번호}<br>
+                ▪️주문상품 : #{상품명}<br>
+                ▪️결제금액 : #{총결제금액}원<br>
+                <br>
+                💳 결제 수단에 따라 환불은<br>
+                영업일 기준 3~5일 내 처리됩니다.<br>
+                (카드사/결제사 사정에 따라<br>
+                추가 소요될 수도 있습니다.)<br>
+                <br>
+                💬 이번 거래 과정에서 불편을<br>
+                드렸다면 진심으로 사과드립니다.<br>
+                <br>
+                고객님의 불편 경험은<br>
+                저희에게 매우 소중한 피드백이며<br>
+                동일한 일이 반복되지 않도록<br>
+                내부 프로세스를 개선하겠습니다.<br>
+                <br>
+                🙏🏽 짧은 시간이었지만<br>
+                유비드를 믿고 선택해주셔서<br>
+                진심으로 감사드립니다.<br>
+                <br>
+                고객님의 신뢰를 잃지 않기 위해<br>
+                더 꼼꼼히 개선하고, 더 나은 모습으로<br>
+                다음 기회에 다시 찾아뵙겠습니다.<br>
+                <div class="btn-group">
+                  <div class="btn">채널추가하기</div>
+                  <div class="btn">주문내역 바로가기</div>
+                </div>
+            
+            <div class="before-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">🔗 현재 랜딩 URL</div>
+              <div class="url-row">
+                <span class="url-btn-label">주문내역 바로가기</span>
+                <input type="text" class="url-input" value="https://new-m.pay.naver.com/" spellcheck="false" onclick="event.stopPropagation()" onfocus="event.stopPropagation()">
               </div>
             </div>
-          </div>
+              </div>
+            </div>
           <ul class="issues">
             <li>매우 장문 (사용법이 또 반복)</li>
             <li>"(혜택명/증정품)" 미정</li>
@@ -1549,18 +1587,18 @@
             <div class="after-url-box" onclick="event.stopPropagation()">
               <div class="url-box-title">💡 제안 랜딩 URL</div>
               <div class="url-row">
-                <span class="url-btn-label">리뷰 작성하기</span>
-                <span class="url-suggest">네이버 스마트스토어 리뷰 작성 페이지 (상품별)</span>
+                <span class="url-btn-label">한달 후기 작성하기</span>
+                <span class="url-suggest">⚠️ 네이버 스마트스토어 리뷰 URL (SKU별 확인 필요)</span>
               </div>
               <div class="url-row">
-                <span class="url-btn-label">자주 묻는 질문</span>
-                <span class="url-suggest">네이버 스마트스토어 FAQ 페이지</span>
+                <span class="url-btn-label">재구매 바로가기</span>
+                <span class="url-suggest">https://smartstore.naver.com/uvid/products/12931542371</span>
               </div>
               <div class="url-row">
                 <span class="url-btn-label">유비드 채널 추가</span>
-                <span class="url-suggest">카카오톡 채널 추가 (WL 타입)</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
               </div>
-              <div class="url-note">리뷰 작성 URL은 상품별 고유 링크. 포토리뷰 혜택 안내와 함께</div>
+              <div class="url-note">리뷰 URL은 상품별 고유 링크 필요 / 재구매 → 스마트스토어 상품 페이지</div>
             </div>
           
           <ul class="issues">
@@ -1583,283 +1621,299 @@
   </div>
 
 
-<div data-campaign="campaign-cs7" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
+  <!-- 7~12: 취소/교환/반품 (그룹) -->
+  <div data-campaign="campaign-7" class="campaign-card" onclick="this.classList.toggle('open')">
+    <div class="campaign-header">
       <div class="left">
-        <div class="num-badge" style="background:#5b5ea6;">7</div>
-        <span class="name">취소요청</span>
+        <div class="num-badge" style="background:#c44;">7-12</div>
+        <span class="name">취소 / 교환 / 반품 (6개 캠페인)</span>
         <span class="impact mid">MID</span>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
           <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs7" onchange="toggleModify('campaign-cs7', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs7').click();"></span>
-            <label for="modify-campaign-cs7" onclick="event.stopPropagation()">수정필요</label>
+            <input type="checkbox" id="modify-campaign-7" onchange="toggleModify('campaign-7', this, event)">
+            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-7').click();"></span>
+            <label for="modify-campaign-7" onclick="event.stopPropagation()">수정필요</label>
           </div>
-        <span class="timing">취소 요청 시 즉시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 주문 취소 요청이 접수되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 취소 요청을 받았습니다.<br><br>📦 #{상품명}<br><br>혹시 원하시는 제품이나 용량이 달랐나요?<br>교환으로 변경 가능합니다.<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">교환으로 변경하기</div><div class="btn">그대로 취소하기</div></div></div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs7', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs7', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs7', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
 
-<div data-campaign="campaign-cs8" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#5b5ea6;">8</div>
-        <span class="name">취소완료</span>
-        <span class="impact mid">MID</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs8" onchange="toggleModify('campaign-cs8', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs8').click();"></span>
-            <label for="modify-campaign-cs8" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">취소 완료 후 즉시</span>
+        <span class="timing">이벤트 발생 시</span>
         <span class="arrow">▼</span>
       </div>
     </div>
     <div class="campaign-body">
       <div class="comparison">
         <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 취소가 완료되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
+          <div class="col-label">❌ BEFORE (공통 패턴)</div>
+          <div style="padding:20px;">
+            <h4 style="font-size:14px; margin-bottom:12px;">현재 구조</h4>
+            <p style="font-size:13px; color:#555; margin-bottom:16px;">
+              6개 캠페인 모두 유사한 톤으로 운영 중.<br>
+              사과+다짐 3~5단락이 반복되며, 실질 절차 정보가 부족.
+            </p>
+            <div style="background:#fff5f5; padding:12px; border-radius:8px; font-size:12px; margin-bottom:12px;">
+              <b>취소요청</b> — 간결한 편이나 환불 수단별 소요일 미안내<br>
+              1번 버튼이 채널추가 (CTA 우선순위 불일치)
+            </div>
+            <div style="background:#fff5f5; padding:12px; border-radius:8px; font-size:12px; margin-bottom:12px;">
+              <b>취소완료</b> — 사과+다짐 4단락 과다<br>
+              환불 수단별 기간 미구체
+            </div>
+            <div style="background:#fff8f0; padding:12px; border-radius:8px; font-size:12px; margin-bottom:12px;">
+              <b>교환요청</b> — 사과+다짐 4단락, 교환 절차/일정 정보 부족<br>
+              <b>교환완료</b> — FAQ TOP 30 링크 미삽입, 본문 버튼(3개)과 실제 버튼(2개) 불일치
+            </div>
+            <div style="background:#f5f0ff; padding:12px; border-radius:8px; font-size:12px;">
+              <b>반품요청</b> — 🥲 이모지 부적절, 사과+다짐 5단락, 환불 절차 미안내<br>
+              <b>반품완료</b> — 🥲 반복, 감성 4단락 과다
+            </div>
           </div>
+          <ul class="issues" style="padding:0 20px 20px;">
+            <li>CS 6개 캠페인 전반에 사과+다짐 과다 (3~5단락)</li>
+            <li>환불 수단별 기간 미구체 (고객이 가장 궁금한 정보)</li>
+            <li>교환/반품 절차 안내 누락</li>
+            <li>🥲 부적절 이모지 (반품에 울상)</li>
+            <li>버튼 CTA 우선순위 불일치 (1번이 채널추가)</li>
+          </ul>
         </div>
         <div class="arrow-col">→</div>
         <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 취소가 완료됐습니다.<br><br>이번에 아쉬운 점이 있으셨다면<br>한 말씀 남겨주세요.<br>다음엔 더 나은 경험을 드리겠습니다.<br><br>💜 다음에 유비드를 다시 찾으시면<br>특별 혜택을 준비할게요.<div class="btn-group"><div class="btn">한마디 남기기</div><div class="btn">유비드 채널 추가</div></div></div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs8', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs8', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs8', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
+          <div class="col-label">✅ AFTER (6개 개별 메시지)</div>
+          <div style="padding:20px;">
 
-<div data-campaign="campaign-cs9" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#5b5ea6;">9</div>
-        <span class="name">교환요청</span>
-        <span class="impact mid">LOW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs9" onchange="toggleModify('campaign-cs9', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs9').click();"></span>
-            <label for="modify-campaign-cs9" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">교환 요청 시 즉시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 교환 요청이 접수되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>회수 후 영업일 기준 3~5일 내 새 상품 발송됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 교환 요청 접수됐어요.<br><br>✅ #{상품명}<br><br>수거 → 검수 → 새 상품 발송까지<br>영업일 기준 3~5일 내 완료됩니다.<div class="btn-group"><div class="btn">진행 상황 문의하기</div><div class="btn">유비드 채널 추가</div></div></div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs9', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs9', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs9', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
+            <!-- 취소요청 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#c44;">① 취소요청</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                선케어 전문 브랜드 <b>유비드(UVID)</b>입니다.<br><br>
+                취소 요청이 접수되었습니다.<br><br>
+                <span class="good">혹시 다른 제품으로 변경을 원하시면<br>
+                취소 대신 교환도 가능합니다.</span><br><br>
+                취소를 원하시면<br>
+                아래에서 진행 상태를 확인해 주세요.
+                <div class="btn-group">
+                  <div class="btn primary">주문내역 확인</div>
+                  <div class="btn">1:1 문의하기</div>
+                </div>
+              </div>
+            </div>
 
-<div data-campaign="campaign-cs10" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#5b5ea6;">10</div>
-        <span class="name">교환완료</span>
-        <span class="impact mid">LOW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs10" onchange="toggleModify('campaign-cs10', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs10').click();"></span>
-            <label for="modify-campaign-cs10" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">교환 상품 발송 시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 교환 처리가 완료되었습니다.<br><br>상품명: #{상품명}<br><br>새 상품이 발송되었습니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 교환 상품이 발송됐어요! 📦<br><br>✅ #{상품명}<br><br>이번엔 만족스러운 경험이 되길 바랍니다.<br>피부 고민이 있으시면 언제든 연락 주세요.<div class="btn-group"><div class="btn">유비드 사용법 보기</div><div class="btn">유비드 채널 추가</div></div></div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs10', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs10', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs10', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
+            <!-- 취소완료 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#c44;">② 취소완료</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                유비드입니다.<br><br>
+                취소가 정상적으로 완료되었습니다.<br><br>
+                💰 <b>환불 안내</b><br>
+                ▪️신용/체크카드 : 3~7영업일<br>
+                ▪️무통장입금 : 3영업일 이내<br>
+                ▪️휴대폰결제 : 3영업일 이내<br><br>
+                <span class="good">다음에 더 좋은 경험으로<br>
+                다시 만나뵙겠습니다.</span><br><br>
+                소중한 의견을 남겨주시면<br>
+                더 나은 유비드가 되겠습니다.
+                <div class="btn-group">
+                  <div class="btn primary">의견 남기기</div>
+                  <div class="btn">1:1 문의하기</div>
+                  <div class="btn">유비드 채널 추가</div>
+                </div>
+              </div>
+            </div>
 
-<div data-campaign="campaign-cs11" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#5b5ea6;">11</div>
-        <span class="name">반품요청</span>
-        <span class="impact mid">MID</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs11" onchange="toggleModify('campaign-cs11', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs11').click();"></span>
-            <label for="modify-campaign-cs11" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">반품 요청 시 즉시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 반품 요청이 접수되었습니다.<br><br>주문번호: #{주문번호}<br>상품명: #{상품명}<br><br>회수 후 환불은 영업일 기준 3~5일 내 처리됩니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div>
-          </div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone">
-            <div class="kakao-header">카카오 알림톡</div>
-            <div class="msg white">#{고객명}님, 반품 요청을 받았습니다.<br><br>불편하셨을 텐데 정말 죄송합니다.<br><br>📦 #{상품명}<br>회수 → 검수 → 환불까지<br>영업일 기준 3~5일 안에 처리할게요.<div class="btn-group"><div class="btn">불편 사항 알리기</div><div class="btn">유비드 채널 추가</div></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs11', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs11', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs11', 'skip')">⏭️ 보류</button>
-      </div>
-    </div>
-  </div>
-<div data-campaign="campaign-cs12" class="campaign-card">
-    <div class="campaign-header" onclick="this.closest('.campaign-card').classList.toggle('open')">
-      <div class="left">
-        <div class="num-badge" style="background:#5b5ea6;">12</div>
-        <span class="name">반품완료</span>
-        <span class="impact mid">LOW</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;">
-          <div class="modify-toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" id="modify-campaign-cs12" onchange="toggleModify('campaign-cs12', this, event)">
-            <span class="toggle-switch" onclick="event.stopPropagation(); document.getElementById('modify-campaign-cs12').click();"></span>
-            <label for="modify-campaign-cs12" onclick="event.stopPropagation()">수정필요</label>
-          </div>
-        <span class="timing">반품 환불 완료 시</span>
-        <span class="arrow">▼</span>
-      </div>
-    </div>
-    <div class="campaign-body">
-      <div class="comparison">
-        <div class="before">
-          <div class="col-label">❌ BEFORE (현재 발송 중)</div>
-          <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 반품이 완료되었습니다.<br><br>상품명: #{상품명}<br><br>환불이 완료되었습니다.<div class="btn-group"><div class="btn">채널추가하기</div></div></div></div>
-        </div>
-        <div class="arrow-col">→</div>
-        <div class="after">
-          <div class="col-label">✅ AFTER (개선안)</div>
-          <div class="phone"><div class="kakao-header">카카오 알림톡</div><div class="msg white">#{고객명}님, 환불 처리가 완료됐습니다.<br><br>✅ #{상품명}<br><br>이번에 아쉬운 경험을 드려 죄송합니다.<br>더 나은 유비드가 되겠습니다.<br><br>💜 다음에 다시 찾아주시면<br>더 좋은 경험으로 보답할게요.<div class="btn-group"><div class="btn">한마디 남기기</div><div class="btn">유비드 채널 추가</div></div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+            <!-- 교환요청 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#e88a00;">③ 교환요청</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                유비드입니다.<br><br>
+                교환 요청이 접수되었습니다.<br><br>
+                📦 <b>교환 진행 안내</b><br>
+                ▪️① 택배 회수 (1~2영업일)<br>
+                ▪️② 상품 상태 확인<br>
+                ▪️③ 새 상품 발송 (확인 후 1~2영업일)<br><br>
+                진행 상태는 아래에서<br>
+                확인하실 수 있습니다.
+                <div class="btn-group">
+                  <div class="btn primary">주문내역 확인</div>
+                  <div class="btn">1:1 문의하기</div>
+                </div>
+              </div>
+            </div>
 
- 
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs11', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs11', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs11', 'skip')">⏭️ 보류</button>
+            <!-- 교환완료 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#e88a00;">④ 교환완료</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                유비드입니다.<br><br>
+                교환 상품이 발송되었습니다!<br><br>
+                📦 <b>교환 배송 정보</b><br>
+                ▪️상품명 : #{상품명}<br>
+                ▪️송장번호 : #{송장번호}<br><br>
+                <span class="good">교환 제품 수령 후<br>
+                만족스러우신지 꼭 알려주세요.</span><br><br>
+                끝까지 도와드리겠습니다.
+                <div class="btn-group">
+                  <div class="btn primary">배송조회 바로가기</div>
+                  <div class="btn">1:1 문의하기</div>
+                  <div class="btn">유비드 채널 추가</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 반품요청 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#7b61ff;">⑤ 반품요청</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                유비드입니다.<br><br>
+                반품 요청이 접수되었습니다.<br><br>
+                📦 <b>반품 진행 안내</b><br>
+                ▪️① 택배 회수 (1~2영업일)<br>
+                ▪️② 상품 상태 확인<br>
+                ▪️③ 환불 처리 (3~7영업일)<br><br>
+                진행 상태는 아래에서 확인 가능합니다.
+                <div class="btn-group">
+                  <div class="btn primary">주문내역 확인</div>
+                  <div class="btn">1:1 문의하기</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 반품완료 -->
+            <h4 style="font-size:13px; margin-bottom:8px; color:#7b61ff;">⑥ 반품완료</h4>
+            <div class="phone" style="margin-bottom:16px;">
+              <div class="kakao-header">카카오 알림톡</div>
+              <div class="msg white" contenteditable="true">
+                #{고객명}님, 안녕하세요.<br>
+                유비드입니다.<br><br>
+                반품이 정상적으로 완료되었습니다.<br><br>
+                💰 <b>환불 안내</b><br>
+                ▪️신용/체크카드 : 3~7영업일<br>
+                ▪️무통장입금 : 3영업일 이내<br>
+                ▪️휴대폰결제 : 3영업일 이내<br><br>
+                <span class="good">다음에 더 좋은 경험으로<br>
+                다시 만나뵙겠습니다.</span><br><br>
+                불편하셨던 점을 알려주시면<br>
+                더 나은 유비드가 되겠습니다.
+                <div class="btn-group">
+                  <div class="btn primary">의견 남기기</div>
+                  <div class="btn">1:1 문의하기</div>
+                  <div class="btn">유비드 채널 추가</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+            <div class="after-url-box" onclick="event.stopPropagation()">
+              <div class="url-box-title">💡 CS 6개 캠페인 랜딩 URL</div>
+
+              <div style="font-size:12px; font-weight:bold; color:#c44; margin:8px 0 4px;">① 취소요청</div>
+              <div class="url-row">
+                <span class="url-btn-label">주문내역 확인</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">1:1 문의하기</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/chat</span>
+              </div>
+              <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | <a href="https://www.notion.so/2efda673dd5880379876ff0f6d0499db" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#c44; margin:12px 0 4px;">② 취소완료</div>
+              <div class="url-row">
+                <span class="url-btn-label">의견 남기기</span>
+                <span class="url-suggest">⚠️ 구글폼 URL 생성 필요 (TBD)</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">1:1 문의하기</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/chat</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">유비드 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
+              </div>
+              <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | <a href="https://www.notion.so/2efda673dd5880a1bee4e9bca119aac8" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#e88a00; margin:12px 0 4px;">③ 교환요청</div>
+              <div class="url-row">
+                <span class="url-btn-label">주문내역 확인</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">1:1 문의하기</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/chat</span>
+              </div>
+              <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | <a href="https://www.notion.so/2efda673dd588029a4fdcc23ecd5611c" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#e88a00; margin:12px 0 4px;">④ 교환완료</div>
+              <div class="url-row">
+                <span class="url-btn-label">배송조회 바로가기</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">1:1 문의하기</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/chat</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">유비드 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
+              </div>
+              <div class="url-note">기존 템플릿에 FAQ TOP 30 링크 미삽입 상태 | <a href="https://www.notion.so/2efda673dd58804cbb3ec5da55a4a1a1" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#7b61ff; margin:12px 0 4px;">⑤ 반품요청</div>
+              <div class="url-row">
+                <span class="url-btn-label">주문내역 확인</span>
+                <span class="url-suggest">https://new-m.pay.naver.com/</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">1:1 문의하기</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/chat</span>
+              </div>
+              <div class="url-note">기존 버튼: 채널추가(WL) · 주문내역(네이버페이) | <a href="https://www.notion.so/2efda673dd5880289770ce8a2fdec8b0" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+
+              <div style="font-size:12px; font-weight:bold; color:#7b61ff; margin:12px 0 4px;">⑥ 반품완료</div>
+              <div class="url-row">
+                <span class="url-btn-label">의견 남기기</span>
+                <span class="url-suggest">⚠️ 구글폼 URL 생성 필요 (TBD)</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">1:1 문의하기</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/chat</span>
+              </div>
+              <div class="url-row">
+                <span class="url-btn-label">유비드 채널 추가</span>
+                <span class="url-suggest">http://pf.kakao.com/_xcdWxon/friend</span>
+              </div>
+              <div class="url-note"><a href="https://www.notion.so/2efda673dd5880d8bb4bedd017c01e63" target="_blank" style="color:#1a73e8;">노션 원본</a></div>
+
+              <div class="url-note" style="margin-top:12px; background:#fff3cd; padding:8px 12px; border-radius:6px;">
+                ✅ 카카오채널 URL 반영 완료 · ⚠️ "의견 남기기" 구글폼 + FAQ URL + 리뷰 URL(SKU별) 확보 필요
+              </div>
+            </div>
+          <ul class="issues" style="padding:0 20px 20px;">
+            <li>환불 수단별 기간 구체화 (고객 불안 해소)</li>
+            <li>교환/반품 절차 3단계 명확 안내</li>
+            <li>사과 과다 → "끝까지 도와드리겠습니다" 한 줄 진정성</li>
+            <li>부적절 이모지 제거, 톤 통일</li>
+            <li>전 캠페인 버튼 CTA 통일 (핵심행동 → 1:1문의 → 채널추가)</li>
+          </ul>
+        </div>
       </div>
-    
+
       <div class="decision-bar">
         <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs11', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs11', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs11', 'skip')">⏭️ 보류</button>
-      </div>
-    
-      <div class="decision-bar">
-        <span class="status-label">결정</span>
-        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-cs11', 'adopt')">✅ 채택</button>
-        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-cs11', 'modify')">✏️ 수정</button>
-        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-cs11', 'skip')">⏭️ 보류</button>
+        <button class="decision-btn adopt" onclick="event.stopPropagation(); decide('campaign-7', 'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="event.stopPropagation(); decide('campaign-7', 'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="event.stopPropagation(); decide('campaign-7', 'skip')">⏭️ 보류</button>
       </div>
     </div>
+  </div>
 
   <!-- 성과 추적 -->
   <div class="section-title">성과 추적 체계 (신규 도입)</div>
@@ -1889,7 +1943,7 @@
   </div>
 
   <div class="footer">
-    UVID 알림톡 CX 개선안 · 2026-03-10 · UV Ends. ID Remains. · 그로밋팀
+    UVID 알림톡 CX 개선안 · 2026-03-14 · UV Ends. ID Remains. · 그로밋팀
   </div>
 </div>
 
@@ -1995,7 +2049,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar, .campaign-body, .after-url-box, .comparison').forEach(el => {
+    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar').forEach(el => {
       el.addEventListener('click', e => e.stopPropagation());
     });
   });
@@ -2013,4 +2067,3 @@
 
 </body>
 </html>
-
