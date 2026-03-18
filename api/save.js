@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Server config error' });
   }
 
-  const allowed = ['kucham.html', 'uvid.html', 'foremong.html', 'meariset.html', 'index.html', 'kucham-faq.html'];
+  const allowed = ['kucham.html', 'uvid.html', 'foremong.html', 'meariset.html', 'index.html', 'kucham-faq.html', 'data/kucham.json'];
 
   // GET: SHA 조회
   if (req.method === 'GET') {
