@@ -914,85 +914,40 @@
     }
   }
 
-  // Supabase 저장/불러오기
-  const SUPABASE_URL = "https://dnkqmvhiwhraurpisorw.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_D645oN8fWfI8h7ZODqGMQQ_47sgCYOF";
+  // localStorage 기반 자동 저장
   const BRAND = "uvid";
 
-  async function saveEdit(id, content) {
-    const key = `${BRAND}_${id}`;
-    localStorage.setItem(`alimtalk_${key}`, content);
-
-    try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/alimtalk_edits`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`,
-          "Prefer": "resolution=merge-duplicates"
-        },
-        body: JSON.stringify({ id: key, brand: BRAND, content, updated_at: new Date().toISOString() })
-      });
-      return res.ok;
-    } catch(e) {
-      return false;
-    }
-  }
-
-  async function loadEdits() {
-    try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/alimtalk_edits?brand=eq.${BRAND}`, {
-        headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data)) return { source: "supabase", data };
-      }
-    } catch(e) {}
-
-    const data = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (k && k.startsWith(`alimtalk_${BRAND}_`)) {
-        const idx = k.replace(`alimtalk_${BRAND}_`, "");
-        data.push({ id: `${BRAND}_${idx}`, content: localStorage.getItem(k) });
-      }
-    }
-    return { source: "local", data };
-  }
-
-  document.addEventListener('DOMContentLoaded', async function() {
-    document.querySelectorAll('[contenteditable="true"], input').forEach(el => {
+  document.addEventListener('DOMContentLoaded', function() {
+    // 클릭 이벤트 전파 차단
+    document.querySelectorAll('[contenteditable="true"], input, .before-url-box, .decision-bar').forEach(el => {
       el.addEventListener('click', e => e.stopPropagation());
     });
 
+    // contenteditable 실시간 저장 + 복원
     const editables = document.querySelectorAll('[contenteditable="true"]');
     editables.forEach((el, idx) => {
-      el.addEventListener('blur', async () => {
-        const ok = await saveEdit(idx, el.innerHTML);
-        if (ok) {
-          el.style.outline = "2px solid #22c55e";
-        } else {
-          el.style.outline = "2px solid #3b82f6";
-        }
-        setTimeout(() => { el.style.outline = ""; }, 1500);
+      // 저장된 내용 복원
+      const saved = localStorage.getItem(`alimtalk_${BRAND}_ce_${idx}`);
+      if (saved) el.innerHTML = saved;
+
+      // 타이핑할 때마다 실시간 저장
+      el.addEventListener('input', () => {
+        localStorage.setItem(`alimtalk_${BRAND}_ce_${idx}`, el.innerHTML);
+        el.style.outline = "2px solid #22c55e";
+        clearTimeout(el._saveTimer);
+        el._saveTimer = setTimeout(() => { el.style.outline = ""; }, 1000);
       });
     });
 
-    const result = await loadEdits();
-    result.data.forEach(edit => {
-      const idx = parseInt(edit.id.replace(`${BRAND}_`, ''), 10);
-      if (!isNaN(idx) && editables[idx]) {
-        editables[idx].innerHTML = edit.content;
-      }
+    // url-input 저장 + 복원
+    const urlInputs = document.querySelectorAll('.url-input');
+    urlInputs.forEach((el, idx) => {
+      const saved = localStorage.getItem(`alimtalk_${BRAND}_url_${idx}`);
+      if (saved) el.value = saved;
+      el.addEventListener('input', () => {
+        localStorage.setItem(`alimtalk_${BRAND}_url_${idx}`, el.value);
+      });
     });
-    if (result.source === "local") {
-      const banner = document.createElement("div");
-      banner.style.cssText = "position:fixed;top:0;left:0;right:0;background:#f59e0b;color:#fff;text-align:center;padding:6px;font-size:12px;z-index:9999;";
-      banner.textContent = "\uD83D\uDCBE 로컬 저장 모드 — 이 기기에만 저장됨 (팀원과 공유 안 됨)";
-      document.body.prepend(banner);
-    }
   });
 </script>
 
