@@ -2758,7 +2758,7 @@
           else {
             // localStorage fallback
             const local = localStorage.getItem(`alimtalk_${BRAND}_${key}`);
-            if (local) el.innerHTML = local;
+            if (local && local.trim() && local.trim() !== '<br>') el.innerHTML = local;
           }
         });
         urlInputs.forEach((el, idx) => {
@@ -2794,7 +2794,7 @@
     // 타이핑할 때마다 localStorage에 즉시 저장
     editables.forEach((el, idx) => {
       el.addEventListener('input', () => {
-        localStorage.setItem(`alimtalk_${BRAND}_ce_${idx}`, el.innerHTML);
+        const _html = el.innerHTML.trim(); if (_html && _html !== '<br>') localStorage.setItem(`alimtalk_${BRAND}_ce_${idx}`, _html);
         el.style.outline = "2px solid #22c55e";
         clearTimeout(el._saveTimer);
         el._saveTimer = setTimeout(() => { el.style.outline = ""; }, 800);
