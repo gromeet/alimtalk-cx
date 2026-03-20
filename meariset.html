@@ -419,6 +419,9 @@
     }
     .container { padding: 14px 10px; }
     .section-title { font-size: 16px; }
+    .top-nav { flex-wrap: wrap; padding: 8px 12px; gap: 6px; }
+    .top-nav .brand-btn { font-size: 11px; padding: 4px 10px; }
+    .top-nav .logo { font-size: 12px; }
   }
 
   /* BEFORE/AFTER comparison */
@@ -931,6 +934,12 @@
       background: rgba(255,255,255,0.15); color: white; cursor: pointer;
       transition: all 0.2s;
     ">▼ 캠페인 전체 펼치기</button>
+    <button id="toggle-modify-btn" onclick="toggleAllModify()" style="
+      padding: 10px 24px; font-size: 14px; font-weight: 600;
+      border-radius: 8px; border: 2px solid rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.15); color: white; cursor: pointer;
+      transition: all 0.2s;
+    ">☑ 수정필요 전체 ON</button>
   </div>
 </div>
 
@@ -3584,12 +3593,22 @@ function switchTab(tab) {
   function toggleAllCards() {
     const cards = document.querySelectorAll(".campaign-card");
     const btn = document.getElementById("toggle-all-btn");
-    const allOpen = Array.from(cards).every(c => c.classList.contains("open"));
+    const anyOpen = Array.from(cards).some(c => c.classList.contains("open"));
     cards.forEach(c => {
-      if (allOpen) c.classList.remove("open");
+      if (anyOpen) c.classList.remove("open");
       else c.classList.add("open");
     });
-    btn.textContent = allOpen ? "▼ 캠페인 전체 펼치기" : "▲ 전체 접기";
+    btn.textContent = anyOpen ? "▼ 캠페인 전체 펼치기" : "▲ 전체 접기";
+  }
+
+  function toggleAllModify() {
+    const btn = document.getElementById("toggle-modify-btn");
+    const checkboxes = document.querySelectorAll("input[id^=modify-campaign]");
+    const allOn = Array.from(checkboxes).every(cb => cb.checked);
+    checkboxes.forEach(cb => {
+      if (cb.checked !== !allOn) cb.click();
+    });
+    btn.textContent = allOn ? "☑ 수정필요 전체 ON" : "☒ 수정필요 전체 OFF";
   }
 </script>
 
