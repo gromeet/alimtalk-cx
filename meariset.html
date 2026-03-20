@@ -390,9 +390,11 @@
     /* 모바일 캠페인 헤더 — 두 줄 구조 */
     .campaign-header {
       padding: 10px 12px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 6px;
+      overflow: hidden;
     }
+    .impact, .new-badge { font-size: 9px; padding: 1px 5px; }
     .campaign-header .left {
       flex: 1 1 auto;
       gap: 8px;
