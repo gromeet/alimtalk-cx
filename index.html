@@ -42,6 +42,36 @@
   .card h2 { font-size:20px; font-weight:700; margin-bottom:8px; }
   .card p { font-size:14px; color:#666; line-height:1.6; }
   .card .badge { display:inline-block; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:600; margin-top:12px; color:white; }
+
+  @media (max-width: 640px) {
+    .top-nav {
+      padding: 8px 12px;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .top-nav .logo {
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .brand-btn {
+      padding: 5px 10px;
+      font-size: 11px;
+      white-space: nowrap;
+      border-radius: 14px;
+    }
+    .hero { padding: 40px 16px 30px; }
+    .hero h1 { font-size: 24px; }
+    .hero p { font-size: 13px; }
+    .cards {
+      grid-template-columns: 1fr;
+      padding: 0 16px;
+      gap: 16px;
+      margin: 24px auto;
+    }
+    .card { padding: 24px; }
+    .card .emoji { font-size: 36px; }
+    .card h2 { font-size: 17px; }
+  }
 </style>
 </head>
 <body>
