@@ -163,14 +163,14 @@
 
   /* Phone mockup */
   .phone {
-    width: 280px;
+    width: 320px;
     margin: 0 auto;
     background: #f7f7f2;
     border-radius: 24px;
     border: 2px solid #ddd;
-    padding: 12px;
-    font-size: 12.5px;
-    line-height: 1.7;
+    padding: 14px;
+    font-size: 13.5px;
+    line-height: 1.65;
   }
   .phone .kakao-header {
     text-align: center;
@@ -181,7 +181,8 @@
     margin-bottom: 10px;
   }
   .phone .msg {
-    background: #FEE500;
+    background: #fff;
+    border: 1px solid #e5e5e5;
     border-radius: 12px;
     padding: 14px;
     margin-bottom: 8px;
@@ -202,9 +203,9 @@
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 8px;
+    padding: 9px;
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     color: #333;
     font-weight: 500;
   }
@@ -213,8 +214,8 @@
     color: white;
     border-color: #4b6584;
   }
-  .phone .highlight { background: #ffe0e0; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
-  .phone .good { background: #d4f5d4; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+  .good, .phone .good { background: #b7f0b7; padding: 1px 3px; border-radius: 2px; }
+  .highlight, .phone .highlight { background: #fff176; padding: 1px 3px; border-radius: 2px; }
 
   /* Issues list */
   .issues { margin-top: 12px; }
@@ -724,6 +725,14 @@
 <div class="header">
   <h1>쿠참 알림톡 CX 개선안</h1>
   <p>6개 캠페인 전/후 비교 &middot; 2026-03-17</p>
+  <div style="margin-top:20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+    <button id="toggle-all-btn" onclick="toggleAllCards()" style="
+      padding: 10px 24px; font-size: 14px; font-weight: 600;
+      border-radius: 8px; border: 2px solid rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.15); color: white; cursor: pointer;
+      transition: all 0.2s;
+    ">▼ 캠페인 전체 펼치기</button>
+  </div>
 </div>
 
 <div class="container">
@@ -2471,6 +2480,17 @@
 
     document.body.appendChild(shareBtn);
   });
+
+  function toggleAllCards() {
+    const cards = document.querySelectorAll(".campaign-card");
+    const btn = document.getElementById("toggle-all-btn");
+    const allOpen = Array.from(cards).every(c => c.classList.contains("open"));
+    cards.forEach(c => {
+      if (allOpen) c.classList.remove("open");
+      else c.classList.add("open");
+    });
+    btn.textContent = allOpen ? "▼ 캠페인 전체 펼치기" : "▲ 전체 접기";
+  }
 </script>
 
 <!-- Decision Summary Bar -->
