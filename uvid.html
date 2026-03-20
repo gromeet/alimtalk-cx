@@ -173,6 +173,8 @@
     text-align: center;
     margin-top: 4px;
   }
+  .char-counter { text-align: right; font-size: 11px; color: #999; padding: 2px 6px; margin-top: 2px; }
+  .char-counter.over { color: #ef4444; font-weight: 700; }
 
   /* 수정 필요 토글 */
   .modify-toggle {
@@ -341,6 +343,32 @@
   .good, .phone .good { background: #b7f0b7; padding: 1px 3px; border-radius: 2px; }
   .highlight, .phone .highlight { background: #fff176; padding: 1px 3px; border-radius: 2px; }
 
+  .decision-bar {
+    display: flex; gap: 8px; margin: 12px 16px 16px;
+    padding: 10px 14px; background: #f8f9fa;
+    border-radius: 10px; border: 1px solid #e9ecef; align-items: center;
+  }
+  .decision-bar .status-label { font-size: 12px; font-weight: 600; color: #999; margin-right: auto; }
+  .decision-btn {
+    padding: 5px 14px; border-radius: 16px; font-size: 12px; font-weight: 600;
+    border: 1.5px solid #ddd; background: transparent; cursor: pointer; transition: all 0.2s;
+  }
+  .decision-btn.adopt { border-color: #22c55e; color: #22c55e; }
+  .decision-btn.adopt.selected, .decision-btn.adopt:hover { background: #22c55e; color: white; }
+  .decision-btn.modify { border-color: #f59e0b; color: #f59e0b; }
+  .decision-btn.modify.selected, .decision-btn.modify:hover { background: #f59e0b; color: white; }
+  .decision-btn.skip { border-color: #94a3b8; color: #94a3b8; }
+  .decision-btn.skip.selected, .decision-btn.skip:hover { background: #94a3b8; color: white; }
+  .campaign-card.decided-adopt { border-left: 4px solid #22c55e; }
+  .campaign-card.decided-modify { border-left: 4px solid #f59e0b; }
+  .campaign-card.decided-skip { border-left: 4px solid #94a3b8; opacity: 0.7; }
+  .copy-after-btn {
+    display: block; margin: 0 16px 8px; padding: 7px; text-align: center;
+    background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;
+    font-size: 12px; color: #15803d; cursor: pointer; font-weight: 600;
+  }
+  .copy-after-btn:hover { background: #dcfce7; }
+
   @media (max-width: 768px) {
     .phone { width: 100%; }
     /* 모바일 캠페인 헤더 — 두 줄 구조 */
@@ -493,6 +521,13 @@
           </div>
         </div>
       </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
+      </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
   </div>
@@ -536,6 +571,13 @@
             <div class="btn">채널 추가하기</div>
           </div>
         </div>
+      </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
       </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
@@ -583,6 +625,13 @@
           </div>
         </div>
       </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
+      </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
   </div>
@@ -625,6 +674,13 @@
             <div class="btn">채널 추가하기</div>
           </div>
         </div>
+      </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
       </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
@@ -673,6 +729,13 @@
           </div>
         </div>
       </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
+      </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
   </div>
@@ -718,6 +781,13 @@
           </div>
         </div>
       </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
+      </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
   </div>
@@ -760,6 +830,13 @@
             <div class="btn">채널 추가하기</div>
           </div>
         </div>
+      </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
       </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
@@ -805,6 +882,13 @@
           </div>
         </div>
       </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
+      </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
   </div>
@@ -844,6 +928,13 @@
             <div class="btn">채널 추가하기</div>
           </div>
         </div>
+      </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
       </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
@@ -888,6 +979,13 @@
           </div>
         </div>
       </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
+      </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
   </div>
@@ -929,6 +1027,13 @@
             <div class="btn">채널 추가하기</div>
           </div>
         </div>
+      </div>
+      <button class="copy-after-btn" onclick="event.stopPropagation(); copyAfterMsg(this)">📋 AFTER 메시지 복사</button>
+      <div class="decision-bar" onclick="event.stopPropagation()">
+        <span class="status-label">의사결정</span>
+        <button class="decision-btn adopt" onclick="setDecision(this,'adopt')">✅ 채택</button>
+        <button class="decision-btn modify" onclick="setDecision(this,'modify')">✏️ 수정</button>
+        <button class="decision-btn skip" onclick="setDecision(this,'skip')">⏭ 보류</button>
       </div>
       <div class="edit-hint">&#9999;&#65039; 클릭하여 직접 수정할 수 있습니다</div>
     </div>
@@ -1003,6 +1108,13 @@
             if (local) el.value = local;
           }
         });
+        document.querySelectorAll(".campaign-card").forEach((card, idx) => {
+          const decVal = data["dec_" + idx];
+          if (decVal) {
+            const btn = card.querySelector(".decision-btn." + decVal);
+            if (btn) { btn.classList.add("selected"); card.classList.add("decided-" + decVal); }
+          }
+        });
       } catch {
         // 네트워크 오류 시 localStorage 사용
         editables.forEach((el, idx) => {
@@ -1055,6 +1167,14 @@
       const changes = {};
       editables.forEach((el, idx) => { changes[`ce_${idx}`] = el.innerHTML; });
       urlInputs.forEach((el, idx) => { changes[`url_${idx}`] = el.value; });
+      document.querySelectorAll(".campaign-card").forEach((card, idx) => {
+        const sel = card.querySelector(".decision-btn.selected");
+        if (sel) {
+          if (sel.classList.contains("adopt")) changes["dec_" + idx] = "adopt";
+          else if (sel.classList.contains("modify")) changes["dec_" + idx] = "modify";
+          else if (sel.classList.contains("skip")) changes["dec_" + idx] = "skip";
+        }
+      });
 
       try {
         const res = await fetch(API_BASE, {
@@ -1083,6 +1203,20 @@
       }
     });
 
+    // 글자수 카운터
+    document.querySelectorAll('.msg[contenteditable="true"]').forEach(msg => {
+      const counter = document.createElement('div');
+      counter.className = 'char-counter';
+      msg.parentNode.insertBefore(counter, msg.nextSibling);
+      const update = () => {
+        const len = msg.innerText.replace(/\n/g, '').length;
+        counter.textContent = len + ' / 1,000자';
+        counter.classList.toggle('over', len > 1000);
+      };
+      update();
+      msg.addEventListener('input', update);
+    });
+
     document.body.appendChild(shareBtn);
   });
 
@@ -1105,6 +1239,44 @@
       if (cb.checked !== !allOn) cb.click();
     });
     btn.textContent = allOn ? "☑ 수정필요 전체 ON" : "☒ 수정필요 전체 OFF";
+  }
+
+  function copyAfterMsg(btn) {
+    const card = btn.closest('.campaign-card');
+    const msg = card.querySelector('.msg[contenteditable]');
+    if (!msg) return;
+    navigator.clipboard.writeText(msg.innerText).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ 복사 완료!';
+      setTimeout(() => { btn.textContent = orig; }, 1500);
+    });
+  }
+
+  function setDecision(btn, type) {
+    const card = btn.closest('.campaign-card');
+    card.classList.remove('decided-adopt', 'decided-modify', 'decided-skip');
+    card.querySelectorAll('.decision-btn').forEach(b => b.classList.remove('selected'));
+    // toggle off if already selected
+    if (btn.classList.contains('selected')) {
+      btn.classList.remove('selected');
+    } else {
+      btn.classList.add('selected');
+      card.classList.add('decided-' + type);
+    }
+    updateDecisionSummary();
+  }
+
+  function updateDecisionSummary() {
+    const adopt = document.querySelectorAll('.decided-adopt').length;
+    const modify = document.querySelectorAll('.decided-modify').length;
+    const skip = document.querySelectorAll('.decided-skip').length;
+    const bar = document.querySelector('.decision-summary');
+    if (!bar) return;
+    bar.querySelector('.adopt-count').textContent = adopt;
+    bar.querySelector('.modify-count').textContent = modify;
+    bar.querySelector('.skip-count').textContent = skip;
+    if (adopt + modify + skip > 0) bar.classList.remove('hidden');
+    else bar.classList.add('hidden');
   }
 </script>
 

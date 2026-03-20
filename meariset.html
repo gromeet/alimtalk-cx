@@ -566,6 +566,8 @@
     text-align: center;
     margin-top: 4px;
   }
+  .char-counter { text-align: right; font-size: 11px; color: #999; padding: 2px 6px; margin-top: 2px; }
+  .char-counter.over { color: #ef4444; font-weight: 700; }
 
   /* Current URL display in BEFORE */
   .current-url {
@@ -3507,6 +3509,13 @@ function switchTab(tab) {
             if (local) el.value = local;
           }
         });
+        document.querySelectorAll(".campaign-card").forEach((card, idx) => {
+          const decVal = data["dec_" + idx];
+          if (decVal) {
+            const btn = card.querySelector(".decision-btn." + decVal);
+            if (btn) { btn.classList.add("selected"); card.classList.add("decided-" + decVal); }
+          }
+        });
       } catch {
         // 네트워크 오류 시 localStorage 사용
         editables.forEach((el, idx) => {
@@ -3559,6 +3568,14 @@ function switchTab(tab) {
       const changes = {};
       editables.forEach((el, idx) => { changes[`ce_${idx}`] = el.innerHTML; });
       urlInputs.forEach((el, idx) => { changes[`url_${idx}`] = el.value; });
+      document.querySelectorAll(".campaign-card").forEach((card, idx) => {
+        const sel = card.querySelector(".decision-btn.selected");
+        if (sel) {
+          if (sel.classList.contains("adopt")) changes["dec_" + idx] = "adopt";
+          else if (sel.classList.contains("modify")) changes["dec_" + idx] = "modify";
+          else if (sel.classList.contains("skip")) changes["dec_" + idx] = "skip";
+        }
+      });
 
       try {
         const res = await fetch(API_BASE, {
@@ -3585,6 +3602,20 @@ function switchTab(tab) {
           shareBtn.disabled = false;
         }, 2000);
       }
+    });
+
+    // 글자수 카운터
+    document.querySelectorAll('.msg[contenteditable="true"]').forEach(msg => {
+      const counter = document.createElement('div');
+      counter.className = 'char-counter';
+      msg.parentNode.insertBefore(counter, msg.nextSibling);
+      const update = () => {
+        const len = msg.innerText.replace(/\n/g, '').length;
+        counter.textContent = len + ' / 1,000자';
+        counter.classList.toggle('over', len > 1000);
+      };
+      update();
+      msg.addEventListener('input', update);
     });
 
     document.body.appendChild(shareBtn);
